@@ -1,12 +1,28 @@
-import React from 'react';
+import DataTable from 'react-data-table-component';
 import IconsUtils from '../utils/IconsUtils'
+import React, { useState } from 'react';
 import Loading from './Loading'
 
-import DataTable from 'react-data-table-component';
 
 // referencia https://www.npmjs.com/package/react-data-table-component#1626-header
 
 function Table(props) {
+    const [qtdElementos, setqtdElementos] = useState(10);
+    const [pagina, setPagina] = useState(1);
+
+    // FUNÇÕES PARA EVENTO TABLE
+
+    function trocaPagina(novaPagina) {
+        setPagina(novaPagina);
+        props.onGetAll(novaPagina, qtdElementos);
+    }
+
+    function trocaQtdElementos(novaQtdElementos) {
+        setqtdElementos(novaQtdElementos);
+        props.onGetAll(pagina, novaQtdElementos);
+    }
+
+    //
 
     const actions = [
         {
@@ -27,13 +43,18 @@ function Table(props) {
                     ? <DataTable
                         className="dataTable"
                         style={{height:'70vh', overflowY:'hidden'}}    
-                        columns={[...props.columns, ...actions]}    //COLUNAS
-                        data={props.data}                           //VALORES
-                        pagination={true}                           //HABILITA PAGINAÇÃO
-                        striped={true}                              //LINHAS INTERVALADAS DE COR
-                        noHeader={true}                             //RETIRAR O CABEÇALHO
-                        fixedHeader={true}                          //DEIXA O CABEÇALHO FIXO
-                        fixedHeaderScrollHeight='59vh'              //DEFINE ALTURA DO CORPO
+                        columns={[...props.columns, ...actions]}                            //COLUNAS
+                        data={props.data.content}                                           //VALORES
+                        pagination={true}                                                   //HABILITA PAGINAÇÃO
+                        striped={true}                                                      //LINHAS INTERVALADAS DE COR
+                        noHeader={true}                                                     //RETIRAR O CABEÇALHO
+                        fixedHeader={true}                                                  //DEIXA O CABEÇALHO FIXO
+                        fixedHeaderScrollHeight='59vh'                                      //DEFINE ALTURA DO CORPO
+                        paginationServer={true}                                             //PAGINAÇÃO NO BACK
+                        paginationTotalRows={props.data.totalElements}                      //TOTAL LINHA NESTA PAGINA
+                        paginationPerPage={props.data.numberOfElements}                     //TOTAL LINHA NESTA PAGINA
+                        onChangePage={(pag) => trocaPagina(pag)}                            //EVENTO TROCA PAGINA
+                        onChangeRowsPerPage={(qtd) => trocaQtdElementos(qtd)}               //EVENTO TROCA QTD LINHAS
                     />
                     : <Loading />
                 }

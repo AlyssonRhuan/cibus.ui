@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from 'react';
 import ModalConfirmation from '../../utils/ModalConfirmationUtils'
-import DataBaseService from '../../services/DataBaseService'
+import CategoryDataTableConfig from './CategoryDataTableConfig'
+import React, { useState, useEffect } from 'react';
+import ModalCategory from './ModalCategory'
 import Toast from '../../components/Toast'
 import Table from '../../components/Table'
-
-import ModalCategory from './ModalCategory'
-import CategoryDataTableConfig from './CategoryDataTableConfig'
-
-const TABLE_NAME = 'categorys'
+import api from '../../services/api'
 
 function Category() {
     const [categorys, setCategorys] = useState();
@@ -32,29 +29,58 @@ function Category() {
 
     // FUNÇÕES 
 
-    async function getAllCategorys() {
-        const dados = await DataBaseService.getAll(TABLE_NAME)
-        setCategorys(dados)
-    }
-
-    function addCategory(dados) {
-        DataBaseService.push(TABLE_NAME, dados);
-        Toast.success("Categoria adicionada!")
-    }
-
-    function editCategory(dados) {
-        DataBaseService.update(TABLE_NAME, dados.key, dados);
-        Toast.success("Categoria atualizada!");
-    }
-
-    function deleteCategory(validacao) {
-        if (validacao) {
-            DataBaseService.delete(TABLE_NAME, categoryToAction.key);
-            Toast.success("Categoria removida!");
+    async function getAllCategorys(novaPagina, novaQtdElementos) {
+        try{
+            const response = await api.get(`categorias?pagina=${novaPagina || 1}&qtdElementos=${novaQtdElementos || 10}`);
+            setCategorys(response.data)
         }
-        else
-        {
-            Toast.warn("Ação cancelada!");
+        catch(e){
+            Toast.error(e.response.data ? e.response.data.message : e.message);
+            console.error(e.response.data ? e.response.data.message : e.message);
+        }
+    }
+
+    async function addCategory(dados) {
+        try{
+            const response = await api.post(`categorias`, dados);
+            Toast.success("Categoria adicionada!")
+        }
+        catch(e){
+            Toast.error(e.response.data ? e.response.data.message : e.message);
+            console.error(e.response.data ? e.response.data.message : e.message);
+        }   
+        
+        getAllCategorys();   
+        
+    }
+
+    async function editCategory(dados) {
+        try{
+            const response = await api.put(`categorias/${categoryToAction.id}`, dados);
+            Toast.success("Categoria atualizada!");
+        }
+        catch(e){
+            Toast.error(e.response.data ? e.response.data.message : e.message);
+            console.error(e.response.data ? e.response.data.message : e.message);
+        }   
+
+        getAllCategorys();     
+    }
+
+    async function deleteCategory(validacao) {
+        try{
+            if (validacao) {
+                const response = await api.delete(`categorias/${categoryToAction.id}`);
+                Toast.success("Categoria removida!");
+            }
+            else
+            {
+                Toast.warn("Ação cancelada!");
+            }
+        }
+        catch(e){
+            Toast.error(e.response.data ? e.response.data.message : e.message);
+            console.error(e.response.data ? e.response.data.message : e.message);
         }
 
         closeModal();
@@ -89,7 +115,8 @@ function Category() {
                 <Table
                     data={categorys}
                     columns={CategoryDataTableConfig}
-                    onAction={openModal}
+                    onAction={openModal}                   
+                    onGetAll={getAllCategorys}
                     />
 
             </section>

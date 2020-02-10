@@ -1,9 +1,20 @@
 import React from 'react';
 
 export default [
-    {
-      name: 'Name',
-      selector: 'name',
-      sortable: true,
-    }
+  {
+    name: 'Nome',
+    selector: 'nome',
+    sortable: true,
+  },
+  {
+    name: 'Descrição',
+    selector: 'descricao',
+    sortable: true,
+  },
+  {
+    name: 'Ativo',
+    selector: 'ativo',
+    sortable: true,
+    format: row => row ? "Sim" : "Não"
+  }
 ];
