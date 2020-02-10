@@ -35,19 +35,17 @@ function Category() {
             setCategorys(response.data)
         }
         catch(e){
-            Toast.error(e.response.data ? e.response.data.message : e.message);
-            console.error(e.response.data ? e.response.data.message : e.message);
+            error(e);
         }
     }
 
     async function addCategory(dados) {
         try{
-            const response = await api.post(`categorias`, dados);
+            await api.post(`categorias`, dados);
             Toast.success("Categoria adicionada!")
         }
         catch(e){
-            Toast.error(e.response.data ? e.response.data.message : e.message);
-            console.error(e.response.data ? e.response.data.message : e.message);
+            error(e);
         }   
         
         getAllCategorys();   
@@ -56,12 +54,11 @@ function Category() {
 
     async function editCategory(dados) {
         try{
-            const response = await api.put(`categorias/${categoryToAction.id}`, dados);
+            await api.put(`categorias/${categoryToAction.id}`, dados);
             Toast.success("Categoria atualizada!");
         }
         catch(e){
-            Toast.error(e.response.data ? e.response.data.message : e.message);
-            console.error(e.response.data ? e.response.data.message : e.message);
+            error(e);
         }   
 
         getAllCategorys();     
@@ -70,20 +67,20 @@ function Category() {
     async function deleteCategory(validacao) {
         try{
             if (validacao) {
-                const response = await api.delete(`categorias/${categoryToAction.id}`);
+                await api.delete(`categorias/${categoryToAction.id}`);
                 Toast.success("Categoria removida!");
-            }
-            else
-            {
-                Toast.warn("Ação cancelada!");
-            }
+            }            
         }
         catch(e){
-            Toast.error(e.response.data ? e.response.data.message : e.message);
-            console.error(e.response.data ? e.response.data.message : e.message);
+            error(e);
         }
 
         closeModal();
+    }
+
+    function error(e) {
+        Toast.error(e.response.data ? e.response.data.message : e.message);
+        console.error(e.response.data ? e.response.data.message : e.message);
     }
 
     // RENDER
@@ -144,7 +141,7 @@ function Category() {
                 {
                     modal && modal === 'DEL' && <ModalConfirmation
                         title="Delete category"
-                        text={`Deseja deletar a categoria ${categoryToAction.name}`}
+                        text={`Deseja deletar a categoria ${categoryToAction.nome}`}
                         onClose={closeModal}
                         onResponse={deleteCategory}
                         isOpen={modal === 'DEL'} />

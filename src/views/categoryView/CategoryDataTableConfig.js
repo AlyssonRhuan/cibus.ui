@@ -15,6 +15,6 @@ export default [
     name: 'Ativo',
     selector: 'ativo',
     sortable: true,
-    format: row => row ? "Sim" : "Não"
+    format: row => row.ativo ? "Sim" : "Não"
   }
 ];
