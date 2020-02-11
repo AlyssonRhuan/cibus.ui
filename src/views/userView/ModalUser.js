@@ -12,7 +12,7 @@ function ModalComponent(props) {
   }, [])
 
   function onEditModal(){
-    if(props.data != undefined){
+    if(props.data !== undefined){
       setUser(props.data)
     }
   }
@@ -23,7 +23,7 @@ function ModalComponent(props) {
   }
 
   function saveModal(){ 
-    if(user.pass != passConfirm){
+    if(user.pass !== passConfirm){
       window.alert("Senha não confere");
     }
     else{

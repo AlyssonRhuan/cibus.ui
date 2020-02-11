@@ -1,64 +1,93 @@
-import React, { useState, useEffect } from 'react';
-import ModalProduct from './ModalProduct'
-import Table from '../../components/Table'
-import ProductDataTableConfig from './ProductDataTableConfig'
-import DataBaseService from '../../services/DataBaseService'
-import Toast from '../../components/Toast'
 import ModalConfirmation from '../../utils/ModalConfirmationUtils'
-
-const TABLE_NAME = 'products'
+import ProductDataTableConfig from './ProductDataTableConfig'
+import React, { useState, useEffect } from 'react';
+import Toast from '../../components/Toast'
+import Table from '../../components/Table'
+import ModalProduct from './ModalProduct'
+import api from '../../services/api'
 
 function Product() {
   const [products, setProducts] = useState();
   const [productToAction, setProductToAction] = useState();
   const [modal, setModal] = useState(false);
-  
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     getAllProducts();
-  }, [])  
+  }, [])
 
   // FUNÇÕES PARA ABRIR MODAL
 
-  function openModal(modal, product) {
-      setModal(modal);
-      setProductToAction(product);
+  /**
+   * Open the product modal
+   * @param {String} modal Which modal type is. 
+   * @param {Object} dado Values from a product 
+   */
+  function openModal(modal, dado = undefined) {
+    setModal(modal);
+    setProductToAction(dado);
   }
 
   function closeModal() {
-      setModal(undefined);
-      getAllProducts();
+    setModal(undefined);
+    getAllProducts();
   }
 
   // FUNÇÕES 
 
-  async function getAllProducts() {
-    const dados = await DataBaseService.getAll(TABLE_NAME)
-    setProducts(dados)
+  async function getAllProducts(novaPagina, novaQtdElementos) {
+    try {
+      const response = await api.get(`produtos?pagina=${novaPagina || 1}&qtdElementos=${novaQtdElementos || 10}`)
+      setProducts(response.data);
+    }
+    catch (e) {
+      error(e);
+    }
   }
 
-  function addProduct(dados) {
-      DataBaseService.push(TABLE_NAME, dados);
-      Toast.success("Produto adicionado!")
+  async function addProduct(dados) {
+    try {
+      await api.post(`produtos`, dados);
+      Toast.success("Produto adicionada!")
+    }
+    catch (e) {
+      error(e);
+    }
+    
+    closeModal();
   }
 
-  function editProduct(dados) {
-      DataBaseService.update(TABLE_NAME, dados.key, dados);
-      Toast.success("Produto atualizado!");
+  async function editProduct(dados) {
+    try {
+      await api.put(`produtos/${productToAction.id}`, dados);
+      Toast.success("Produto atualizada!");
+    }
+    catch (e) {
+      error(e);
+    }
+
+    closeModal();
   }
 
-  function deleteProduct(validacao) {
+  async function deleteProduct(validacao) {
+    try {
       if (validacao) {
-          DataBaseService.delete(TABLE_NAME, productToAction.key);
-          Toast.success("Produto removido!");
+        await api.delete(`produtos/${productToAction.id}`);
+        Toast.success("Produto removido!");
       }
-      else
-      {
-          Toast.warn("Ação cancelada!");
-      }
+    }
+    catch (e) {
+      error(e);
+    }
 
-      closeModal();
+    closeModal();
   }
- 
+
+  function error(e) {
+    Toast.error(e.response ? e.response.data.message : e.message);
+    console.error(e.response ? e.response.data.message : e.message);
+  }
+
   // RENDER
 
   return (
@@ -74,55 +103,58 @@ function Product() {
         </nav>
 
         {/* BARRA MENU INTERNO */}
-        <div style={{alignItems:'center'}} className="col-12 row justify-content-between mx-0 px-0">
+        <div style={{ alignItems: 'center' }} className="col-12 row justify-content-between mx-0 px-0">
           <span>
             <h1 className="display-4">Products</h1>
           </span>
           <span>
-            <button type="button" className="btn btn-success ml-2" onClick={() => openModal('ADD', undefined)}>
+            <button type="button" className="btn btn-success ml-2" onClick={() => openModal('ADD')}>
               Add Product
             </button>
           </span>
         </div>
 
-        <Table
+        {
+          products && <Table
             data={products}
             columns={ProductDataTableConfig}
             onAction={openModal}
-            />
+            onGetAll={getAllProducts}
+          />
+        }
 
-        </section>
-        <section>
+      </section>
+      <section>
 
-          {/* MODAIS */}
-          {
-              modal && modal === 'ADD' && <ModalProduct
-                  title="Add product"
-                  data={undefined}
-                  onClose={closeModal}
-                  onSave={addProduct}
-                  isOpen={modal === 'ADD'} />
-          }
+        {/* MODAIS */}
+        {
+          modal && modal === 'ADD' && <ModalProduct
+            title="Adicionar produto"
+            data={undefined}
+            onClose={closeModal}
+            onSave={addProduct}
+            isOpen={modal === 'ADD'} />
+        }
 
-          {
-              modal && modal === 'EDI' && <ModalProduct
-                  title="Edit product"
-                  data={productToAction}
-                  onClose={closeModal}
-                  onSave={editProduct}
-                  isOpen={modal === 'EDI'} />
-          }
+        {
+          modal && modal === 'EDI' && <ModalProduct
+            title="Editar produto"
+            data={productToAction}
+            onClose={closeModal}
+            onSave={editProduct}
+            isOpen={modal === 'EDI'} />
+        }
 
-          {
-              modal && modal === 'DEL' && <ModalConfirmation
-                  title="Delete product"
-                  text={`Deseja deletar o produto ${productToAction.name}`}
-                  onClose={closeModal}
-                  onResponse={deleteProduct}
-                  isOpen={modal === 'DEL'} />
-          }
+        {
+          modal && modal === 'DEL' && <ModalConfirmation
+            title="Deletar produto"
+            text={`Deseja deletar o produto ${productToAction.name}`}
+            onClose={closeModal}
+            onResponse={deleteProduct}
+            isOpen={modal === 'DEL'} />
+        }
 
-        </section>
+      </section>
     </main>
   );
 }

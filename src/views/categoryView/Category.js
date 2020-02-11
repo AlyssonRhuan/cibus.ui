@@ -47,9 +47,8 @@ function Category() {
         catch(e){
             error(e);
         }   
-        
-        getAllCategorys();   
-        
+    
+        closeModal();          
     }
 
     async function editCategory(dados) {
@@ -60,8 +59,8 @@ function Category() {
         catch(e){
             error(e);
         }   
-
-        getAllCategorys();     
+    
+        closeModal();   
     }
 
     async function deleteCategory(validacao) {
@@ -74,13 +73,13 @@ function Category() {
         catch(e){
             error(e);
         }
-
+    
         closeModal();
     }
 
     function error(e) {
-        Toast.error(e.response.data ? e.response.data.message : e.message);
-        console.error(e.response.data ? e.response.data.message : e.message);
+        Toast.error(e.response ? e.response.data.message : e.message);
+        console.error(e.response ? e.response.data.message : e.message);
     }
 
     // RENDER
