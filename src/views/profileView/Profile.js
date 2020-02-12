@@ -1,7 +1,7 @@
 import ModalConfirmation from '../../utils/ModalConfirmationUtils'
-import CategoryDataTableConfig from './CategoryDataTableConfig'
+import ProfileDataTableConfig from './ProfileDataTableConfig'
 import React, { useState, useEffect } from 'react';
-import ModalCategory from './ModalCategory'
+import ModalProfile from './ModalProfile'
 import Toast from '../../components/Toast'
 import Table from '../../components/Table'
 import api from '../../services/api'
@@ -92,27 +92,28 @@ function Category() {
                 <nav aria-label="breadcrumb" className="pt-3">
                     <ol className="breadcrumb">
                         <li className="breadcrumb-item"><a href="/">Home</a></li>
-                        <li className="breadcrumb-item active" aria-current="page">Category</li>
+                        <li className="breadcrumb-item active" aria-current="page">Profile</li>
                     </ol>
                 </nav>
 
                 {/* BARRA MENU INTERNO */}
                 <div style={{ alignItems: 'center' }} className="col-12 row justify-content-between mx-0 px-0">
                     <span>
-                        <h1 className="display-4">Category</h1>
+                        <h1 className="display-4">Profile</h1>
                     </span>
                     <span>
                         <button type="button" className="btn btn-success ml-2" onClick={() => openModal('ADD', undefined)}>
-                            Add Category
+                            Add Profile
                         </button>
                     </span>
                 </div>
 
                 <Table
                     data={categorys}
-                    columns={CategoryDataTableConfig}
+                    columns={ProfileDataTableConfig}
                     onAction={openModal}                   
                     onGetAll={getAllCategorys}
+                    expandableRows={true}
                     />
 
             </section>
@@ -120,7 +121,7 @@ function Category() {
 
                 {/* MODAIS */}
                 {
-                    modal && modal === 'ADD' && <ModalCategory
+                    modal && modal === 'ADD' && <ModalProfile
                         title="Add category"
                         data={undefined}
                         onClose={closeModal}
@@ -129,7 +130,7 @@ function Category() {
                 }
 
                 {
-                    modal && modal === 'EDI' && <ModalCategory
+                    modal && modal === 'EDI' && <ModalProfile
                         title="Edit category"
                         data={categoryToAction}
                         onClose={closeModal}

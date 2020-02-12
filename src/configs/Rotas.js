@@ -1,32 +1,40 @@
+import api from '../services/api'
+
 import HomeView from '../views/homeView/Home'
 import UserView from '../views/userView/User'
 import ProductView from '../views/productView/Product'
 import CategoryView from '../views/categoryView/Category'
+import ProfileView from '../views/profileView/Profile'
 
+export default async function Rotas() {
+    const { data } = await api.get(`tela`)
 
-export default [
-    {        
-        id: 1, 
-        path: '/', 
-        label: 'Home',
-        view: HomeView
-    },
-    {        
-        id: 2, 
-        path: '/user', 
-        label: 'User',
-        view: UserView
-    },
-    {        
-        id: 3,
-        path: '/product', 
-        label: 'Product',
-        view: ProductView
-    },
-    {
-        id: 4,
-        path: '/category', 
-        label: 'Category',
-        view: CategoryView
-    }
-]
+    let rotas = []
+
+    data.map(tela => {
+        switch (tela.caminho) {
+            case "/":
+                rotas.push({ ...tela, view: HomeView });
+                break;
+            case "/user":
+                rotas.push({ ...tela, view: UserView });
+                break;
+            case "/product":
+                rotas.push({ ...tela, view: ProductView });
+                break;
+            case "/category":
+                rotas.push({ ...tela, view: CategoryView });
+                break;
+            case "/profile":
+                rotas.push({ ...tela, view: ProfileView });
+                break;
+            default:
+                rotas.push({ ...tela, view: HomeView });
+                break;
+        }
+
+    })
+
+    await Promise.resolve(rotas);
+    return rotas;
+}

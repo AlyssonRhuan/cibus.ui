@@ -11,10 +11,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [menuAtivo, setMenuAtivo] = useState(false);
+  const [rotas, setRotas] = useState();
 
   useEffect(() => {    
-
-  }, [])
+    Rotas().then(res => {
+      setRotas(res)
+    });
+  })
 
   return (    
     <Router>
@@ -45,15 +48,15 @@ function App() {
                   Close
               </a>
               {
-                Rotas && Rotas.map(
+                rotas && rotas.map(
                   (rota, key) => <li className="nav-item" key = {key} >
                     <NavLink
                       exact = {true} 
                       activeClassName='active' 
                       className="nav-link"
                       onClick={()=>setMenuAtivo(false)}
-                      to={rota && rota.path}>
-                        {rota.label}
+                      to={rota && rota.caminho}>
+                        {rota.nome}
                       </NavLink>
                   </li>   
                 )
@@ -64,8 +67,8 @@ function App() {
           {/* SWITCH DE ROTA */}
           <Switch className="col-12">
             {
-              Rotas.map(
-                (rota, key) => <Route exact path={rota.path} key={key}>
+              rotas && rotas.map(
+                (rota, key) => <Route exact path={rota.caminho} key={key}>
                     {
                       React.createElement(rota.view)
                     }

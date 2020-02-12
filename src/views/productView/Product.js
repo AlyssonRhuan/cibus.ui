@@ -37,7 +37,7 @@ function Product() {
 
   async function getAllProducts(novaPagina, novaQtdElementos) {
     try {
-      const response = await api.get(`produtos?pagina=${novaPagina || 1}&qtdElementos=${novaQtdElementos || 10}`)
+      const response = await api.get(`produto?pagina=${novaPagina || 1}&qtdElementos=${novaQtdElementos || 10}`)
       setProducts(response.data);
     }
     catch (e) {
@@ -47,7 +47,7 @@ function Product() {
 
   async function addProduct(dados) {
     try {
-      await api.post(`produtos`, dados);
+      await api.post(`produto`, dados);
       Toast.success("Produto adicionada!")
     }
     catch (e) {
@@ -59,7 +59,7 @@ function Product() {
 
   async function editProduct(dados) {
     try {
-      await api.put(`produtos/${productToAction.id}`, dados);
+      await api.put(`produto/${productToAction.id}`, dados);
       Toast.success("Produto atualizada!");
     }
     catch (e) {
@@ -72,7 +72,7 @@ function Product() {
   async function deleteProduct(validacao) {
     try {
       if (validacao) {
-        await api.delete(`produtos/${productToAction.id}`);
+        await api.delete(`produto/${productToAction.id}`);
         Toast.success("Produto removido!");
       }
     }
