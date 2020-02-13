@@ -1,5 +1,6 @@
 import api from '../services/api'
 
+import NotFoundView from '../views/notFoundView/NotFound'
 import HomeView from '../views/homeView/Home'
 import UserView from '../views/userView/User'
 import ProductView from '../views/productView/Product'
@@ -10,6 +11,8 @@ export default async function Rotas() {
     const { data } = await api.get(`tela`)
 
     let rotas = []
+
+    // data.map(tela => tela.view = NotFoundView);
 
     data.map(tela => {
         switch (tela.caminho) {
