@@ -17,7 +17,7 @@ function App() {
     Rotas().then(res => {
       setRotas(res)
     });
-  })
+  }, [])
 
   return (    
     <Router>

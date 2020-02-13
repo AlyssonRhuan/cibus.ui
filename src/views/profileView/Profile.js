@@ -1,48 +1,48 @@
 import ModalConfirmation from '../../utils/ModalConfirmationUtils'
 import ProfileDataTableConfig from './ProfileDataTableConfig'
 import React, { useState, useEffect } from 'react';
-import ModalProfile from './ModalProfile'
-import Toast from '../../components/Toast'
 import Table from '../../components/Table'
+import Toast from '../../components/Toast'
+import ModalProfile from './ModalProfile'
 import api from '../../services/api'
 
-function Category() {
-    const [categorys, setCategorys] = useState();
-    const [categoryToAction, setCategoryToAction] = useState()
-    const [modal, setModal] = useState(undefined)
+function Profile() {
+    const [profiles, setProfiles] = useState([]);
+    const [profileToAction, setProfileToAction] = useState();
+    const [modal, setModal] = useState(undefined);
 
     useEffect(() => {
-        getAllCategorys();
+        getAllProfiles();
     }, [])
 
     // FUNÇÕES PARA ABRIR MODAL
 
     function openModal(modal, dado) {
         setModal(modal);
-        setCategoryToAction(dado);
+        setProfileToAction(dado);
     }
 
     function closeModal() {
         setModal(undefined);
-        getAllCategorys();
+        getAllProfiles();
     }
 
     // FUNÇÕES 
 
-    async function getAllCategorys(novaPagina, novaQtdElementos) {
+    async function getAllProfiles(novaPagina, novaQtdElementos) {
         try{
-            const response = await api.get(`categoria?pagina=${novaPagina || 1}&qtdElementos=${novaQtdElementos || 10}`);
-            setCategorys(response.data)
+            const response = await api.get(`perfil?pagina=${novaPagina || 1}&qtdElementos=${novaQtdElementos || 10}`);
+            setProfiles(response.data)
         }
         catch(e){
             error(e);
         }
     }
 
-    async function addCategory(dados) {
+    async function addProfile(dados) {
         try{
-            await api.post(`categoria`, dados);
-            Toast.success("Categoria adicionada!")
+            await api.post(`perfil`, dados);
+            Toast.success("Profile added!")
         }
         catch(e){
             error(e);
@@ -51,10 +51,10 @@ function Category() {
         closeModal();          
     }
 
-    async function editCategory(dados) {
+    async function editProfile(dados) {
         try{
-            await api.put(`categoria/${categoryToAction.id}`, dados);
-            Toast.success("Categoria atualizada!");
+            await api.put(`profile/${profileToAction.id}`, dados);
+            Toast.success("Profile updated!");
         }
         catch(e){
             error(e);
@@ -63,11 +63,11 @@ function Category() {
         closeModal();   
     }
 
-    async function deleteCategory(validacao) {
+    async function deleteProfile(validacao) {
         try{
             if (validacao) {
-                await api.delete(`categoria/${categoryToAction.id}`);
-                Toast.success("Categoria removida!");
+                await api.delete(`profile/${profileToAction.id}`);
+                Toast.success("Profile removed!");
             }            
         }
         catch(e){
@@ -109,11 +109,10 @@ function Category() {
                 </div>
 
                 <Table
-                    data={categorys}
+                    data={profiles}
                     columns={ProfileDataTableConfig}
                     onAction={openModal}                   
-                    onGetAll={getAllCategorys}
-                    expandableRows={true}
+                    onGetAll={getAllProfiles}
                     />
 
             </section>
@@ -122,28 +121,28 @@ function Category() {
                 {/* MODAIS */}
                 {
                     modal && modal === 'ADD' && <ModalProfile
-                        title="Add category"
+                        title="Add profile"
                         data={undefined}
                         onClose={closeModal}
-                        onSave={addCategory}
+                        onSave={addProfile}
                         isOpen={modal === 'ADD'} />
                 }
 
                 {
                     modal && modal === 'EDI' && <ModalProfile
-                        title="Edit category"
-                        data={categoryToAction}
+                        title="Edit profile"
+                        data={profileToAction}
                         onClose={closeModal}
-                        onSave={editCategory}
+                        onSave={editProfile}
                         isOpen={modal === 'EDI'} />
                 }
 
                 {
                     modal && modal === 'DEL' && <ModalConfirmation
-                        title="Delete category"
-                        text={`Deseja deletar a categoria ${categoryToAction.nome}`}
+                        title="Delete profile"
+                        text={`Deseja deletar o perfil ${profileToAction.nome}`}
                         onClose={closeModal}
-                        onResponse={deleteCategory}
+                        onResponse={deleteProfile}
                         isOpen={modal === 'DEL'} />
                 }
 
@@ -152,4 +151,4 @@ function Category() {
     );
 }
 
-export default Category;
+export default Profile;

@@ -8,7 +8,8 @@ export default [
   },
   {
     name: 'Telas permitidas',
-    selector: 'descricao',
+    selector: 'telas',
     sortable: true,
+    format: row => row.telas.length
   }
 ];
