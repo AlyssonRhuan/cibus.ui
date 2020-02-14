@@ -18,7 +18,7 @@ function ModalComponent(props) {
   }, [])
 
   async function getListCategorys() {
-      const dados = await api.get(`categorias/valuelabel`);
+      const dados = await api.get(`categoria/valuelabel`);
       setListCategorys(dados.data);
   }
 

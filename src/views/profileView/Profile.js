@@ -53,7 +53,7 @@ function Profile() {
 
     async function editProfile(dados) {
         try{
-            await api.put(`profile/${profileToAction.id}`, dados);
+            await api.put(`perfil/${profileToAction.id}`, dados);
             Toast.success("Profile updated!");
         }
         catch(e){
@@ -66,7 +66,7 @@ function Profile() {
     async function deleteProfile(validacao) {
         try{
             if (validacao) {
-                await api.delete(`profile/${profileToAction.id}`);
+                await api.delete(`perfil/${profileToAction.id}`);
                 Toast.success("Profile removed!");
             }            
         }
