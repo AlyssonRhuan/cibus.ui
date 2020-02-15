@@ -1,4 +1,5 @@
 import api from '../services/api'
+import Icons from '../utils/IconsUtils'
 
 import NotFoundView from '../views/notFoundView/NotFound'
 import HomeView from '../views/homeView/Home'
@@ -12,30 +13,36 @@ export default async function Rotas() {
 
     let rotas = []
 
-    // data.map(tela => tela.view = NotFoundView);
-
     data.map(tela => {
+        rotas.push({ ...tela, view: NotFoundView });
+    })
+
+    rotas.map(tela => {
         switch (tela.caminho) {
             case "/":
-                rotas.push({ ...tela, view: HomeView });
+                tela.view = HomeView;
+                tela.icon = Icons.HomeWhite;
                 break;
             case "/user":
-                rotas.push({ ...tela, view: UserView });
+                tela.view = UserView;
+                tela.icon = Icons.UserWhite;                
                 break;
             case "/product":
-                rotas.push({ ...tela, view: ProductView });
+                tela.view = ProductView;
+                tela.icon = Icons.ProductWhite;
                 break;
             case "/category":
-                rotas.push({ ...tela, view: CategoryView });
+                tela.view = CategoryView;
+                tela.icon = Icons.CategoryWhite;
                 break;
             case "/profile":
-                rotas.push({ ...tela, view: ProfileView });
+                tela.view = ProfileView;
+                tela.icon = Icons.ProfileWhite;
                 break;
             default:
-                rotas.push({ ...tela, view: HomeView });
+                tela.view = HomeView;
                 break;
         }
-
     })
 
     await Promise.resolve(rotas);

@@ -1,3 +1,4 @@
 export default {        
-    AppName: 'Gerenciador de E-Commerce',
+    Title: 'Mania',
+    AppName: 'Portal Mania',
 }

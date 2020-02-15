@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from 'react';
 import {BrowserRouter as Router, Switch, Route, NavLink, Link } from "react-router-dom";
-import Rotas from './configs/Rotas'
-import GlobablConfig from './configs/Global'
-
+import React, { useState, useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import GlobablConfig from './configs/Global';
+import Rotas from './configs/Rotas';
+import MenuOverlay from './components/MenuOverlay'
+import Icons from './utils/IconsUtils'
 
-import './App.css';
+import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 
 function App() {
   const [menuAtivo, setMenuAtivo] = useState(false);
   const [rotas, setRotas] = useState();
 
-  useEffect(() => {    
+  useEffect(() => {        
     Rotas().then(res => {
       setRotas(res)
     });
@@ -21,6 +22,7 @@ function App() {
 
   return (    
     <Router>
+      <title>{GlobablConfig.Title}</title>
       <div className="container-fluid">
         <div className="row">   
         
@@ -40,29 +42,35 @@ function App() {
           </header>   
 
           {/* MENU LATERAL */}
-          <div style={{left:`${menuAtivo ? '0px' : '-300px' }`}} className="sideBarMenu">       
-            <ul className="nav nav-pills flex-column my-3">              
-              <a 
-                onClick={()=>setMenuAtivo(false)}
-                className="nav-link sideBarMenuClose">
-                  Close
-              </a>
-              {
-                rotas && rotas.map(
-                  (rota, key) => <li className="nav-item" key = {key} >
-                    <NavLink
-                      exact = {true} 
-                      activeClassName='active' 
-                      className="nav-link"
-                      onClick={()=>setMenuAtivo(false)}
-                      to={rota && rota.caminho}>
-                        {rota.nome}
-                      </NavLink>
-                  </li>   
-                )
-              }
-            </ul>
-          </div>     
+          <div>
+            <div style={{left:`${menuAtivo ? '0px' : '-300px' }`}} className="sideBarMenu">       
+              <ul className="nav nav-pills flex-column my-3">              
+                <a 
+                  onClick={()=>setMenuAtivo(false)}
+                  className="nav-link sideBarMenuClose">
+                    <img style={{width:"35px"}} src={Icons.CloseWhite}/>
+                </a>
+                {
+                  rotas && rotas.map(
+                    (rota, key) => <li className="nav-item" key = {key} >
+                      <NavLink
+                        exact = {true} 
+                        activeClassName='active' 
+                        className="nav-link"
+                        onClick={()=>setMenuAtivo(false)}
+                        to={rota && rota.caminho}>
+                          <img style={{width:"35px"}} src={rota.icon}/>
+                          <spam>{rota.nome}</spam>
+                        </NavLink>
+                    </li>   
+                  )
+                }
+              </ul>
+            </div> 
+            <MenuOverlay 
+              ativo={menuAtivo}
+              onClick={setMenuAtivo}/>
+          </div>
 
           {/* SWITCH DE ROTA */}
           <Switch className="col-12">

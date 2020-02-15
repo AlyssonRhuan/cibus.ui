@@ -1,10 +1,16 @@
-import ModalConfirmation from '../../utils/ModalConfirmationUtils'
-import ProductDataTableConfig from './ProductDataTableConfig'
+import ModalConfirmation from '../../utils/ModalConfirmationUtils';
+import ProductDataTableConfig from './ProductDataTableConfig';
+import Breadcrumb from '../../components/Breadcrumb';
 import React, { useState, useEffect } from 'react';
-import Toast from '../../components/Toast'
-import Table from '../../components/Table'
-import ModalProduct from './ModalProduct'
-import api from '../../services/api'
+import Toast from '../../components/Toast';
+import Table from '../../components/Table';
+import ModalProduct from './ModalProduct';
+import api from '../../services/api';
+
+const rotasBreadcrumb =[
+  { name: "Home",     path: "/"},
+  { name: "Product"}
+]
 
 function Product() {
   const [products, setProducts] = useState();
@@ -92,15 +98,8 @@ function Product() {
 
   return (
     <main className="App col-12 px-5">
-      <section>
-
-        {/* BREADCRUMB */}
-        <nav aria-label="breadcrumb" className="pt-3">
-          <ol className="breadcrumb">
-            <li className="breadcrumb-item"><a href="/">Home</a></li>
-            <li className="breadcrumb-item active" aria-current="page">Product</li>
-          </ol>
-        </nav>
+      <section>        
+        <Breadcrumb rotas={rotasBreadcrumb}/>
 
         {/* BARRA MENU INTERNO */}
         <div style={{ alignItems: 'center' }} className="col-12 row justify-content-between mx-0 px-0">

@@ -1,12 +1,16 @@
+import ModalConfirmation from '../../utils/ModalConfirmationUtils';
+import DataBaseService from '../../services/DataBaseService';
+import UserDataTableConfig from './UserDataTableConfig';
+import Breadcrumb from '../../components/Breadcrumb';
 import React, { useState, useEffect } from 'react';
-import ModalConfirmation from '../../utils/ModalConfirmationUtils'
-import DataBaseService from '../../services/DataBaseService'
-import ModalUser from './ModalUser'
-import Table from '../../components/Table'
-import UserDataTableConfig from './UserDataTableConfig'
-import Toast from '../../components/Toast'
+import Table from '../../components/Table';
+import Toast from '../../components/Toast';
+import ModalUser from './ModalUser';
 
-const TABLE_NAME = 'users'
+const rotasBreadcrumb =[
+  { name: "Home",     path: "/"},
+  { name: "User"}
+]
 
 function User() {
     const [users, setUsers] = useState();
@@ -32,31 +36,15 @@ function User() {
     // FUNÇÕES 
 
     async function getAllUsers() {
-        const dados = await DataBaseService.getAll(TABLE_NAME)
-        setUsers(dados)
     }
 
     function addUser(dados) {
-        DataBaseService.push(TABLE_NAME, dados);
-        Toast.success("Usuário adicionado!")
     }
 
     function editUser(dados) {
-        DataBaseService.update(TABLE_NAME, dados.key, dados);
-        Toast.success("Usuário atualizado!");
     }
 
     function deleteUser(validacao) {
-        if (validacao) {
-            DataBaseService.delete(TABLE_NAME, userToAction.key);
-            Toast.success("Usuário removido!");
-        }
-        else
-        {
-            Toast.warn("Ação cancelada!");
-        }
-
-        closeModal();
     }
 
     // RENDER
@@ -64,14 +52,7 @@ function User() {
     return (
         <main className="App col-12 px-5">
             <section>
-
-                {/* BREADCRUMB */}
-                <nav aria-label="breadcrumb" className="pt-3">
-                    <ol className="breadcrumb">
-                        <li className="breadcrumb-item"><a href="/">Home</a></li>
-                        <li className="breadcrumb-item active" aria-current="page">User</li>
-                    </ol>
-                </nav>
+                <Breadcrumb rotas={rotasBreadcrumb}/>
 
                 {/* BARRA MENU INTERNO */}
                 <div style={{ alignItems: 'center' }} className="col-12 row justify-content-between mx-0 px-0">

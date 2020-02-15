@@ -1,10 +1,19 @@
-import React, { useState, useEffect } from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
+import React, { useState, useEffect } from 'react';
+import Select from 'react-select'
 
 function ModalComponent(props) {
     const [isOpen, setIsOpen] = useState(false)
     const [user, setUser] = useState("")
+    const [actions, setActions] = useState("")
     const [passConfirm, setPassConfirm] = useState("")
+
+    const listAction = [
+      { value: 'ADI', label : 'Adicionar'},
+      { value: 'ATU', label : 'Atualizar'},
+      { value: 'LER', label : 'Ler'},
+      { value: 'REM', label : 'Remover'}
+    ]
     
   useEffect(() => {
     setIsOpen(props.isOpen);
@@ -52,21 +61,17 @@ function ModalComponent(props) {
                     <input type='text' className="form-control" id='userLogin' placeholder='User login'
                       onChange={event => setUser({...user, login:event.target.value})} value={user.login}/>
                   </div>   
-                  <div className="form-group col-6">
-                    <label for='userPass'>Password</label>
+                  <div className="form-group col-12">
+                    <label for='userPass'>Profile</label>
                     <input type='password' className="form-control" id='userPass' placeholder='User password'
                       onChange={event => setUser({...user, pass:event.target.value})} value={user.pass}/>
                   </div>   
-                  <div className="form-group col-6">
-                    <label for='userPass'>Repet password</label>
-                    <input type='password' className="form-control" id='userPass' placeholder='User password'
-                      onChange={event => setPassConfirm(event.target.value)} value={passConfirm}/>
-                  </div>   
-                  <div class="form-check ml-3 col-10">
-                    <input type="checkbox" class="form-check-input" id="checkboxIsAdmin"
-                      onChange={event => setUser({...user, admin:event.target.value})} value={user.admin}/>
-                    <label class="form-check-label" for="checkboxIsAdmin">Admin</label>
-                  </div>
+                  <div className="form-group col-12">
+                    <label htmlFor="productCategory">Actions</label>
+                    <Select isMulti className="basic-multi-select" classNamePrefix="select" 
+                      onChange={event => setActions(event)}
+                      options={listAction} value={actions}/>
+                  </div>  
                 </ModalBody>
 
                 <ModalFooter>
