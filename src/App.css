@@ -23,6 +23,19 @@
   color: #61dafb;
 }
 
+.App tr{
+  text-align: center;
+  vertical-align: middle;
+}
+
+.buttonIcon {
+  margin-left: 10px;
+  cursor: pointer;
+  height: 25px;
+  width: 25px;
+  transition: .5s;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -30,6 +43,22 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.navbar a:hover{
+  cursor: pointer;
+}
+
+.nav-link {
+  height: 65px;
+  color: #E8E9EA !important;
+  border-radius: 0px !important;
+  display: flex;
+  align-items: center;
+}
+
+.nav-link.active{
+  background-color: rgb(63, 76, 87) !important;
 }
 
 .sideBarMenu {
@@ -46,56 +75,24 @@
   transition: .3s;
 }
 
-.nav-link {
-  height: 65px;
-  padding-top: 15px;
-  color: #E8E9EA !important;
-  border-radius: 0px !important;
-}
-
-.nav-link img {
-  margin-right: 20px;
-}
-
-header a:hover {
-  cursor: pointer;
-}
-
-.nav-link.active{
-  background-color: #19222A !important;
-  border-right: 10px solid rgb(0, 123, 255);
-}
-
-.nav-link.active, .sideBarMenu li:hover{
+.sideBarMenu li:hover{
+  padding-left: 10px;
   background-color: rgb(63, 76, 87) !important;
 }
 
 .sideBarMenuClose {
-  color: white !important;
-  border-radius: 0px !important;
   background-color: rgb(0, 123, 255);
   cursor: pointer;  
-  margin-top: -16px;
-  padding-right: 0px;
-  text-align: right;
-}
-
-.buttonIcon {
-  margin-left: 10px;
-  cursor: pointer;
-  height: 25px;
-  width: 25px;
+  margin-top: -16px;  
   transition: .5s;
-  fill: #61dafb;
 }
 
-.buttonIcon:hover {  
-  fill: blue;
+.sideBarMenuClose img {
+  transition: .5s;
 }
 
-.App tr{
-  text-align: center;
-  vertical-align: middle;
+.sideBarMenuClose img:hover {
+  transform: rotate(90deg);
 }
 
 .dataTable .actionsBar a {
@@ -109,4 +106,43 @@ header a:hover {
 
 .rdt_Table {
   height: 60vh !important;
+}
+
+.icon_small{
+  width: 25px;
+  margin-right: 10px;
+}
+
+.icon_medium{
+  width: 35px;
+  margin-right: 20px;
+}
+
+.icon_large{
+  width: 60px;
+  margin-right: 20px;
+}
+
+.icon_card{
+  width: 150px;
+  margin-bottom: 20px;
+  transition: .3s;
+}
+
+.card_home{
+  cursor: pointer;
+  transition: .5s;  
+  padding: 10px;
+  color: black;
+}
+
+.card_home:hover{
+  text-decoration: none;
+  color: black;
+  padding: 5px;
+}
+
+.card_home:hover{
+  padding-left: 10px;
+  padding-right: 10px;
 }

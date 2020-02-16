@@ -29,15 +29,17 @@ function App() {
           <ToastContainer />     
 
           {/* BARRA SUPERIOR */}
-          <header style={{color:'white'}} className="col-12 navbar navbar-dark bg-primary justify-content-between px-5">
-            <span className="pl-2">
-              <a onClick={()=>setMenuAtivo(true)}>Menu</a>
+          <header style={{color:'white'}} className="col-12 navbar navbar-dark bg-primary justify-content-between align-middle px-5">
+            <span className="pl-2">              
+              <a onClick={()=>setMenuAtivo(true)}>
+                <img className="icon_small" src={Icons.MenuWhite}/>Menu
+              </a>
             </span>
             <span>
               {GlobablConfig.AppName}
             </span>
-            <span className="pr-2">
-              User
+            <span className="pr-2">              
+              <img className="icon_small" src={Icons.MeWhite}/> Me
             </span>
           </header>   
 
@@ -47,8 +49,8 @@ function App() {
               <ul className="nav nav-pills flex-column my-3">              
                 <a 
                   onClick={()=>setMenuAtivo(false)}
-                  className="nav-link sideBarMenuClose">
-                    <img style={{width:"35px"}} src={Icons.CloseWhite}/>
+                  className="nav-link sideBarMenuClose justify-content-end">
+                    <img className="icon_medium" src={Icons.CloseWhite}/>
                 </a>
                 {
                   rotas && rotas.map(
@@ -56,10 +58,10 @@ function App() {
                       <NavLink
                         exact = {true} 
                         activeClassName='active' 
-                        className="nav-link"
+                        className="nav-link align-middle"
                         onClick={()=>setMenuAtivo(false)}
                         to={rota && rota.caminho}>
-                          <img style={{width:"35px"}} src={rota.icon}/>
+                          <img className="icon_medium" src={rota.icon}/>
                           <spam>{rota.nome}</spam>
                         </NavLink>
                     </li>   

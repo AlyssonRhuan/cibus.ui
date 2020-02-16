@@ -22,22 +22,27 @@ export default async function Rotas() {
             case "/":
                 tela.view = HomeView;
                 tela.icon = Icons.HomeWhite;
+                tela.iconHome = Icons.Home;
                 break;
             case "/user":
                 tela.view = UserView;
-                tela.icon = Icons.UserWhite;                
+                tela.icon = Icons.UserWhite;   
+                tela.iconHome = Icons.User;             
                 break;
             case "/product":
                 tela.view = ProductView;
                 tela.icon = Icons.ProductWhite;
+                tela.iconHome = Icons.Product;
                 break;
             case "/category":
                 tela.view = CategoryView;
                 tela.icon = Icons.CategoryWhite;
+                tela.iconHome = Icons.Category;
                 break;
             case "/profile":
                 tela.view = ProfileView;
                 tela.icon = Icons.ProfileWhite;
+                tela.iconHome = Icons.Profile;
                 break;
             default:
                 tela.view = HomeView;

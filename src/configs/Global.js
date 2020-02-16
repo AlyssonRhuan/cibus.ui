@@ -1,4 +1,4 @@
 export default {        
-    Title: 'Mania',
-    AppName: 'Portal Mania',
+    Title: 'Cibus',
+    AppName: 'Cibus',
 }
