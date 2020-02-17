@@ -7,8 +7,8 @@ export default [
       sortable: true,
     },
     {
-      name: 'Login',
-      selector: 'login',
+      name: 'Profile',
+      selector: 'profile.label',
       sortable: true
     }
 ];

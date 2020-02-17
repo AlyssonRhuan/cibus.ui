@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import GlobablConfig from '../../configs/Global'
-import Rotas from '../../configs/Rotas';
+import Rotas from '../../configs/Routes';
 
 function Home() {
   const [rotas, setRotas] = useState();
@@ -18,11 +18,11 @@ function Home() {
         <div className="col-12 row justify-content-between">
           {
             rotas && rotas.filter(
-              rota => rota.caminho !== '/'
+              rota => rota.path !== '/'
             ).map(
-              (rota, key) => <a class="card_home col-4 mt-5" href={rota.caminho}>                
+              (rota, key) => <a class="card_home col-4 mt-5" href={rota.path}>                
                 <img className="icon_card" src={rota.iconHome}/>
-                <h5 class="card-title">{rota.nome}</h5>
+                <h5 class="card-title">{rota.name}</h5>
               </a>
             )
           }

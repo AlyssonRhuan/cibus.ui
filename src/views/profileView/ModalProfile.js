@@ -1,15 +1,15 @@
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 import React, { useState, useEffect } from 'react';
-import Rotas from '../../configs/Rotas'
+import Rotas from '../../configs/Routes'
 
 function ModalComponent(props) {
     const [isOpen, setIsOpen] = useState(false)
     const [profile, setProfile] = useState({})
-    const [rotas, setRotas] = useState();
+    const [routes, setRoutes] = useState();
     
   useEffect(() => {
     Rotas().then(res => {
-      setRotas(res)
+      setRoutes(res)
     });
     setIsOpen(props.isOpen);  
     onEditModal();
@@ -33,16 +33,16 @@ function ModalComponent(props) {
 
   function atualizarTela(route){
     if(isProfileHasView(route)){
-      const novasTelas = profile.telas.filter(
+      const novasTelas = profile.views.filter(
         tela => {return tela.id != route.id}
       )
-      setProfile({...profile, telas:novasTelas})
+      setProfile({...profile, views:novasTelas})
     }
     else{
-      if(profile.telas)
-        setProfile({...profile, telas:[...profile.telas, route]})
+      if(profile.views)
+        setProfile({...profile, views:[...profile.views, route]})
       else
-        setProfile({...profile, telas:[route]})
+        setProfile({...profile, views:[route]})
     }      
   }
 
@@ -52,9 +52,9 @@ function ModalComponent(props) {
 
   function isProfileHasView(route){ 
     let retorno = false;
-    profile && profile.telas && profile.telas.map(
-      tela => {
-        if(tela.id === route.id)
+    profile && profile.views && profile.views.map(
+      view => {
+        if(view.id === route.id)
           retorno = true;
       }
     )
@@ -74,19 +74,19 @@ function ModalComponent(props) {
                   <div className="form-group col-12">
                     <label htmlFor='userName'>Name</label>
                     <input type='text' className="form-control" id='profileName' placeholder='Profile name'
-                      onChange={event => setProfile({...profile, nome:event.target.value})} value={profile.nome}/>
+                      onChange={event => setProfile({...profile, name:event.target.value})} value={profile.name}/>
                   </div>  
                
                   <div className="form-group col-12">
-                    <label htmlFor='userName'>Telas</label>
+                    <label htmlFor='userName'>Views</label>
                     <div className="form-group col-12"  style={{overflowY:"auto", height:"150px"}}>
                       {
-                        rotas && rotas.map(
-                          rota => <div className="custom-control custom-switch py-1 pl-4">
-                              <input type="checkbox" className="custom-control-input" id={[rota.id]} 
-                                checked={isRouteChecked(rota)}
-                                onChange={event => atualizarTela(rota)} />
-                              <label className="custom-control-label" htmlFor={[rota.id]}>{rota.nome}</label>
+                        routes && routes.map(
+                          (route, key) => <div className="custom-control custom-switch py-1 pl-4">
+                              <input type="checkbox" route="custom-control-input" id={[route.id]} 
+                                checked={isRouteChecked(route)}
+                                onChange={event => atualizarTela(route)} />
+                              <label className="custom-control-label" htmlFor={[route.id]}>{route.name}</label>
                             </div>
                         )                    
                       }

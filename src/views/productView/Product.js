@@ -12,11 +12,13 @@ const rotasBreadcrumb =[
   { name: "Product"}
 ]
 
+const END_POINT = 'product'
+const PAGE_TITLE = 'Product'
+
 function Product() {
   const [products, setProducts] = useState();
   const [productToAction, setProductToAction] = useState();
   const [modal, setModal] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getAllProducts();
@@ -24,11 +26,6 @@ function Product() {
 
   // FUNÇÕES PARA ABRIR MODAL
 
-  /**
-   * Open the product modal
-   * @param {String} modal Which modal type is. 
-   * @param {Object} dado Values from a product 
-   */
   function openModal(modal, dado = undefined) {
     setModal(modal);
     setProductToAction(dado);
@@ -41,9 +38,9 @@ function Product() {
 
   // FUNÇÕES 
 
-  async function getAllProducts(novaPagina, novaQtdElementos) {
+  async function getAllProducts(page, quantity) {
     try {
-      const response = await api.get(`produto?pagina=${novaPagina || 1}&qtdElementos=${novaQtdElementos || 10}`)
+      const response = await api.get(`${END_POINT}?page=${page || 1}&quantity=${quantity || 10}`)
       setProducts(response.data);
     }
     catch (e) {
@@ -51,10 +48,10 @@ function Product() {
     }
   }
 
-  async function addProduct(dados) {
+  async function addProduct(data) {
     try {
-      await api.post(`produto`, dados);
-      Toast.success("Produto adicionada!")
+      await api.post(`${END_POINT}`, data);
+      Toast.success(`${PAGE_TITLE} added!`)
     }
     catch (e) {
       error(e);
@@ -63,10 +60,10 @@ function Product() {
     closeModal();
   }
 
-  async function editProduct(dados) {
+  async function editProduct(data) {
     try {
-      await api.put(`produto/${productToAction.id}`, dados);
-      Toast.success("Produto atualizada!");
+      await api.put(`${END_POINT}/${productToAction.id}`, data);
+      Toast.success(`${PAGE_TITLE} updated!`);
     }
     catch (e) {
       error(e);
@@ -75,11 +72,11 @@ function Product() {
     closeModal();
   }
 
-  async function deleteProduct(validacao) {
+  async function deleteProduct(validation) {
     try {
-      if (validacao) {
-        await api.delete(`produto/${productToAction.id}`);
-        Toast.success("Produto removido!");
+      if (validation) {
+        await api.delete(`${END_POINT}/${productToAction.id}`);
+        Toast.success(`${PAGE_TITLE} removed!`);
       }
     }
     catch (e) {
@@ -99,12 +96,12 @@ function Product() {
   return (
     <main className="App col-12 px-5">
       <section>        
-        <Breadcrumb rotas={rotasBreadcrumb}/>
+        <Breadcrumb routes={rotasBreadcrumb}/>
 
         {/* BARRA MENU INTERNO */}
         <div style={{ alignItems: 'center' }} className="col-12 row justify-content-between mx-0 px-0">
           <span>
-            <h1 className="display-4">Products</h1>
+            <h1 className="display-4">{PAGE_TITLE}</h1>
           </span>
           <span>
             <button type="button" className="btn btn-success ml-2" onClick={() => openModal('ADD')}>
@@ -128,7 +125,7 @@ function Product() {
         {/* MODAIS */}
         {
           modal && modal === 'ADD' && <ModalProduct
-            title="Adicionar produto"
+            title={`Add ${PAGE_TITLE}`}
             data={undefined}
             onClose={closeModal}
             onSave={addProduct}
@@ -137,7 +134,7 @@ function Product() {
 
         {
           modal && modal === 'EDI' && <ModalProduct
-            title="Editar produto"
+            title={`Edit ${PAGE_TITLE}`}
             data={productToAction}
             onClose={closeModal}
             onSave={editProduct}
@@ -146,7 +143,7 @@ function Product() {
 
         {
           modal && modal === 'DEL' && <ModalConfirmation
-            title="Deletar produto"
+            title={`Delete ${PAGE_TITLE}`}
             text={`Deseja deletar o produto ${productToAction.name}`}
             onClose={closeModal}
             onResponse={deleteProduct}

@@ -12,6 +12,9 @@ const rotasBreadcrumb =[
   { name: "Category"}
 ]
 
+const END_POINT = 'category'
+const PAGE_TITLE = 'Category'
+
 function Category() {
     const [categorys, setCategorys] = useState();
     const [categoryToAction, setCategoryToAction] = useState()
@@ -37,7 +40,7 @@ function Category() {
 
     async function getAllCategorys(novaPagina, novaQtdElementos) {
         try{
-            const response = await api.get(`categoria?pagina=${novaPagina || 1}&qtdElementos=${novaQtdElementos || 10}`);
+            const response = await api.get(`${END_POINT}?page=${novaPagina || 1}&quantity=${novaQtdElementos || 10}`);
             setCategorys(response.data)
         }
         catch(e){
@@ -47,8 +50,8 @@ function Category() {
 
     async function addCategory(dados) {
         try{
-            await api.post(`categoria`, dados);
-            Toast.success("Categoria adicionada!")
+            await api.post(`${END_POINT}`, dados);
+            Toast.success(`${PAGE_TITLE} added!`)
         }
         catch(e){
             error(e);
@@ -59,8 +62,8 @@ function Category() {
 
     async function editCategory(dados) {
         try{
-            await api.put(`categoria/${categoryToAction.id}`, dados);
-            Toast.success("Categoria atualizada!");
+            await api.put(`${END_POINT}/${categoryToAction.id}`, dados);
+            Toast.success(`${PAGE_TITLE} updated!`)
         }
         catch(e){
             error(e);
@@ -72,8 +75,8 @@ function Category() {
     async function deleteCategory(validacao) {
         try{
             if (validacao) {
-                await api.delete(`categoria/${categoryToAction.id}`);
-                Toast.success("Categoria removida!");
+                await api.delete(`${END_POINT}/${categoryToAction.id}`);
+                Toast.success(`${PAGE_TITLE} removed!`)
             }            
         }
         catch(e){
@@ -93,12 +96,12 @@ function Category() {
     return (
         <main className="App col-12 px-5">
             <section>
-                <Breadcrumb rotas={rotasBreadcrumb}/>
+                <Breadcrumb routes={rotasBreadcrumb}/>
 
                 {/* BARRA MENU INTERNO */}
                 <div style={{ alignItems: 'center' }} className="col-12 row justify-content-between mx-0 px-0">
                     <span>
-                        <h1 className="display-4">Category</h1>
+                        <h1 className="display-4">{PAGE_TITLE}</h1>
                     </span>
                     <span>
                         <button type="button" className="btn btn-success ml-2" onClick={() => openModal('ADD', undefined)}>

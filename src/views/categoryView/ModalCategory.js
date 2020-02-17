@@ -45,20 +45,20 @@ function ModalComponent(props) {
                   <div className="form-group col-12">
                     <label for='userName'>Name</label>
                     <input type='text' className="form-control" id='categoryName' placeholder='Category name'
-                      onChange={event => setCategory({...category, nome:event.target.value})} value={category.nome}/>
+                      onChange={event => setCategory({...category, name:event.target.value})} value={category.name}/>
                   </div>  
 
                   <div className="form-group col-12">
-                    <label for='userName'>Descricao</label>
+                    <label for='userName'>Description</label>
                     <input type='text' className="form-control" id='categoryName' placeholder='Category name'
-                      onChange={event => setCategory({...category, descricao:event.target.value})} value={category.descricao}/>
+                      onChange={event => setCategory({...category, description:event.target.value})} value={category.description}/>
                   </div>  
                                                                
                   <div className="form-group col-12">
                     <div className="custom-control custom-switch">
-                      <input type="checkbox" className="custom-control-input" id="switchVisivel"  checked={category.ativo}
-                        onChange={event => setCategory({...category, ativo:event.target.checked})} />
-                      <label className="custom-control-label" htmlFor="switchVisivel">{category.ativo ? "Ativo" : "Não ativo"}</label>
+                      <input type="checkbox" className="custom-control-input" id="switchVisivel"  checked={category.active}
+                        onChange={event => setCategory({...category, active:event.target.checked})} />
+                      <label className="custom-control-label" htmlFor="switchVisivel">{category.active ? "Ativo" : "Não ativo"}</label>
                     </div>
                   </div>
                 </ModalBody>

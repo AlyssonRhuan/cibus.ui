@@ -1,8 +1,8 @@
-import {BrowserRouter as Router, Switch, Route, NavLink, Link } from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import GlobablConfig from './configs/Global';
-import Rotas from './configs/Rotas';
+import Rotas from './configs/Routes';
 import MenuOverlay from './components/MenuOverlay'
 import Icons from './utils/IconsUtils'
 
@@ -60,9 +60,9 @@ function App() {
                         activeClassName='active' 
                         className="nav-link align-middle"
                         onClick={()=>setMenuAtivo(false)}
-                        to={rota && rota.caminho}>
+                        to={rota && rota.path}>
                           <img className="icon_medium" src={rota.icon}/>
-                          <spam>{rota.nome}</spam>
+                          <spam>{rota.name}</spam>
                         </NavLink>
                     </li>   
                   )
@@ -78,7 +78,7 @@ function App() {
           <Switch className="col-12">
             {
               rotas && rotas.map(
-                (rota, key) => <Route exact path={rota.caminho} key={key}>
+                (rota, key) => <Route exact path={rota.path} key={key}>
                     {
                       React.createElement(rota.view)
                     }

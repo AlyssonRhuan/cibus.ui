@@ -1,6 +1,5 @@
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 import React, { useState, useEffect } from 'react';
-import InputMask from 'react-input-mask';
 import api from '../../services/api'
 import Select from 'react-select'
 
@@ -18,7 +17,7 @@ function ModalComponent(props) {
   }, [])
 
   async function getListCategorys() {
-      const dados = await api.get(`categoria/valuelabel`);
+      const dados = await api.get(`category/valuelabel`);
       setListCategorys(dados.data);
   }
 
@@ -49,50 +48,50 @@ function ModalComponent(props) {
                 
                 <ModalBody className="row">                       
                   <div className="form-group col-12">
-                    <label htmlFor='nomeProduto'>Nome</label>   
+                    <label htmlFor='nomeProduto'>Name</label>   
                     <input type='text' className="form-control" id='nomeProduto' placeholder='Nome do produto'
-                      onChange={event => setProduct({...product, nome:event.target.value})} value={product.nome}/>
+                      onChange={event => setProduct({...product, name:event.target.value})} value={product.name}/>
                   </div>   
 
                   <div className="form-group col-4">
-                    <label htmlFor='precoProduto'>Preço</label>
+                    <label htmlFor='precoProduto'>Price</label>
                     <input type='number' className="form-control" id='precoProduto' placeholder='Preço'
-                      onChange={event => setProduct({...product, preco:event.target.value})} value={product.preco}/>
+                      onChange={event => setProduct({...product, price:event.target.value})} value={product.price}/>
                   </div> 
 
                   <div className="form-group col-4">
-                    <label htmlFor='estoqueMinimoProduto'>Estoque mínimo</label>
-                    <input type='number' className="form-control" id='estoqueMinimoProduto' placeholder='Estoque min'
-                      onChange={event => setProduct({...product, estoqueMinimo:event.target.value})} value={product.estoqueMinimo}/>
+                    <label htmlFor='estoqueMinimoProduto'>Minimum stock </label>
+                    <input type='number' className="form-control" id='estoqueMinimoProduto' placeholder='Minimum stock'
+                      onChange={event => setProduct({...product, minimumStock:event.target.value})} value={product.minimumStock}/>
                   </div> 
 
                   <div className="form-group col-4">
-                    <label htmlFor='estoqueProduto'>Estoque</label>
-                    <input type='number' className="form-control" id='estoqueProduto' placeholder='Estoque'
-                      onChange={event => setProduct({...product, quantidadeEstoque:event.target.value})} value={product.quantidadeEstoque}/>
+                    <label htmlFor='estoqueProduto'>Stock quantity</label>
+                    <input type='number' className="form-control" id='estoqueProduto' placeholder='Stock quantity'
+                      onChange={event => setProduct({...product, stockQuantity:event.target.value})} value={product.stockQuantity}/>
                   </div>  
 
                   <div className="form-group col-12">
-                    <label htmlFor='imagemProduto'>Imagem</label> 
+                    <label htmlFor='imagemProduto'>Image</label> 
                     <div className="custom-file">
                       <input type="file" className="custom-file-input" id="validatedCustomFile" required/>
-                      <label className="custom-file-label" htmlFor="validatedCustomFile">Escolha uma imagem...</label>
+                      <label className="custom-file-label" htmlFor="validatedCustomFile">Pick a image...</label>
                       <div className="invalid-feedback">Example invalid custom file feedback</div>
                     </div>
                   </div>  
 
                   <div className="form-group col-12">
-                    <label htmlFor="productCategory">Categoria</label>
+                    <label htmlFor="productCategory">Category</label>
                     <Select isMulti className="basic-multi-select" classNamePrefix="select" 
-                      onChange={event => setProduct({...product, categorias:event})}
-                      options={listCategorys && listCategorys} value={product.categorias}/>
+                      onChange={event => setProduct({...product, categorys:event})}
+                      options={listCategorys && listCategorys} value={product.categorys}/>
                   </div>  
                                                                
                   <div className="form-group col-12">
                     <div className="custom-control custom-switch">
-                      <input type="checkbox" className="custom-control-input" id="switchVisivel"  checked={product.visivel}
-                        onChange={event => setProduct({...product, visivel:event.target.checked})} />
-                      <label className="custom-control-label" htmlFor="switchVisivel">Produto {product.visivel ? "visível" : "invisível"}</label>
+                      <input type="checkbox" className="custom-control-input" id="switchVisivel"  checked={product.visible}
+                        onChange={event => setProduct({...product, visible:event.target.checked})} />
+                      <label className="custom-control-label" htmlFor="switchVisivel">Produto {product.visible ? "visível" : "invisível"}</label>
                     </div>
                   </div>
                 </ModalBody>

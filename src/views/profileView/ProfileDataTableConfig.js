@@ -2,14 +2,14 @@ import React from 'react';
 
 export default [
   {
-    name: 'Nome',
-    selector: 'nome',
+    name: 'Name',
+    selector: 'name',
     sortable: true,
   },
   {
-    name: 'Telas permitidas',
-    selector: 'telas',
+    name: 'Allowed views',
+    selector: 'views',
     sortable: true,
-    format: row => row.telas.length
+    format: row => row.views.length
   }
 ];

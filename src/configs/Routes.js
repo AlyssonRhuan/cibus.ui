@@ -8,8 +8,8 @@ import ProductView from '../views/productView/Product'
 import CategoryView from '../views/categoryView/Category'
 import ProfileView from '../views/profileView/Profile'
 
-export default async function Rotas() {
-    const { data } = await api.get(`tela`)
+export default async function Routes() {
+    const { data } = await api.get(`view`)
 
     let rotas = []
 
@@ -18,7 +18,7 @@ export default async function Rotas() {
     })
 
     rotas.map(tela => {
-        switch (tela.caminho) {
+        switch (tela.path) {
             case "/":
                 tela.view = HomeView;
                 tela.icon = Icons.HomeWhite;

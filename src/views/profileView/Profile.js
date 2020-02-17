@@ -12,6 +12,9 @@ const rotasBreadcrumb =[
   { name: "Profile"}
 ]
 
+const END_POINT = 'profile'
+const PAGE_TITLE = 'Profile'
+
 function Profile() {
     const [profiles, setProfiles] = useState([]);
     const [profileToAction, setProfileToAction] = useState();
@@ -35,9 +38,9 @@ function Profile() {
 
     // FUNÇÕES 
 
-    async function getAllProfiles(novaPagina, novaQtdElementos) {
+    async function getAllProfiles(page, quantity) {
         try{
-            const response = await api.get(`perfil?pagina=${novaPagina || 1}&qtdElementos=${novaQtdElementos || 10}`);
+            const response = await api.get(`${END_POINT}?page=${page || 1}&quantity=${quantity || 10}`);
             setProfiles(response.data)
         }
         catch(e){
@@ -45,10 +48,10 @@ function Profile() {
         }
     }
 
-    async function addProfile(dados) {
+    async function addProfile(data) {
         try{
-            await api.post(`perfil`, dados);
-            Toast.success("Profile added!")
+            await api.post(`${END_POINT}`, data);
+            Toast.success(`${PAGE_TITLE} added!`);
         }
         catch(e){
             error(e);
@@ -57,10 +60,10 @@ function Profile() {
         closeModal();          
     }
 
-    async function editProfile(dados) {
+    async function editProfile(data) {
         try{
-            await api.put(`perfil/${profileToAction.id}`, dados);
-            Toast.success("Profile updated!");
+            await api.put(`${END_POINT}/${profileToAction.id}`, data);
+            Toast.success(`${PAGE_TITLE} updated!`);
         }
         catch(e){
             error(e);
@@ -69,11 +72,11 @@ function Profile() {
         closeModal();   
     }
 
-    async function deleteProfile(validacao) {
+    async function deleteProfile(validation) {
         try{
-            if (validacao) {
-                await api.delete(`perfil/${profileToAction.id}`);
-                Toast.success("Profile removed!");
+            if (validation) {
+                await api.delete(`${END_POINT}/${profileToAction.id}`);
+                Toast.success(`${PAGE_TITLE} removed!`);
             }            
         }
         catch(e){
@@ -93,12 +96,12 @@ function Profile() {
     return (
         <main className="App col-12 px-5">
             <section>
-                <Breadcrumb rotas={rotasBreadcrumb}/>
+                <Breadcrumb routes={rotasBreadcrumb}/>
 
                 {/* BARRA MENU INTERNO */}
                 <div style={{ alignItems: 'center' }} className="col-12 row justify-content-between mx-0 px-0">
                     <span>
-                        <h1 className="display-4">Profile</h1>
+                        <h1 className="display-4">{PAGE_TITLE}</h1>
                     </span>
                     <span>
                         <button type="button" className="btn btn-success ml-2" onClick={() => openModal('ADD', undefined)}>

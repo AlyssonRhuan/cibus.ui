@@ -9,8 +9,8 @@ function Breadcrumb(props) {
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb">
             {
-              props.rotas && props.rotas.map(
-                rota => <li className="breadcrumb-item"><a href={rota.path}>{rota.name}</a></li>
+              props.routes && props.routes.map(
+                route => <li className="breadcrumb-item"><a href={route.path}>{route.name}</a></li>
               )
             }
           </ol>

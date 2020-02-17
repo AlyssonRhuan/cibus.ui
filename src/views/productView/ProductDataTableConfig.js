@@ -1,30 +1,30 @@
 export default [
     {
-      name: 'Nome',
-      selector: 'nome',
+      name: 'Name',
+      selector: 'name',
       sortable: true,
     },
     {
-      name: 'Preço',
-      selector: 'preco',
+      name: 'Price',
+      selector: 'price',
       sortable: true,
-      format: row => `R$ ${row.preco.toFixed(2)}`
+      format: row => `R$ ${row.price.toFixed(2)}`
     },
     {
-      name: 'Estoque',
-      selector: 'quantidadeEstoque',
+      name: 'Stock',
+      selector: 'stockQuantity',
       sortable: true
     },
     {
-      name: 'Categorias',
-      selector: 'categorias',
+      name: 'Categorys',
+      selector: 'categorys',
       sortable: true,
-      format: row => row.categorias.length
+      format: row => row.categorys.length
     },
     {
-      name: 'Visivel',
-      selector: 'visivel',
+      name: 'Visible',
+      selector: 'visible',
       sortable: true,
-      format: row => row.visivel ? "Sim" : "Não"
+      format: row => row.visivel ? "Yes" : "No"
     }
 ];

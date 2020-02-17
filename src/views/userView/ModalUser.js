@@ -1,28 +1,64 @@
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 import React, { useState, useEffect } from 'react';
+import api from '../../services/api'
 import Select from 'react-select'
+import { act } from 'react-dom/test-utils';
 
 function ModalComponent(props) {
     const [isOpen, setIsOpen] = useState(false)
-    const [user, setUser] = useState("")
     const [actions, setActions] = useState("")
-    const [passConfirm, setPassConfirm] = useState("")
+    const [profiles, setListProfiles] = useState("")
+    const [user, setUser] = useState({
+      "get": false,
+      "post": false,
+      "put": false,
+      "delete": false
+    })
 
     const listAction = [
-      { value: 'ADI', label : 'Adicionar'},
-      { value: 'ATU', label : 'Atualizar'},
-      { value: 'LER', label : 'Ler'},
-      { value: 'REM', label : 'Remover'}
+      { value: 'post',    label : 'Adicionar'},
+      { value: 'put',     label : 'Atualizar'},
+      { value: 'get',     label : 'Ler'},
+      { value: 'delete',  label : 'Remover'}
     ]
     
   useEffect(() => {
+    getListProfiles();
     setIsOpen(props.isOpen);
     onEditModal();
   }, [])
 
+  useEffect(() => {
+    getActionsFromData();
+  }, [user])
+
+  async function getListProfiles() {
+      const dados = await api.get(`profile/valuelabel`);
+      setListProfiles(dados.data);
+  }
+
+  function getActionsFromData(){ 
+    let actionsFromData = []
+
+    if(user && user.get === true){
+      actionsFromData.push({ value: 'get', label : 'Ler'});
+    }
+    if(user && user.post === true){
+      actionsFromData.push({ value: 'post', label : 'Adicionar'});
+    }
+    if(user && user.put === true){
+      actionsFromData.push({ value: 'put', label : 'Atualizar'});
+    }
+    if(user && user.delete === true){
+      actionsFromData.push({ value: 'delete', label : 'Remover'});
+    }
+
+    setActions(actionsFromData);
+  }
+
   function onEditModal(){
     if(props.data !== undefined){
-      setUser(props.data)
+      setUser(props.data);
     }
   }
 
@@ -32,13 +68,12 @@ function ModalComponent(props) {
   }
 
   function saveModal(){ 
-    if(user.pass !== passConfirm){
-      window.alert("Senha não confere");
-    }
-    else{
-      props.onSave(user)
-      closeModal()
-    }
+    actions.map(
+      action => user[action.value] = true
+    ) 
+
+    props.onSave(user)
+    closeModal()
   }
 
   return (
@@ -52,20 +87,26 @@ function ModalComponent(props) {
                 
                 <ModalBody className="row">
                   <div className="form-group col-12">
-                    <label for='userName'>Name</label>
+                    <label htmlFor='userName'>Name</label>
                     <input type='text' className="form-control" id='userName' placeholder='User name'
                       onChange={event => setUser({...user, name:event.target.value})} value={user.name}/>
                   </div>   
                   <div className="form-group col-12">
-                    <label for='userLogin'>Login</label>
+                    <label htmlFor='userEmail'>Email</label>
+                    <input type='text' className="form-control" id='userEmail' placeholder='User email'
+                      onChange={event => setUser({...user, email:event.target.value})} value={user.email}/>
+                  </div>        
+                  <div className="form-group col-6">
+                    <label htmlFor='userLogin'>Login</label>
                     <input type='text' className="form-control" id='userLogin' placeholder='User login'
                       onChange={event => setUser({...user, login:event.target.value})} value={user.login}/>
-                  </div>   
-                  <div className="form-group col-12">
-                    <label for='userPass'>Profile</label>
-                    <input type='password' className="form-control" id='userPass' placeholder='User password'
-                      onChange={event => setUser({...user, pass:event.target.value})} value={user.pass}/>
-                  </div>   
+                  </div>                
+                  <div class="form-group col-6">
+                    <label htmlFor="profile">Profile</label>
+                    <Select className="basic-multi-select" classNamePrefix="select" 
+                      onChange={event => setUser({...user, profile:event})}
+                      options={profiles} value={user.profile}/>
+                  </div>
                   <div className="form-group col-12">
                     <label htmlFor="productCategory">Actions</label>
                     <Select isMulti className="basic-multi-select" classNamePrefix="select" 

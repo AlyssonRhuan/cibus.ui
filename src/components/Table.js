@@ -55,8 +55,6 @@ function Table(props) {
                         paginationPerPage={props.data.numberOfElements}                     //TOTAL LINHA NESTA PAGINA
                         onChangePage={(pag) => trocaPagina(pag)}                            //EVENTO TROCA PAGINA
                         onChangeRowsPerPage={(qtd) => trocaQtdElementos(qtd)}               //EVENTO TROCA QTD LINHAS
-                        expandableRows={props.expandableRows ? true : false}                //PERMITE EXPANDIR A LINHA
-                        expandableRowsComponent={<p>teste</p>}
                     />
                     : <Loading />
                 }

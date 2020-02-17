@@ -2,19 +2,19 @@ import React from 'react';
 
 export default [
   {
-    name: 'Nome',
-    selector: 'nome',
+    name: 'Name',
+    selector: 'name',
     sortable: true,
   },
   {
-    name: 'Descrição',
-    selector: 'descricao',
+    name: 'Description',
+    selector: 'description',
     sortable: true,
   },
   {
-    name: 'Ativo',
-    selector: 'ativo',
+    name: 'Active',
+    selector: 'active',
     sortable: true,
-    format: row => row.ativo ? "Sim" : "Não"
+    format: row => row.active ? "Yes" : "No"
   }
 ];
