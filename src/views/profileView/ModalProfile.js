@@ -76,23 +76,21 @@ function ModalComponent(props) {
                     <input type='text' className="form-control" id='profileName' placeholder='Profile name'
                       onChange={event => setProfile({...profile, name:event.target.value})} value={profile.name}/>
                   </div>  
-               
-                  <div className="form-group col-12">
-                    <label htmlFor='userName'>Views</label>
-                    <div className="form-group col-12"  style={{overflowY:"auto", height:"150px"}}>
+                                                               
+                  <div className="form-group col-12">                    
+                    <label htmlFor='userName'>Views</label>                    
+                    <div className="form-group col-12"  style={{overflowY:"auto", height:"150px"}}>                      
                       {
                         routes && routes.map(
-                          (route, key) => <div className="custom-control custom-switch py-1 pl-4">
-                              <input type="checkbox" route="custom-control-input" id={[route.id]} 
-                                checked={isRouteChecked(route)}
-                                onChange={event => atualizarTela(route)} />
-                              <label className="custom-control-label" htmlFor={[route.id]}>{route.name}</label>
-                            </div>
-                        )                    
+                          (route, key) => <div className="custom-control custom-switch">
+                            <input type="checkbox" className="custom-control-input" id={[route.id]} checked={isRouteChecked(route)}
+                              onChange={event => atualizarTela(route)} />
+                            <label className="custom-control-label" htmlFor={[route.id]}>{route.name}</label>
+                        </div>
+                        )
                       }
                     </div>
-                  </div>  
-
+                  </div>
                 </ModalBody>
 
                 <ModalFooter>

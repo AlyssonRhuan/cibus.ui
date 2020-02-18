@@ -45,7 +45,7 @@ export default async function Routes() {
                 tela.iconHome = Icons.Profile;
                 break;
             default:
-                tela.view = HomeView;
+                tela.view = NotFoundView;
                 break;
         }
     })

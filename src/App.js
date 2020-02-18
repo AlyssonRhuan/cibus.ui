@@ -5,6 +5,7 @@ import GlobablConfig from './configs/Global';
 import Rotas from './configs/Routes';
 import MenuOverlay from './components/MenuOverlay'
 import Icons from './utils/IconsUtils'
+import NotFoundView from './views/notFoundView/NotFound'
 
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -84,7 +85,8 @@ function App() {
                     }
                 </Route>
               )
-            }
+            }            
+            <Route component={NotFoundView} />
           </Switch> 
 
         </div>

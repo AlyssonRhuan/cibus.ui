@@ -68,7 +68,12 @@ function ModalComponent(props) {
   }
 
   function saveModal(){ 
-    actions.map(
+    user.get = false;
+    user.post = false;
+    user.put = false;
+    user.delete = false;
+
+    actions && actions.map(
       action => user[action.value] = true
     ) 
 
