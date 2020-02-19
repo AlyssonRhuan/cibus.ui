@@ -40,16 +40,16 @@ function ModalComponent(props) {
   function getActionsFromData(){ 
     let actionsFromData = []
 
-    if(user && user.get === true){
+    if(user && user.get){
       actionsFromData.push({ value: 'actionRead', label : 'Ler'});
     }
-    if(user && user.post === true){
+    if(user && user.post){
       actionsFromData.push({ value: 'actionAdd', label : 'Adicionar'});
     }
-    if(user && user.put === true){
+    if(user && user.put){
       actionsFromData.push({ value: 'actionUpdate', label : 'Atualizar'});
     }
-    if(user && user.delete === true){
+    if(user && user.delete){
       actionsFromData.push({ value: 'actionRemove', label : 'Remover'});
     }
 
