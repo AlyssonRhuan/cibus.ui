@@ -22,6 +22,11 @@ import CloseWhiteIcon from '../assets/icons/close_white.svg'
 import MenuWhiteIcon from '../assets/icons/menu_white.svg'
 import MeWhiteIcon from '../assets/icons/me_white.svg'
 
+import ProfileColorfulIcon from '../assets/icons/profile_colorful.svg'
+import UserColorfulIcon from '../assets/icons/user_colorful.svg'
+import CategoryColorfulIcon from '../assets/icons/category_colorful.svg'
+import ProductColorfulIcon from '../assets/icons/product_colorful.svg'
+
 export default {        
     Edit: EditIcon,
     Add: AddIcon,
@@ -46,4 +51,9 @@ export default {
     CloseWhite: CloseWhiteIcon,
     MenuWhite: MenuWhiteIcon,
     MeWhite: MeWhiteIcon,
+    
+    UserColorful: UserColorfulIcon,
+    CategoryColorful: CategoryColorfulIcon,
+    ProductColorful: ProductColorfulIcon,
+    ProfileColorful: ProfileColorfulIcon,
 }

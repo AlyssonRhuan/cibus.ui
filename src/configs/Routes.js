@@ -22,27 +22,26 @@ export default async function Routes() {
             case "/":
                 tela.view = HomeView;
                 tela.icon = Icons.HomeWhite;
-                tela.iconHome = Icons.Home;
                 break;
             case "/user":
                 tela.view = UserView;
                 tela.icon = Icons.UserWhite;   
-                tela.iconHome = Icons.User;             
+                tela.iconHome = Icons.UserColorful;             
                 break;
             case "/product":
                 tela.view = ProductView;
                 tela.icon = Icons.ProductWhite;
-                tela.iconHome = Icons.Product;
+                tela.iconHome = Icons.ProductColorful;
                 break;
             case "/category":
                 tela.view = CategoryView;
                 tela.icon = Icons.CategoryWhite;
-                tela.iconHome = Icons.Category;
+                tela.iconHome = Icons.CategoryColorful;
                 break;
             case "/profile":
                 tela.view = ProfileView;
                 tela.icon = Icons.ProfileWhite;
-                tela.iconHome = Icons.Profile;
+                tela.iconHome = Icons.ProfileColorful;
                 break;
             default:
                 tela.view = NotFoundView;
