@@ -9,17 +9,17 @@ function ModalComponent(props) {
     const [actions, setActions] = useState("")
     const [profiles, setListProfiles] = useState("")
     const [user, setUser] = useState({
-      "get": false,
-      "post": false,
-      "put": false,
-      "delete": false
+      "actionRead": false,
+      "actionAdd": false,
+      "actionUpdate": false,
+      "actionRemove": false
     })
 
     const listAction = [
-      { value: 'post',    label : 'Adicionar'},
-      { value: 'put',     label : 'Atualizar'},
-      { value: 'get',     label : 'Ler'},
-      { value: 'delete',  label : 'Remover'}
+      { value: 'actionAdd',    label : 'Adicionar'},
+      { value: 'actionUpdate',     label : 'Atualizar'},
+      { value: 'actionRead',     label : 'Ler'},
+      { value: 'actionRemove',  label : 'Remover'}
     ]
     
   useEffect(() => {
@@ -41,16 +41,16 @@ function ModalComponent(props) {
     let actionsFromData = []
 
     if(user && user.get === true){
-      actionsFromData.push({ value: 'get', label : 'Ler'});
+      actionsFromData.push({ value: 'actionRead', label : 'Ler'});
     }
     if(user && user.post === true){
-      actionsFromData.push({ value: 'post', label : 'Adicionar'});
+      actionsFromData.push({ value: 'actionAdd', label : 'Adicionar'});
     }
     if(user && user.put === true){
-      actionsFromData.push({ value: 'put', label : 'Atualizar'});
+      actionsFromData.push({ value: 'actionUpdate', label : 'Atualizar'});
     }
     if(user && user.delete === true){
-      actionsFromData.push({ value: 'delete', label : 'Remover'});
+      actionsFromData.push({ value: 'actionRemove', label : 'Remover'});
     }
 
     setActions(actionsFromData);
@@ -68,10 +68,10 @@ function ModalComponent(props) {
   }
 
   function saveModal(){ 
-    user.get = false;
-    user.post = false;
-    user.put = false;
-    user.delete = false;
+    user.actionRead = false;
+    user.actionAdd = false;
+    user.actionUpdate = false;
+    user.actionRemove = false;
 
     actions && actions.map(
       action => user[action.value] = true
