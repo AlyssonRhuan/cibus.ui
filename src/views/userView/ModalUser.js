@@ -56,7 +56,7 @@ function ModalComponent(props) {
     setActions(actionsFromData);
   }
 
-  function onEditModal(){
+  function onEditModal(){ 
     if(props.data !== undefined){
       setUser(props.data);
     }
