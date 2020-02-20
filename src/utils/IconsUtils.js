@@ -27,6 +27,8 @@ import UserColorfulIcon from '../assets/icons/user_colorful.svg'
 import CategoryColorfulIcon from '../assets/icons/category_colorful.svg'
 import ProductColorfulIcon from '../assets/icons/product_colorful.svg'
 
+import LogoIcon from '../assets/icons/logo.svg'
+
 export default {        
     Edit: EditIcon,
     Add: AddIcon,
@@ -56,4 +58,6 @@ export default {
     CategoryColorful: CategoryColorfulIcon,
     ProductColorful: ProductColorfulIcon,
     ProfileColorful: ProfileColorfulIcon,
+
+    Logo: LogoIcon,
 }
