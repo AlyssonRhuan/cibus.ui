@@ -6,6 +6,7 @@ import Rotas from './configs/Routes';
 import MenuOverlay from './components/MenuOverlay'
 import Icons from './utils/IconsUtils'
 import NotFoundView from './views/notFoundView/NotFound'
+import LoginView from './views/loginView/Login'
 
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -14,6 +15,7 @@ import './App.css';
 function App() {
   const [menuAtivo, setMenuAtivo] = useState(false);
   const [rotas, setRotas] = useState();
+  const [user, setUser] = useState(null);
 
   useEffect(() => {        
     Rotas().then(res => {
@@ -21,8 +23,9 @@ function App() {
     });
   }, [])
 
-  return (    
-    <Router>
+  return (
+    user 
+    ? <Router>
       <title>{GlobablConfig.Title}</title>
       <div className="container-fluid">
         <div className="row">   
@@ -92,6 +95,7 @@ function App() {
         </div>
       </div>
     </Router>    
+    : <LoginView />
   );
 }
 
