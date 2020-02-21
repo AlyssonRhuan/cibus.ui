@@ -1,31 +1,39 @@
 import {BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom";
-import React, { useState, useEffect } from 'react';
-import { ToastContainer } from 'react-toastify';
-import GlobablConfig from './configs/Global';
-import Rotas from './configs/Routes';
-import MenuOverlay from './components/MenuOverlay'
-import Icons from './utils/IconsUtils'
 import NotFoundView from './views/notFoundView/NotFound'
-import LoginView from './views/loginView/Login'
+import React, { useState, useEffect } from 'react';
+import MenuOverlay from './components/MenuOverlay';
+import { ToastContainer } from 'react-toastify';
+import LoginView from './views/loginView/Login';
+import GlobablConfig from './configs/Global';
+import Icons from './utils/IconsUtils';
+import Rotas from './configs/Routes';
 
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
+function PrivateRoute({children}) {
+  return <Route>
+      {
+        React.createElement(children)
+      }
+    </Route>
+}
+
 function App() {
   const [menuAtivo, setMenuAtivo] = useState(false);
   const [rotas, setRotas] = useState();
-  const [user, setUser] = useState(null);
+  const [token, setToken] = useState();
 
   useEffect(() => {        
+    setToken(localStorage.getItem("Authorization"));
     Rotas().then(res => {
       setRotas(res)
     });
   }, [])
 
-  return (
-    user 
-    ? <Router>
+  return (    
+    <Router>
       <title>{GlobablConfig.Title}</title>
       <div className="container-fluid">
         <div className="row">   
@@ -80,22 +88,21 @@ function App() {
 
           {/* SWITCH DE ROTA */}
           <Switch className="col-12">
+            <Route exact path="/login">
+              <LoginView/>
+            </Route>
             {
               rotas && rotas.map(
-                (rota, key) => <Route exact path={rota.path} key={key}>
-                    {
-                      React.createElement(rota.view)
-                    }
-                </Route>
+                (rota, key) => <PrivateRoute exact path={rota.path} key={key}>
+                    { rota.view }
+                </PrivateRoute>
               )
-            }            
-            <Route component={NotFoundView} />
+            }   
           </Switch> 
 
         </div>
       </div>
     </Router>    
-    : <LoginView />
   );
 }
 

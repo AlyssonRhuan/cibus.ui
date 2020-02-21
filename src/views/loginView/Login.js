@@ -1,17 +1,33 @@
 import React, { useState, useEffect } from 'react';
-import GlobablConfig from '../../configs/Global'
-import Rotas from '../../configs/Routes';
+import Icons from '../../utils/IconsUtils';
+import Toast from '../../components/Toast';
+import api from '../../services/api';
 import './Login.css';
-import Icons from '../../utils/IconsUtils'
 
-function Home() {
-  const [rotas, setRotas] = useState();
+const END_POINT = 'login'
 
-  useEffect(() => {        
-    Rotas().then(res => {
-      setRotas(res)
-    });
-  }, [])
+function Home(props) {
+  const [user, setUser] = useState();
+  
+  async function login(e) {
+    e.preventDefault();
+    try {
+      api.post(`http://localhost:8080/${END_POINT}`, user).then(response => {
+        Toast.success(`Welcome ${user.login}`)            
+        const authorization = response.headers.authorization;
+        localStorage.setItem("Authorization", authorization);
+      })
+    }
+    catch (e) {
+      debugger
+      error(e);
+    }
+  }
+
+  function error(e) {
+    Toast.error(e.response ? e.response.data.message : e.message);
+    console.error(e.response ? e.response.data.message : e.message);
+  }
 
   return (
     <main className="mainLogin">
@@ -21,10 +37,22 @@ function Home() {
       </section>
       <section className="login">
         <h1>Login</h1>
-        <form method="post">
-          <input type="text" name="u" placeholder="Username" required="required" />
-          <input type="password" name="p" placeholder="Password" required="required" />
-          <button type="submit" className="btn btn-primary btn-block btn-large">Let me in.</button>
+        <form>
+          <input 
+            type="text" 
+            name="u" 
+            placeholder="Username" 
+            required
+            onChange={event => setUser({...user, login:event.target.value})}
+          />
+          <input 
+            type="password" 
+            name="p" 
+            placeholder="Password" 
+            required
+            onChange={event => setUser({...user, pass:event.target.value})}
+          />
+          <button className="btn btn-primary btn-block btn-large" onClick={(e) => login(e)}>Let me in.</button>
         </form>
       </section>
     </main>
