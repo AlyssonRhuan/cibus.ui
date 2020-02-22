@@ -23,7 +23,7 @@ function PrivateRoute({children}) {
 function App() {
   const [menuAtivo, setMenuAtivo] = useState(false);
   const [rotas, setRotas] = useState();
-  const [token, setToken] = useState();
+  const [user, setUser] = useState({});
 
   useEffect(() => {        
     setToken(localStorage.getItem("Authorization"));
