@@ -9,6 +9,7 @@ import ProfileIcon from '../assets/icons/profile.svg'
 import CloseIcon from '../assets/icons/close.svg'
 import MenuIcon from '../assets/icons/menu.svg'
 import MeIcon from '../assets/icons/me.svg'
+import LogoutIcon from '../assets/icons/logout.svg'
 
 import EditWhiteIcon from '../assets/icons/edit_white.svg'
 import AddWhiteIcon from '../assets/icons/add_white.svg'
@@ -21,6 +22,7 @@ import ProfileWhiteIcon from '../assets/icons/profile_white.svg'
 import CloseWhiteIcon from '../assets/icons/close_white.svg'
 import MenuWhiteIcon from '../assets/icons/menu_white.svg'
 import MeWhiteIcon from '../assets/icons/me_white.svg'
+import LogoutWhiteIcon from '../assets/icons/logout_white.svg'
 
 import ProfileColorfulIcon from '../assets/icons/profile_colorful.svg'
 import UserColorfulIcon from '../assets/icons/user_colorful.svg'
@@ -41,6 +43,7 @@ export default {
     Close: CloseIcon,
     Menu: MenuIcon,
     Me: MeIcon,
+    Logout: LogoutIcon,
     
     EditWhite: EditWhiteIcon,
     AddWhite: AddWhiteIcon,
@@ -53,6 +56,7 @@ export default {
     CloseWhite: CloseWhiteIcon,
     MenuWhite: MenuWhiteIcon,
     MeWhite: MeWhiteIcon,
+    LogoutWhite: LogoutWhiteIcon,
     
     UserColorful: UserColorfulIcon,
     CategoryColorful: CategoryColorfulIcon,

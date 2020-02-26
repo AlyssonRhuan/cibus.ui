@@ -14,6 +14,7 @@
 html { width: 100%; height:100%; overflow:hidden; }
 
 .mainLogin { 
+	z-index: 3;
     height: 100vh;
 	width: 100vw;
 	font-family: 'Open Sans', sans-serif;

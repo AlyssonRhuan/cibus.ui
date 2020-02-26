@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { ToastContainer } from 'react-toastify';
 import Icons from '../../utils/IconsUtils';
 import Toast from '../../components/Toast';
 import api from '../../services/api';
@@ -16,6 +17,7 @@ function Home(props) {
         Toast.success(`Welcome ${user.login}`)            
         const authorization = response.headers.authorization;
         localStorage.setItem("Authorization", authorization);
+        window.location.href = '/';
       })
     }
     catch (e) {
@@ -30,7 +32,8 @@ function Home(props) {
   }
 
   return (
-    <main className="mainLogin">
+    <main className="mainLogin">      
+      <ToastContainer />     
       <section className="logoCibus">
         <img src={Icons.Logo} />
         <h1>Cibus</h1>

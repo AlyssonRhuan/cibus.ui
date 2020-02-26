@@ -36,15 +36,6 @@
   transition: .5s;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .navbar a:hover{
   cursor: pointer;
 }
@@ -63,12 +54,35 @@
 
 .sideBarMenu {
   position: absolute;
-  width: 300px;
+  width: 70px;
   height: 100vh;
   background-color: #19222A;
-  z-index: 2;
+  z-index: 1;
   transition: .5s;
   top: 0px;
+  left: 0px;
+}
+
+.sideBarMenu:hover {
+  width: 300px;
+}
+
+.icon_span {
+  display: none;
+  transition: .5s;  
+}
+
+.sideBarMenu:hover .icon_span {
+  display: table;
+}
+
+.sideBarMenu a {
+  width: 70px;
+  transition: .5s;
+}
+
+.sideBarMenu:hover a {
+  width: 300px;
 }
 
 .sideBarMenu li {
@@ -76,26 +90,7 @@
 }
 
 .sideBarMenu li:hover{
-  padding-left: 10px;
   background-color: rgb(63, 76, 87) !important;
-}
-
-.sideBarMenuClose {
-  background-color: rgb(0, 123, 255);
-  cursor: pointer;  
-  margin-top: -16px;  
-  padding-top: 25px;
-  padding-bottom: 25px;
-  transition: .5s;
-  height: 30px;
-}
-
-.sideBarMenuClose img {
-  transition: .5s;
-}
-
-.sideBarMenuClose img:hover {
-  transform: rotate(90deg);
 }
 
 .dataTable .actionsBar a {
