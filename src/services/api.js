@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 let api = axios.create({
-    baseURL: 'https://cibusserver.herokuapp.com/',
-    //baseURL: 'http://localhost:8080/',
+    //baseURL: 'https://cibusserver.herokuapp.com/',
+    baseURL: 'http://localhost:8080/',
     headers: {
         Authorization: localStorage.getItem("Authorization"),
     }
@@ -14,7 +14,7 @@ api.interceptors.response.use(function (response) {
     if(localStorage.getItem("Authorization") !== null){
         if(error.response === null || error.response.status === null || error.response.status === 403) {
             localStorage.removeItem("Authorization"); 
-            window.location.href = '/login';
+            window.location.href = '/';
         }
     }
     return Promise.reject(error);

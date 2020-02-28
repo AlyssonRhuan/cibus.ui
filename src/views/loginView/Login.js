@@ -13,7 +13,7 @@ function Home(props) {
   async function login(e) {
     e.preventDefault();
     try {
-      api.post(`http://localhost:8080/${END_POINT}`, user).then(response => {
+      api.post(END_POINT, user).then(response => {
         Toast.success(`Welcome ${user.login}`)            
         const authorization = response.headers.authorization;
         localStorage.setItem("Authorization", authorization);

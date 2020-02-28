@@ -54,7 +54,7 @@
 
 .sideBarMenu {
   position: absolute;
-  width: 70px;
+  width: 60px;
   height: 100vh;
   background-color: #19222A;
   z-index: 1;
@@ -64,7 +64,7 @@
 }
 
 .sideBarMenu:hover {
-  width: 300px;
+  width: 250px;
 }
 
 .icon_span {
@@ -77,12 +77,12 @@
 }
 
 .sideBarMenu a {
-  width: 70px;
+  width: 60px;
   transition: .5s;
 }
 
 .sideBarMenu:hover a {
-  width: 300px;
+  width: 250px;
 }
 
 .sideBarMenu li {
@@ -99,7 +99,10 @@
 }
 
 .Loading {
-  padding-top: 100px;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .rdt_Table {
@@ -107,12 +110,12 @@
 }
 
 .icon_small{
-  width: 25px;
+  width: 15px;
   margin-right: 10px;
 }
 
 .icon_medium{
-  width: 35px;
+  width: 25px;
   margin-right: 20px;
 }
 
