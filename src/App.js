@@ -3,7 +3,6 @@ import NotFoundView from './views/notFoundView/NotFound'
 import React, { useState, useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import LoginView from './views/loginView/Login';
-import GlobablConfig from './configs/Global';
 import Loading from './components/Loading';
 import Icons from './utils/IconsUtils';
 import Rotas from './configs/Routes';
@@ -64,19 +63,19 @@ function App() {
     : !token      
       ? <LoginView/>
       : <Router>
-        <title>{GlobablConfig.Title}</title>
-        <ToastContainer />     
+        <title>{process.env.REACT_APP_APP_TITLE}</title>
+        <ToastContainer hideProgressBar/>     
         
         {/* MENU LATERAL */}
         {
           token && <div>
             <div>
               <div className="sideBarMenu">       
-                <ul className="nav nav-pills flex-column my-3">   
-                  <li className="nav-item" >
-                    <section className="nav-link align-middle">                    
-                      <img className="icon_medium" src={Icons.Logo}/>
-                      <spam className="icon_span">Cibus</spam>
+                <ul className="nav nav-pills flex-column">   
+                  <li>
+                    <section className="nav-logo-link align-middle">                    
+                      <img className="icon_small" src={Icons.Logo}/>
+                      <spam>Cibus</spam>
                     </section>
                   </li>
                   {
@@ -87,16 +86,16 @@ function App() {
                           activeClassName='active' 
                           className="nav-link align-middle"
                           to={rota && rota.path}>
-                            <img className="icon_medium" src={rota.icon}/>
-                            <spam className="icon_span">{rota.name}</spam>
+                            <img className="icon_small" src={rota.icon}/>
+                            <spam>{rota.name}</spam>
                           </NavLink>
                       </li>   
                     )
                   }
                   <li className="nav-item" >
                     <section className="nav-link align-middle" onClick={logout}>                    
-                      <img className="icon_medium" src={Icons.LogoutWhite}/>
-                      <spam className="icon_span">Logout</spam>
+                      <img className="icon_small" src={Icons.LogoutWhite}/>
+                      <spam>Logout</spam>
                     </section>
                   </li>
                 </ul>

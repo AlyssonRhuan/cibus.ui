@@ -1,8 +1,7 @@
 import axios from 'axios'
 
 let api = axios.create({
-    //baseURL: 'https://cibusserver.herokuapp.com/',
-    baseURL: 'http://localhost:8080/',
+    baseURL: process.env.REACT_APP_API_URL,
     headers: {
         Authorization: localStorage.getItem("Authorization"),
     }

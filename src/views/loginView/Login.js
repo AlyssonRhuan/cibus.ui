@@ -21,7 +21,6 @@ function Home(props) {
       })
     }
     catch (e) {
-      debugger
       error(e);
     }
   }
@@ -32,8 +31,9 @@ function Home(props) {
   }
 
   return (
-    <main className="mainLogin">      
-      <ToastContainer />     
+    <main className="mainLogin">          
+      <title>{process.env.REACT_APP_APP_TITLE}</title>
+      <ToastContainer hideProgressBar/>     
       <section className="logoCibus">
         <img src={Icons.Logo} />
         <h1>Cibus</h1>
