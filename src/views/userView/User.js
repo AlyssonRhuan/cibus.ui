@@ -94,7 +94,7 @@ function User() {
     // RENDER
 
     return (
-        <main className="App col-12 px-5">
+        <main className="App col-12 pr-4">
             <section>
                 <Breadcrumb routes={rotasBreadcrumb}/>
 

@@ -25,6 +25,10 @@
   background-color: rgb(63, 76, 87) !important;
 }
 
+.nav-link img {
+  filter: grayscale(0) !important;
+}
+
 .nav-logo-link {
   height: 50px;
   color: #E8E9EA !important;
