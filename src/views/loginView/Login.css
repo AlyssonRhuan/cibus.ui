@@ -62,7 +62,8 @@ input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgb
 	display: flex;
     align-items: center;
     padding-top: 20px;
-	padding-left: 20px;
+	padding-left: 20px;	
+    position: absolute;
 }
 
 .logoCibus img{
