@@ -1,64 +1,27 @@
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 import React, { useState, useEffect } from 'react';
-import api from '../../services/api'
-import Select from 'react-select'
-import { act } from 'react-dom/test-utils';
+import Icons from '../../utils/IconsUtils'
 
 function ModalComponent(props) {
     const [isOpen, setIsOpen] = useState(false)
-    const [actions, setActions] = useState("")
-    const [profiles, setListProfiles] = useState("")
-    const [user, setUser] = useState({
-      "actionRead": false,
-      "actionAdd": false,
-      "actionUpdate": false,
-      "actionRemove": false
-    })
+    const [user, setUser] = useState({})
 
-    const listAction = [
-      { value: 'actionAdd',    label : 'Adicionar'},
-      { value: 'actionUpdate',     label : 'Atualizar'},
-      { value: 'actionRead',     label : 'Ler'},
-      { value: 'actionRemove',  label : 'Remover'}
-    ]
+    const [cardProfileAdmin, setCardProfileAdmin] = useState(false)
+    const [cardProfileSalesman, setCardProfileSalesman] = useState(false)
     
   useEffect(() => {
-    getListProfiles();
     setIsOpen(props.isOpen);
     onEditModal();
   }, [])
 
-  useEffect(() => {
-    getActionsFromData();
-  }, [user])
-
-  async function getListProfiles() {
-      const dados = await api.get(`profile/valuelabel`);
-      setListProfiles(dados.data);
-  }
-
-  function getActionsFromData(){ 
-    let actionsFromData = []
-
-    if(user && user.get){
-      actionsFromData.push({ value: 'actionRead', label : 'Ler'});
-    }
-    if(user && user.post){
-      actionsFromData.push({ value: 'actionAdd', label : 'Adicionar'});
-    }
-    if(user && user.put){
-      actionsFromData.push({ value: 'actionUpdate', label : 'Atualizar'});
-    }
-    if(user && user.delete){
-      actionsFromData.push({ value: 'actionRemove', label : 'Remover'});
-    }
-
-    setActions(actionsFromData);
-  }
-
   function onEditModal(){ 
     if(props.data !== undefined){
       setUser(props.data);
+
+      props.data.profiles.map(profile => {
+        profile === "ADMIN" && setCardProfileAdmin(true);
+        profile === "SALESMAN" && setCardProfileSalesman(true);
+      })
     }
   }
 
@@ -68,17 +31,15 @@ function ModalComponent(props) {
   }
 
   function saveModal(){ 
-    user.actionRead = false;
-    user.actionAdd = false;
-    user.actionUpdate = false;
-    user.actionRemove = false;
+    let profiles = [];
 
-    actions && actions.map(
-      action => user[action.value] = true
-    ) 
+    cardProfileAdmin && profiles.push(1);
+    cardProfileSalesman && profiles.push(2);
 
-    props.onSave(user)
-    closeModal()
+    user.profiles = profiles;
+
+    props.onSave(user);
+    closeModal();
   }
 
   return (
@@ -105,19 +66,33 @@ function ModalComponent(props) {
                     <label htmlFor='userLogin'>Login</label>
                     <input type='text' className="form-control" id='userLogin' placeholder='User login'
                       onChange={event => setUser({...user, login:event.target.value})} value={user.login}/>
-                  </div>                
-                  <div class="form-group col-6">
-                    <label htmlFor="profile">Profile</label>
-                    <Select className="basic-multi-select" classNamePrefix="select" 
-                      onChange={event => setUser({...user, profile:event})}
-                      options={profiles} value={user.profile}/>
-                  </div>
-                  <div className="form-group col-12">
-                    <label htmlFor="productCategory">Actions</label>
-                    <Select isMulti className="basic-multi-select" classNamePrefix="select" 
-                      onChange={event => setActions(event)}
-                      options={listAction} value={actions}/>
+                  </div>      
+                  <div className="form-group col-6">
+                    <label htmlFor='imagemProduto'>Image</label> 
+                    <div className="custom-file">
+                      <input type="file" className="custom-file-input" id="validatedCustomFile" required/>
+                      <label className="custom-file-label" htmlFor="validatedCustomFile">Pick a image...</label>
+                      <div className="invalid-feedback">Example invalid custom file feedback</div>
+                    </div>
+                  </div>     
+                  <div className="form-group col-6" title="Profile Admin has full access">
+                    <div class={`card text-center card_profile ${cardProfileAdmin && "border-primary"}`}
+                      onClick={() => setCardProfileAdmin(!cardProfileAdmin)}>
+                      <img class="card-img-top icon_large pt-3" src={Icons.Profile} alt="Card image cap" style={{width: "100%", height:"60px"}}/>
+                      <div class="card-body">
+                        <h5 class="card-title">Admin</h5>
+                      </div>
+                    </div>
                   </div>  
+                  <div className="form-group col-6" title="Profile Salesman has no access to Admin pages">
+                    <div class={`card text-center card_profile ${cardProfileSalesman && "border-primary"}`}
+                      onClick={() => setCardProfileSalesman(!cardProfileSalesman)}>
+                      <img class="card-img-top icon_large pt-3" src={Icons.User} alt="Card image cap" style={{width: "100%", height:"60px"}}/>
+                      <div class="card-body">
+                        <h5 class="card-title">Salesman</h5>
+                      </div>
+                    </div>
+                  </div>   
                 </ModalBody>
 
                 <ModalFooter>

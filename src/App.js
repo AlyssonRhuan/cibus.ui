@@ -114,9 +114,12 @@ function App() {
                     rota.view
                   }
                 </PrivateRoute>
-              )
-            }   
-          </Switch> 
+              )              
+            }  
+             <Route>
+               <NotFoundView/>
+             </Route>
+          </Switch>           
         </div>
       </Router>    
   );

@@ -8,7 +8,10 @@ export default [
     },
     {
       name: 'Profile',
-      selector: 'profile.label',
-      sortable: true
+      selector: 'profiles',
+      sortable: true,
+      // format: row => {
+      //   return row.profiles.map(profile )
+      // }
     }
 ];

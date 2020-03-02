@@ -6,9 +6,8 @@ import HomeView from '../views/homeView/Home'
 import UserView from '../views/userView/User'
 import ProductView from '../views/productView/Product'
 import CategoryView from '../views/categoryView/Category'
-import ProfileView from '../views/profileView/Profile'
 
-export default async function Routes() {
+export default async function Routes() {        
     const { data } = await api.get(`view`)
 
     let rotas = []
@@ -37,11 +36,6 @@ export default async function Routes() {
                 tela.view = CategoryView;
                 tela.icon = Icons.CategoryWhite;
                 tela.iconHome = Icons.CategoryColorful;
-                break;
-            case "/profile":
-                tela.view = ProfileView;
-                tela.icon = Icons.ProfileWhite;
-                tela.iconHome = Icons.ProfileColorful;
                 break;
             default:
                 tela.view = NotFoundView;
