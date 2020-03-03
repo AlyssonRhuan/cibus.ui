@@ -4,7 +4,7 @@ import Breadcrumb from '../../components/Breadcrumb';
 import React, { useState, useEffect } from 'react';
 import Table from '../../components/Table';
 import Toast from '../../components/Toast';
-import api from '../../services/api';
+import api from '../../services/Api';
 import ModalUser from './ModalUser';
 
 const rotasBreadcrumb =[

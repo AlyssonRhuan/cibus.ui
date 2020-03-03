@@ -103,3 +103,10 @@
 .card_profile:hover{
   cursor: pointer;
 }
+
+.view_context{
+  color: lightgrey;
+  margin-top: 10px;
+  height: 24px;
+  font-size: 14px;
+}

@@ -1,11 +1,17 @@
 import {BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom";
-import NotFoundView from './views/notFoundView/NotFound'
+import NotFoundView from './views/notFoundView/NotFound';
+import NavMenu from './components/NavMenu';
 import React, { useState, useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import LoginView from './views/loginView/Login';
+import HomeView from './views/homeView/Home';
 import Loading from './components/Loading';
 import Icons from './utils/IconsUtils';
-import Rotas from './configs/Routes';
+import Rotas from './services/Routes';
+import Me from './services/Me';
+
+import RouterContext from './context/Router.context';
+import UserContext from './context/User.context';
 
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -25,103 +31,150 @@ async function getToken(){
 }
 
 function App() {
-  const [rotas, setRotas] = useState();
   const [token, setToken] = useState();
-  const [loading, setLoading] = useState();
+  const [rotas, setRotas] = useState();
+  const [me, setMe] = useState();
   
   function logout(){
-    setLoading(true);
-    localStorage.removeItem("Authorization"); 
+    localStorage.removeItem("Authorization");  
+    localStorage.removeItem("AuthorizationId");      
+    setRotas(false);
+    setMe(false);
     setToken(null);
-    setLoading(false);
   }
 
   useEffect(() => { 
-    setLoading(true);
-    getToken().then(
-      response => {
-        setToken(response);
+    getToken().then(res => {
+      setToken(res);
+    });
 
-        if(response){
-          Rotas().then(res => {
-            setRotas(res)
-            setLoading(false);
-          })    
-        }
-        else{
-          setLoading(false);
-        }
-        
-      }
-    );
-
+    Rotas().then(res => {
+      setRotas(res)
+    });  
+    
+    Me().then(res => {
+      setMe(res)
+    });    
+    
   }, [])
 
   return (  
-    loading
-    ? <Loading/>
-    : !token      
-      ? <LoginView/>
-      : <Router>
-        <title>{process.env.REACT_APP_APP_TITLE}</title>
-        <ToastContainer hideProgressBar/>     
-        
-        {/* MENU LATERAL */}
-        {
-          token && <div>
-            <div>
-              <div className="sideBarMenu">       
-                <ul className="nav nav-pills flex-column">   
-                  <li>
-                    <section className="nav-logo-link align-middle">                    
-                      <img className="icon_small" src={Icons.Logo}/>
-                      <spam>Cibus</spam>
-                    </section>
-                  </li>
+    !token    
+    ? <LoginView/>
+    : !(rotas && me)
+      ? <Loading/>
+      : <RouterContext.Provider value={rotas}>
+          <UserContext.Provider value={me}>
+            <Router>
+              <title>{process.env.REACT_APP_APP_TITLE}</title>
+              <ToastContainer hideProgressBar/>     
+              
+              {/* MENU LATERAL */}
+              {
+                <div className="sideBarMenu">       
+                  <ul className="nav nav-pills flex-column">  
+
+                    {/* LOGO */}
+                    <li>
+                      <section className="nav-logo-link align-middle">                    
+                        <img className="icon_small" src={Icons.Logo}/>
+                        <spam>Cibus</spam>
+                      </section>
+                    </li>     
+
+                    {/* HOME */}
+                    <li className="nav-item" >
+                      <NavLink
+                        exact = {true} 
+                        activeClassName='active' 
+                        className="nav-link align-middle"
+                        to={"/"}>
+                          <img className="icon_small" src={Icons.HomeWhite}/>
+                          <spam>Home</spam>
+                        </NavLink>
+                    </li>
+
+                    {/* ANOTHER LINKS */}
+                    {
+                      rotas && rotas.filter(f => f.context === "General").map(
+                        (rota, key) => <li className="nav-item" key = {key} >
+                          <NavLink
+                            exact = {true} 
+                            activeClassName='active' 
+                            className="nav-link align-middle"
+                            to={rota && rota.path}>
+                              <img className="icon_small" src={rota.icon}/>
+                              <spam>{rota.name}</spam>
+                            </NavLink>
+                        </li>   
+                      )
+                    }
+                    
+                    {
+                      rotas && rotas.filter(f => f.context === "Administrative").map(
+                        (rota, key) => <li className="nav-item" key = {key} >
+                          <NavLink
+                            exact = {true} 
+                            activeClassName='active' 
+                            className="nav-link align-middle"
+                            to={rota && rota.path}>
+                              <img className="icon_small" src={rota.icon}/>
+                              <spam>{rota.name}</spam>
+                            </NavLink>
+                        </li>   
+                      )
+                    }
+                    
+                    {
+                      rotas && rotas.filter(f => f.context === "Personal").map(
+                        (rota, key) => <li className="nav-item" key = {key} >
+                          <NavLink
+                            exact = {true} 
+                            activeClassName='active' 
+                            className="nav-link align-middle"
+                            to={rota && rota.path}>
+                              <img className="icon_small" src={rota.icon}/>
+                              <spam>{rota.name}</spam>
+                            </NavLink>
+                        </li>   
+                      )
+                    }
+
+                    {/* LOGOUT */}
+                    <li className="nav-item" >
+                      <section className="nav-link align-middle" onClick={() => logout()}>                    
+                        <img className="icon_small" src={Icons.LogoutWhite}/>
+                        <spam>Logout</spam>
+                      </section>
+                    </li>
+                    
+                  </ul>
+                </div> 
+              }
+
+              {/* SWITCH DE ROTA */}
+              <div className={`${token ? "ml-5" : ""}`}>
+                <Switch>
+                  <Route exact path={"/"}>
+                    <HomeView/>
+                  </Route>
                   {
                     rotas && rotas.map(
-                      (rota, key) => <li className="nav-item" key = {key} >
-                        <NavLink
-                          exact = {true} 
-                          activeClassName='active' 
-                          className="nav-link align-middle"
-                          to={rota && rota.path}>
-                            <img className="icon_small" src={rota.icon}/>
-                            <spam>{rota.name}</spam>
-                          </NavLink>
-                      </li>   
-                    )
-                  }
-                  <li className="nav-item" >
-                    <section className="nav-link align-middle" onClick={logout}>                    
-                      <img className="icon_small" src={Icons.LogoutWhite}/>
-                      <spam>Logout</spam>
-                    </section>
-                  </li>
-                </ul>
-              </div> 
-            </div>
-          </div>
-        }
-
-        {/* SWITCH DE ROTA */}
-        <div className={`${token ? "ml-5" : ""}`}>
-          <Switch>
-            {
-              rotas && rotas.map(
-                (rota, key) => <PrivateRoute exact path={rota.path} key={key}>
-                  { 
-                    rota.view
-                  }
-                </PrivateRoute>
-              )              
-            }  
-             <Route>
-               <NotFoundView/>
-             </Route>
-          </Switch>           
-        </div>
-      </Router>    
+                      (rota, key) => <PrivateRoute exact path={rota.path} key={key}>
+                        { 
+                          rota.view
+                        }
+                      </PrivateRoute>
+                    )              
+                  }  
+                  <Route>
+                    <NotFoundView/>
+                  </Route>
+                </Switch>           
+              </div>
+            </Router>    
+          </UserContext.Provider>
+        </RouterContext.Provider>
   );
 }
 

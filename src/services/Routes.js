@@ -1,15 +1,15 @@
-import api from '../services/api'
+import api from './Api'
 import Icons from '../utils/IconsUtils'
 
 import NotFoundView from '../views/notFoundView/NotFound'
-import HomeView from '../views/homeView/Home'
 import UserView from '../views/userView/User'
 import ProductView from '../views/productView/Product'
 import CategoryView from '../views/categoryView/Category'
 
-export default async function Routes() {        
-    const { data } = await api.get(`view`)
-
+export default async function Routes() {       
+    const userId = await localStorage.getItem("AuthorizationId"); 
+    const { data } = await api.get(`view/user/${userId}`)
+    
     let rotas = []
 
     data.map(tela => {
@@ -18,9 +18,9 @@ export default async function Routes() {
 
     rotas.map(tela => {
         switch (tela.path) {
-            case "/":
-                tela.view = HomeView;
-                tela.icon = Icons.HomeWhite;
+            case "/me":
+                tela.view = UserView;
+                tela.icon = Icons.MeWhite;
                 break;
             case "/user":
                 tela.view = UserView;

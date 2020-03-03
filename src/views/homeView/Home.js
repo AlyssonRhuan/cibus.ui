@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import GlobablConfig from '../../configs/Global'
-import Rotas from '../../configs/Routes';
+import Rotas from '../../services/Routes';
 
 function Home() {
   const [rotas, setRotas] = useState();
@@ -14,11 +13,11 @@ function Home() {
   return (
     <main className="App col-12 pt-5">
       <section>
-        <h1 className="display-4">Welcome to {GlobablConfig.AppName}</h1>
+        <h1 className="display-4">{process.env.REACT_APP_APP_NAME}</h1>
         <div className="col-12 row justify-content-center">
           {
             rotas && rotas.filter(
-              rota => rota.path !== '/'
+              rota => rota.path !== '/' && rota.path !== '/me'
             ).map(
               (rota, key) => <a class="card_home col-2 mt-3 mx-1 pt-4" href={rota.path}>                
                 <img className="icon_card" src={rota.iconHome}/>

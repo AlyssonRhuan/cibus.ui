@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
+import Loading from '../../components/Loading';
 import Icons from '../../utils/IconsUtils';
 import Toast from '../../components/Toast';
-import api from '../../services/api';
-import Loading from '../../components/Loading'
+import api from '../../services/Api';
 import './Login.css';
 
 const END_POINT = 'login'
 
-function Home(props) {
+function Home() {
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(false);
     
@@ -19,7 +19,9 @@ function Home(props) {
       api.post(END_POINT, user).then(response => {
         Toast.success(`Welcome ${user.login}`)            
         const authorization = response.headers.authorization;
+        const userId = response.headers.authorizationid;
         localStorage.setItem("Authorization", authorization);
+        localStorage.setItem("AuthorizationId", userId);
         window.location.href = '/';
       })
     }
