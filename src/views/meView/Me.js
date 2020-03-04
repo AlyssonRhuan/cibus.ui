@@ -3,7 +3,7 @@ import Breadcrumb from '../../components/Breadcrumb';
 import React, { useState, useEffect } from 'react';
 import Table from '../../components/Table';
 import Toast from '../../components/Toast';
-import api from '../../services/Api';
+import api from '../../services/api';
 import ModalMe from './ModalMe';
 
 import Tabs from 'react-bootstrap/Tabs'

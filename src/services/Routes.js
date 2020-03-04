@@ -1,4 +1,4 @@
-import api from './Api'
+import api from './api'
 import Icons from '../utils/IconsUtils'
 
 import NotFoundView from '../views/notFoundView/NotFound'
