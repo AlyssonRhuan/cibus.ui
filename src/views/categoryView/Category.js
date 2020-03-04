@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import ModalCategory from './ModalCategory';
 import Table from '../../components/Table';
 import Toast from '../../components/Toast';
-import api from '../../services/Api';
+import api from '../../services/api';
 
 const rotasBreadcrumb =[
   { name: "Home",     path: "/"},

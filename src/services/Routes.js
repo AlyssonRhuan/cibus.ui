@@ -1,10 +1,11 @@
-import api from './Api'
+import api from './api'
 import Icons from '../utils/IconsUtils'
 
 import NotFoundView from '../views/notFoundView/NotFound'
 import UserView from '../views/userView/User'
 import ProductView from '../views/productView/Product'
 import CategoryView from '../views/categoryView/Category'
+import MeView from '../views/meView/Me'
 
 export default async function Routes() {       
     const userId = await localStorage.getItem("AuthorizationId"); 
@@ -19,7 +20,7 @@ export default async function Routes() {
     rotas.map(tela => {
         switch (tela.path) {
             case "/me":
-                tela.view = UserView;
+                tela.view = MeView;
                 tela.icon = Icons.MeWhite;
                 break;
             case "/user":

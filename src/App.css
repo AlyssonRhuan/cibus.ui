@@ -15,7 +15,7 @@
   color: #E8E9EA !important;
   border-radius: 0px !important;
   display: flex;
-  padding-left: 10px;
+  padding-left: 17px;
   align-items: center;
   cursor: pointer;
   transition: .3s;
@@ -34,13 +34,13 @@
   color: #E8E9EA !important;
   border-radius: 0px !important;
   display: flex;
-  padding-left: 10px;
+  padding-left: 17px;
   align-items: center;
 }
 
 .sideBarMenu {
   position: absolute;
-  width: 40px;
+  width: 55px;
   height: 100vh;
   background-color: #19222A;
   z-index: 1;

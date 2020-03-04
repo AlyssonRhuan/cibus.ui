@@ -1,19 +1,18 @@
 import ModalConfirmation from '../../utils/ModalConfirmationUtils';
-import UserDataTableConfig from './UserDataTableConfig';
 import Breadcrumb from '../../components/Breadcrumb';
 import React, { useState, useEffect } from 'react';
 import Table from '../../components/Table';
 import Toast from '../../components/Toast';
 import api from '../../services/api';
-import ModalUser from './ModalUser';
+import ModalMe from './ModalMe';
 
 const rotasBreadcrumb =[
   { name: "Home",     path: "/"},
-  { name: "User"}
+  { name: "Me"}
 ]
 
-const END_POINT = 'user'
-const PAGE_TITLE = 'User'
+const END_POINT = 'Me'
+const PAGE_TITLE = 'Me'
 
 function User() {
     const [users, setUsers] = useState();
@@ -110,18 +109,12 @@ function User() {
                     </span>
                 </div>
 
-                <Table
-                    data={users}
-                    columns={UserDataTableConfig}
-                    onAction={openModal}
-                    />
-
             </section>
             <section>
 
                 {/* MODAIS */}
                 {
-                    modal && modal === 'ADD' && <ModalUser
+                    modal && modal === 'ADD' && <ModalMe
                         title="Add user"
                         data={undefined}
                         onClose={closeModal}
@@ -130,7 +123,7 @@ function User() {
                 }
 
                 {
-                    modal && modal === 'EDI' && <ModalUser
+                    modal && modal === 'EDI' && <ModalMe
                         title="Edit user"
                         data={userToAction}
                         onClose={closeModal}
