@@ -8,7 +8,6 @@ import HomeView from './views/homeView/Home';
 import Loading from './components/Loading';
 import Icons from './utils/IconsUtils';
 import Rotas from './services/Routes';
-import Me from './services/Me';
 
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -30,13 +29,11 @@ async function getToken(){
 function App() {
   const [token, setToken] = useState();
   const [rotas, setRotas] = useState();
-  const [me, setMe] = useState();
   
   function logout(){
     localStorage.removeItem("Authorization");  
     localStorage.removeItem("AuthorizationId");      
     setRotas(false);
-    setMe(false);
     setToken(null);
   }
 
@@ -49,16 +46,12 @@ function App() {
       setRotas(res)
     });  
     
-    Me().then(res => {
-      setMe(res)
-    });    
-    
   }, [])
 
   return (  
     !token    
     ? <LoginView/>
-    : !(rotas && me)
+    : !rotas
       ? <Loading/>
       : <Router>
           <title>{process.env.REACT_APP_APP_TITLE}</title>
