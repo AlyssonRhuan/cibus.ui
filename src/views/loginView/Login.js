@@ -3,7 +3,7 @@ import { ToastContainer } from 'react-toastify';
 import Loading from '../../components/Loading';
 import Icons from '../../utils/IconsUtils';
 import Toast from '../../components/Toast';
-import api from '../../services/api';
+import api from '../../services/Api';
 import './Login.css';
 
 const END_POINT = 'login'

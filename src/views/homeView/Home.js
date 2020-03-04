@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Rotas from '../../services/Routes';
+import bg from '../../assets/background/bg.jpg'
 
 function Home() {
   const [rotas, setRotas] = useState();
@@ -11,21 +12,22 @@ function Home() {
   }, [])
 
   return (
-    <main className="App col-12 pt-5">
-      <section>
-        <h1 className="display-4">{process.env.REACT_APP_APP_NAME}</h1>
-        <div className="col-12 row justify-content-center">
+    <main className="App col-12">
+      <section style={{display: "flex", flexFlow: "column", justifyContent: "space-between", height:"100vh"}}>
+
+        <div className="col-12 row justify-content-center align-items-center">
           {
             rotas && rotas.filter(
-              rota => rota.path !== '/' && rota.path !== '/me'
+              rota => rota.path !== '/'
             ).map(
-              (rota, key) => <a class="card_home col-2 mt-3 mx-1 pt-4" href={rota.path}>                
+              (rota, key) => <a class="card_home col-2 mt-3 mx-1 pt-4" href={rota.path} key={key}>                
                 <img className="icon_card" src={rota.iconHome}/>
                 <h5 class="card-title">{rota.name}</h5>
               </a>
             )
           }
-        </div>
+        </div>   
+
       </section>
     </main>
   );

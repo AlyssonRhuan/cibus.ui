@@ -1,4 +1,4 @@
-import api from './api'
+import api from './Api'
 import Icons from '../utils/IconsUtils'
 
 import NotFoundView from '../views/notFoundView/NotFound'
@@ -22,6 +22,7 @@ export default async function Routes() {
             case "/me":
                 tela.view = MeView;
                 tela.icon = Icons.MeWhite;
+                tela.iconHome = Icons.MeWColorful;   
                 break;
             case "/user":
                 tela.view = UserView;

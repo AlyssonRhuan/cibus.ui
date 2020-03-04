@@ -4,7 +4,7 @@ import Breadcrumb from '../../components/Breadcrumb';
 import React, { useState, useEffect } from 'react';
 import Table from '../../components/Table';
 import Toast from '../../components/Toast';
-import api from '../../services/api';
+import api from '../../services/Api';
 import ModalUser from './ModalUser';
 
 const rotasBreadcrumb =[
@@ -94,7 +94,7 @@ function User() {
     // RENDER
 
     return (
-        <main className="App col-12 pr-4">
+        <main className="App col-12 pr-4 ml-1 pl-4">
             <section>
                 <Breadcrumb routes={rotasBreadcrumb}/>
 

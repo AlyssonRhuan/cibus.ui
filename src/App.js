@@ -1,6 +1,6 @@
 import {BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom";
 import NotFoundView from './views/notFoundView/NotFound';
-import SidebarMenu from './components/SidebarMenu'
+import SidebarMenu from './components/SidebarMenu';
 import React, { useState, useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import LoginView from './views/loginView/Login';
@@ -63,25 +63,26 @@ function App() {
       : <Router>
           <title>{process.env.REACT_APP_APP_TITLE}</title>
           <ToastContainer hideProgressBar/>     
-          
-          {/* MENU LATERAL */}
-          <SidebarMenu
+          {/* <SidebarMenu
             rotas={rotas}
-            onLogout={logout}/>
+            onLogout={logout}/> */}
             
           {
-            <div className="sideBarMenu">       
+            <div className="sideBarMenu">    
+                
+              {/* LOGO */}
               <ul className="nav nav-pills flex-column">  
-
-                {/* LOGO */}
                 <li>
                   <section className="nav-logo-link align-middle">                    
-                    <img className="icon_small" src={Icons.Logo}/>
-                    <spam>Cibus</spam>
+                    <img className="icon_small" src={Icons.LogoWhite}/>
+                    <span>Cibus</span>
                   </section>
                 </li>     
+              </ul>
 
-                {/* HOME */}
+
+              {/* ANOTHER LINKS */}
+              <ul className="nav nav-pills flex-column">     
                 <li className="nav-item" >
                   <NavLink
                     exact = {true} 
@@ -89,11 +90,9 @@ function App() {
                     className="nav-link align-middle"
                     to={"/"}>
                       <img className="icon_small" src={Icons.HomeWhite}/>
-                      <spam>Home</spam>
+                      <span>Home</span>
                     </NavLink>
                 </li>
-
-                {/* ANOTHER LINKS */}
                 {
                   rotas && rotas.map(
                     (rota, key) => <li className="nav-item" key = {key} >
@@ -103,21 +102,23 @@ function App() {
                         className="nav-link align-middle"
                         to={rota && rota.path}>
                           <img className="icon_small" src={rota.icon}/>
-                          <spam>{rota.name}</spam>
+                          <span>{rota.name}</span>
                         </NavLink>
                     </li>   
                   )
                 }
+                </ul>
 
                 {/* LOGOUT */}
-                <li className="nav-item" >
-                  <section className="nav-link align-middle" onClick={() => logout()}>                    
-                    <img className="icon_small" src={Icons.LogoutWhite}/>
-                    <spam>Logout</spam>
-                  </section>
-                </li>
-                
+                <ul className="nav nav-pills flex-column">  
+                  <li className="nav-item" >
+                    <section className="nav-link align-middle" onClick={() => logout()}>                    
+                      <img className="icon_small" src={Icons.LogoutWhite}/>
+                      <span>Logout</span>
+                    </section>
+                  </li>                
               </ul>
+
             </div> 
           }
 

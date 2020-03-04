@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import ModalCategory from './ModalCategory';
 import Table from '../../components/Table';
 import Toast from '../../components/Toast';
-import api from '../../services/api';
+import api from '../../services/Api';
 
 const rotasBreadcrumb =[
   { name: "Home",     path: "/"},
@@ -94,7 +94,7 @@ function Category() {
     // RENDER
 
     return (
-        <main className="App col-12 pr-4">
+        <main className="App col-12 pr-4 ml-1 pl-4">
             <section>
                 <Breadcrumb routes={rotasBreadcrumb}/>
 

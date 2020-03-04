@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import Toast from '../../components/Toast';
 import Table from '../../components/Table';
 import ModalProduct from './ModalProduct';
-import api from '../../services/api';
+import api from '../../services/Api';
 
 const rotasBreadcrumb =[
   { name: "Home",     path: "/"},
@@ -94,7 +94,7 @@ function Product() {
   // RENDER
 
   return (
-    <main className="App col-12 pr-4">
+    <main className="App col-12 pr-4 ml-1 pl-4">
       <section>        
         <Breadcrumb routes={rotasBreadcrumb}/>
 

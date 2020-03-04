@@ -1,6 +1,3 @@
-import EditWhiteIcon from '../assets/icons/edit_white.svg'
-import AddWhiteIcon from '../assets/icons/add_white.svg'
-import DeleteWhiteIcon from '../assets/icons/delete_white.svg'
 import HomeWhiteIcon from '../assets/icons/home_white.svg'
 import UserWhiteIcon from '../assets/icons/user_white.svg'
 import CategoryWhiteIcon from '../assets/icons/category_white.svg'
@@ -15,13 +12,16 @@ import ProfileColorfulIcon from '../assets/icons/profile_colorful.svg'
 import UserColorfulIcon from '../assets/icons/user_colorful.svg'
 import CategoryColorfulIcon from '../assets/icons/category_colorful.svg'
 import ProductColorfulIcon from '../assets/icons/product_colorful.svg'
+import MeWColorfulIcon from '../assets/icons/me_colorful.svg'
 
 import LogoIcon from '../assets/icons/logo.svg'
+import LogoWhiteIcon from '../assets/icons/logo_white.svg'
 
-export default {            
-    EditWhite: EditWhiteIcon,
-    AddWhite: AddWhiteIcon,
-    DeleteWhite: DeleteWhiteIcon,
+import DeleteIcon from '../assets/icons/delete.svg'
+import EditIcon from '../assets/icons/edit.svg'
+
+export default {       
+
     HomeWhite: HomeWhiteIcon,
     UserWhite: UserWhiteIcon,
     CategoryWhite: CategoryWhiteIcon,
@@ -36,6 +36,11 @@ export default {
     CategoryColorful: CategoryColorfulIcon,
     ProductColorful: ProductColorfulIcon,
     ProfileColorful: ProfileColorfulIcon,
+    MeWColorful: MeWColorfulIcon,
 
     Logo: LogoIcon,
+    LogoWhite: LogoWhiteIcon,
+
+    Delete: DeleteIcon,
+    Edit: EditIcon,
 }

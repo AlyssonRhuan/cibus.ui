@@ -78,18 +78,16 @@ function ModalComponent(props) {
                   <div className="form-group col-6" title="Profile Admin has full access">
                     <div class={`card text-center card_profile ${cardProfileAdmin && "border-primary"}`}
                       onClick={() => setCardProfileAdmin(!cardProfileAdmin)}>
-                      <img class="card-img-top icon_large pt-3" src={Icons.Profile} alt="Card image cap" style={{width: "100%", height:"60px"}}/>
                       <div class="card-body">
-                        <h5 class="card-title">Admin</h5>
+                        <h5 class="card-title pt-2">Admin</h5>
                       </div>
                     </div>
                   </div>  
                   <div className="form-group col-6" title="Profile Salesman has no access to Admin pages">
                     <div class={`card text-center card_profile ${cardProfileSalesman && "border-primary"}`}
                       onClick={() => setCardProfileSalesman(!cardProfileSalesman)}>
-                      <img class="card-img-top icon_large pt-3" src={Icons.User} alt="Card image cap" style={{width: "100%", height:"60px"}}/>
                       <div class="card-body">
-                        <h5 class="card-title">Salesman</h5>
+                        <h5 class="card-title pt-2">Salesman</h5>
                       </div>
                     </div>
                   </div>   

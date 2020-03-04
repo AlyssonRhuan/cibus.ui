@@ -1,4 +1,4 @@
-import api from './api'
+import api from './Api'
 
 export default async function Me() {       
     const userId = await localStorage.getItem("AuthorizationId"); 
