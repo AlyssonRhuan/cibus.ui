@@ -10,7 +10,7 @@ function Breadcrumb(props) {
           <ol className="breadcrumb">
             {
               props.routes && props.routes.map(
-                route => <li className="breadcrumb-item"><a href={route.path}>{route.name}</a></li>
+                (route, key) => <li className="breadcrumb-item" key={key}><a href={route.path}>{route.name}</a></li>
               )
             }
           </ol>

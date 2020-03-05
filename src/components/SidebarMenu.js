@@ -29,7 +29,7 @@ function SidebarMenu(props) {
               {/* ANOTHER LINKS */}
               {
                 props.rotas && props.rotas.map(
-                  (rota, key) => <li className="nav-item" key = {key} >
+                  (rota, key) => <li className="nav-item" key={key} >
                     <NavLink
                       exact = {true} 
                       activeClassName='active' 

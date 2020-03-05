@@ -20,9 +20,9 @@ function Home() {
             rotas && rotas.filter(
               rota => rota.path !== '/'
             ).map(
-              (rota, key) => <a class="card_home col-2 mt-3 mx-1 pt-4" href={rota.path} key={key}>                
+              (rota, key) => <a className="card_home col-2 mt-3 mx-1 pt-4" href={rota.path} key={key}>                
                 <img className="icon_card" src={rota.iconHome}/>
-                <h5 class="card-title">{rota.name}</h5>
+                <h5 className="card-title">{rota.name}</h5>
               </a>
             )
           }

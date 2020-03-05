@@ -18,7 +18,8 @@ function ModalComponent(props) {
     if(props.data !== undefined){
       setUser(props.data);
 
-      props.data.profiles.map(profile => {
+      props.data.profiles.map(
+        (profile, key) => {
         profile === "ADMIN" && setCardProfileAdmin(true);
         profile === "SALESMAN" && setCardProfileSalesman(true);
       })
@@ -76,18 +77,18 @@ function ModalComponent(props) {
                     </div>
                   </div>     
                   <div className="form-group col-6" title="Profile Admin has full access">
-                    <div class={`card text-center card_profile ${cardProfileAdmin && "border-primary"}`}
+                    <div className={`card text-center card_profile ${cardProfileAdmin && "border-primary"}`}
                       onClick={() => setCardProfileAdmin(!cardProfileAdmin)}>
-                      <div class="card-body">
-                        <h5 class="card-title pt-2">Admin</h5>
+                      <div className="card-body">
+                        <h5 className="card-title pt-2">Admin</h5>
                       </div>
                     </div>
                   </div>  
                   <div className="form-group col-6" title="Profile Salesman has no access to Admin pages">
-                    <div class={`card text-center card_profile ${cardProfileSalesman && "border-primary"}`}
+                    <div className={`card text-center card_profile ${cardProfileSalesman && "border-primary"}`}
                       onClick={() => setCardProfileSalesman(!cardProfileSalesman)}>
-                      <div class="card-body">
-                        <h5 class="card-title pt-2">Salesman</h5>
+                      <div className="card-body">
+                        <h5 className="card-title pt-2">Salesman</h5>
                       </div>
                     </div>
                   </div>   

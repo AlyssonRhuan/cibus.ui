@@ -1,12 +1,11 @@
 import ModalConfirmation from '../../utils/ModalConfirmationUtils';
 import Breadcrumb from '../../components/Breadcrumb';
 import React, { useState, useEffect } from 'react';
-import Loadgin from '../../components/Loading';
+import Loading from '../../components/Loading';
 import Table from '../../components/Table';
 import Toast from '../../components/Toast';
 import api from '../../services/api';
-import ModalMe from './ModalMe';
-import ModalUploadImage from '../../components/ModalUploadImage'
+import UploadImage from '../../components/UploadImage'
 
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
@@ -23,8 +22,9 @@ function User() {
     const [key, setKey] = useState('aboutYou');
     const [me, setMe] = useState();
     const [user, setUser] = useState({})
+    const [loading, setLoading] = useState(true)
 
-    const [isUploadImage, setIsUploadImage] = useState(true);
+    const [isUploadImage, setIsUploadImage] = useState(false);
 
     const [cardProfileAdmin, setCardProfileAdmin] = useState(false)
     const [cardProfileSalesman, setCardProfileSalesman] = useState(false)
@@ -41,10 +41,13 @@ function User() {
             const response = await api.get(`${END_POINT}/${userId}`);
             setMe(response.data)            
 
-            response.data.profiles.map(profile => {
+            response.data.profiles.map(
+                (profile, key) => {
                 profile === "ADMIN" && setCardProfileAdmin(true);
                 profile === "SALESMAN" && setCardProfileSalesman(true);
             })
+
+            setLoading(false)
         }
         catch(e){
             error(e);
@@ -54,6 +57,13 @@ function User() {
     function error(e) {
         Toast.error(e.response ? e.response.data.message : e.message);
         console.error(e.response ? e.response.data.message : e.message);
+    }
+
+    function saveImage(newImage){
+        setLoading(true)
+        console.log({...me, iamge:newImage})
+        setMe({...me, image:newImage});
+        setLoading(false)
     }
 
     // RENDER
@@ -71,18 +81,17 @@ function User() {
                 </div>
 
                 {
-                    me 
-                    ? <section className="pt-4">
+                    loading && !me
+                    ? <Loading/>
+                    : <section className="pt-4">
                         
                         <Tabs defaultActiveKey="home" transition={false} id="noanim-tab-example" activeKey={key} onSelect={k => setKey(k)}>
 
                             <Tab eventKey="aboutYou" title="About you">
                                 <section className="col-12 mt-5 row">
                                     <div className="col-4">
-                                        <img  className='figure-img img-fluid img-thumbnail' style={{width:"90%"}} src={me.image}/>
-                                        <button type="button" className="btn btn btn-light mt-2">
-                                            Upload image
-                                        </button>
+                                        <img  className='figure-img img-fluid img-thumbnail' style={{width:"70%"}} src={me.image}/>
+                                        <UploadImage onSave={saveImage}/>
                                     </div>
                                     <div className="col-8 row">                                        
                                         <div className="form-group col-6">
@@ -101,18 +110,18 @@ function User() {
                                             onChange={event => setMe({...me, email:event.target.value})} value={me.email}/>
                                         </div>      
                                         <div className="form-group col-6" title="Profile Admin has full access">
-                                            <div class={`card text-center card_profile ${cardProfileAdmin && "border-primary"}`}
+                                            <div className={`card text-center card_profile ${cardProfileAdmin && "border-primary"}`}
                                             onClick={() => setCardProfileAdmin(!cardProfileAdmin)}>
-                                            <div class="card-body">
-                                                <h5 class="card-title pt-2">Admin</h5>
+                                            <div className="card-body">
+                                                <h5 className="card-title pt-2">Admin</h5>
                                             </div>
                                             </div>
                                         </div>  
                                         <div className="form-group col-6" title="Profile Salesman has no access to Admin pages">
-                                            <div class={`card text-center card_profile ${cardProfileSalesman && "border-primary"}`}
+                                            <div className={`card text-center card_profile ${cardProfileSalesman && "border-primary"}`}
                                             onClick={() => setCardProfileSalesman(!cardProfileSalesman)}>
-                                            <div class="card-body">
-                                                <h5 class="card-title pt-2">Salesman</h5>
+                                            <div className="card-body">
+                                                <h5 className="card-title pt-2">Salesman</h5>
                                             </div>
                                             </div>
                                         </div>   
@@ -131,19 +140,8 @@ function User() {
                         </Tabs>
 
                     </section>
-                    : <Loadgin/>
                 }
-            </section>            
-            <section>
-
-                {/* MODAIS */}
-                {
-                    isUploadImage && <ModalUploadImage 
-                        // onSave={}
-                        isOpen={isUploadImage}/>
-                }
-
-            </section>
+            </section>    
         </main>
     );
 }

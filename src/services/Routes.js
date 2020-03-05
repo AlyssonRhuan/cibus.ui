@@ -13,11 +13,12 @@ export default async function Routes() {
     
     let rotas = []
 
-    data.map(tela => {
-        rotas.push({ ...tela, view: NotFoundView });
+    data.map( 
+        (tela, key) => {rotas.push({ ...tela, view: NotFoundView });
     })
 
-    rotas.map(tela => {
+    rotas.map(
+        (tela, key) => {
         switch (tela.path) {
             case "/me":
                 tela.view = MeView;
