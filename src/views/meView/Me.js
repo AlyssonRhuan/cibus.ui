@@ -1,11 +1,12 @@
 import ModalConfirmation from '../../utils/ModalConfirmationUtils';
 import Breadcrumb from '../../components/Breadcrumb';
 import React, { useState, useEffect } from 'react';
+import Loadgin from '../../components/Loading';
 import Table from '../../components/Table';
 import Toast from '../../components/Toast';
 import api from '../../services/api';
 import ModalMe from './ModalMe';
-import Loadgin from '../../components/Loading'
+import ModalUploadImage from '../../components/ModalUploadImage'
 
 import Tabs from 'react-bootstrap/Tabs'
 import Tab from 'react-bootstrap/Tab'
@@ -22,6 +23,8 @@ function User() {
     const [key, setKey] = useState('aboutYou');
     const [me, setMe] = useState();
     const [user, setUser] = useState({})
+
+    const [isUploadImage, setIsUploadImage] = useState(true);
 
     const [cardProfileAdmin, setCardProfileAdmin] = useState(false)
     const [cardProfileSalesman, setCardProfileSalesman] = useState(false)
@@ -70,7 +73,7 @@ function User() {
                 {
                     me 
                     ? <section className="pt-4">
-
+                        
                         <Tabs defaultActiveKey="home" transition={false} id="noanim-tab-example" activeKey={key} onSelect={k => setKey(k)}>
 
                             <Tab eventKey="aboutYou" title="About you">
@@ -130,6 +133,16 @@ function User() {
                     </section>
                     : <Loadgin/>
                 }
+            </section>            
+            <section>
+
+                {/* MODAIS */}
+                {
+                    isUploadImage && <ModalUploadImage 
+                        // onSave={}
+                        isOpen={isUploadImage}/>
+                }
+
             </section>
         </main>
     );
