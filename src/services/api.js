@@ -10,12 +10,10 @@ let api = axios.create({
 api.interceptors.response.use(function (response) {
     return response;
   }, function (error) {
-    if(localStorage.getItem("Authorization") !== null){
-        if(error.response !== null || error.response.status !== null || error.response.status === 403) {
+        if(error.config.url === 'login' && error.response.status === 403) {
             localStorage.removeItem("Authorization"); 
             window.location.href = '/';
         }
-    }
     return Promise.reject(error);
 });
 

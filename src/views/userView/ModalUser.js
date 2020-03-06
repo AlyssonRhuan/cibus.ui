@@ -63,18 +63,10 @@ function ModalComponent(props) {
                     <input type='text' className="form-control" id='userEmail' placeholder='User email'
                       onChange={event => setUser({...user, email:event.target.value})} value={user.email}/>
                   </div>        
-                  <div className="form-group col-6">
+                  <div className="form-group col-12">
                     <label htmlFor='userLogin'>Login</label>
                     <input type='text' className="form-control" id='userLogin' placeholder='User login'
                       onChange={event => setUser({...user, login:event.target.value})} value={user.login}/>
-                  </div>      
-                  <div className="form-group col-6">
-                    <label htmlFor='imagemProduto'>Image</label> 
-                    <div className="custom-file">
-                      <input type="file" className="custom-file-input" id="validatedCustomFile" required/>
-                      <label className="custom-file-label" htmlFor="validatedCustomFile">Pick a image...</label>
-                      <div className="invalid-feedback">Example invalid custom file feedback</div>
-                    </div>
                   </div>     
                   <div className="form-group col-6" title="Profile Admin has full access">
                     <div className={`card text-center card_profile ${cardProfileAdmin && "border-primary"}`}

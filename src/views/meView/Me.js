@@ -108,22 +108,6 @@ function User() {
                                             <label htmlFor='userEmail'>Email</label>
                                             <input type='text' className="form-control" id='userEmail' placeholder='User email'
                                             onChange={event => setMe({...me, email:event.target.value})} value={me.email}/>
-                                        </div>      
-                                        <div className="form-group col-6" title="Profile Admin has full access">
-                                            <div className={`card text-center card_profile ${cardProfileAdmin && "border-primary"}`}
-                                            onClick={() => setCardProfileAdmin(!cardProfileAdmin)}>
-                                            <div className="card-body">
-                                                <h5 className="card-title pt-2">Admin</h5>
-                                            </div>
-                                            </div>
-                                        </div>  
-                                        <div className="form-group col-6" title="Profile Salesman has no access to Admin pages">
-                                            <div className={`card text-center card_profile ${cardProfileSalesman && "border-primary"}`}
-                                            onClick={() => setCardProfileSalesman(!cardProfileSalesman)}>
-                                            <div className="card-body">
-                                                <h5 className="card-title pt-2">Salesman</h5>
-                                            </div>
-                                            </div>
                                         </div>   
                                     </div>
                                 </section>
