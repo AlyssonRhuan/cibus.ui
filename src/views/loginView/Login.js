@@ -59,11 +59,11 @@ function Home(props) {
             <h1>Login</h1>
             <form>
               {invalidEmail && <small className="form-text text-muted">Invalid e-mail!</small>}
-              <Input 
+              {/* <Input 
                 placeholder="Email"
                 isValid={false}
                 isInvalid={false}
-              />
+              /> */}
               <input
                 type="email"
                 name="u"
