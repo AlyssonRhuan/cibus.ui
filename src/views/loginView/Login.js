@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { ToastContainer } from 'react-toastify';
 import Loading from '../../components/Loading';
 import Icons from '../../utils/IconsUtils';
 import Toast from '../../components/Toast';
 import api from '../../services/api';
 import './Login.css';
+import Input from '../../components/Input'
 
-import validateEmail from '../../utils/ValidateEmail.utils'
+import validateEmail from '../../utils/ValidateEmail.utils';
 
 const END_POINT = 'login'
 
-function Home() {
+function Home(props) {
   const [user, setUser] = useState({email: null, pass: null});
   const [loading, setLoading] = useState(false);
   const [invalidEmail, setInvalidEmail] = useState(false)
@@ -23,13 +23,10 @@ function Home() {
     if (validateEmail(user.email)) {
       try {
         api.post(END_POINT, user).then(response => {
-          Toast.success(`Welcome ${user.login}`)
+          Toast.success("Welcome");
           const authorization = response.headers.authorization;
           const userId = response.headers.authorizationid;
-
-          localStorage.setItem("Authorization", authorization);
-          localStorage.setItem("AuthorizationId", userId);
-          window.location.href = '/';
+          props.onLogin(authorization, userId);
         })
       }
       catch (e) {
@@ -51,7 +48,6 @@ function Home() {
   return (
     <main className="mainLogin">
       <title>{process.env.REACT_APP_APP_TITLE}</title>
-      <ToastContainer hideProgressBar />
       <section className="logoCibus">
         <img src={Icons.Logo} />
         <h1>Cibus</h1>
@@ -63,6 +59,11 @@ function Home() {
             <h1>Login</h1>
             <form>
               {invalidEmail && <small className="form-text text-muted">Invalid e-mail!</small>}
+              <Input 
+                placeholder="Email"
+                isValid={false}
+                isInvalid={false}
+              />
               <input
                 type="email"
                 name="u"
