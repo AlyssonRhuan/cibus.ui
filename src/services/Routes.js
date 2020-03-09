@@ -6,9 +6,10 @@ import UserView from '../views/userView/User'
 import ProductView from '../views/productView/Product'
 import CategoryView from '../views/categoryView/Category'
 import MeView from '../views/meView/Me'
+import Auth from './Auth';
 
 export default async function Routes() {       
-    const userId = await localStorage.getItem("AuthorizationId"); 
+    const userId = await Auth.getUserId(); 
     const { data } = await api.get(`view/user/${userId}`)
     
     let rotas = []
