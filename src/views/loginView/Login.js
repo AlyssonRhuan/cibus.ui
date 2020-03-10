@@ -2,16 +2,16 @@ import React, { useState, useEffect } from 'react';
 import Loading from '../../components/Loading';
 import Icons from '../../utils/IconsUtils';
 import Toast from '../../components/Toast';
+import Auth from '../../services/Auth';
 import api from '../../services/api';
 import './Login.css';
-import Input from '../../components/Input'
 
 import validateEmail from '../../utils/ValidateEmail.utils';
 
 const END_POINT = 'login'
 
 function Home(props) {
-  const [user, setUser] = useState({email: null, pass: null});
+  const [user, setUser] = useState({ email: null, pass: null });
   const [loading, setLoading] = useState(false);
   const [invalidEmail, setInvalidEmail] = useState(false)
 
@@ -26,7 +26,7 @@ function Home(props) {
           Toast.success("Welcome");
           const authorization = response.headers.authorization;
           const userId = response.headers.authorizationid;
-          props.onLogin(authorization, userId);
+          Auth.onLogin(authorization, userId);
         })
       }
       catch (e) {
