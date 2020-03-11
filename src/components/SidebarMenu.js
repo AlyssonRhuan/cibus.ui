@@ -6,6 +6,11 @@ import Auth from '../services/Auth'
 function SidebarMenu(props) {
   const rotas = props.rotas;
 
+  function onLogout(){
+    Auth.onLogout();
+    props.onLogout();
+  }
+
   return <main>
     <div className="sideBarMenu">
 
@@ -51,7 +56,7 @@ function SidebarMenu(props) {
       {/* LOGOUT */}
       <ul className="nav nav-pills flex-column">
         <li className="nav-item" >
-          <section className="nav-link align-middle" onClick={Auth.onLogout}>
+          <section className="nav-link align-middle" onClick={() => onLogout()}>
             <img className="icon_small" src={Icons.LogoutWhite} />
             <span>Logout</span>
           </section>

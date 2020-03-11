@@ -3,7 +3,7 @@ import { Route, Redirect } from "react-router-dom";
 
 export default class Auth{
     static isAuthenticated(){
-        return false;
+        return localStorage.getItem("Authorization") ? true : false;
     }
 
     static async getUserId(){
@@ -17,12 +17,10 @@ export default class Auth{
     static async onLogout(){
         await localStorage.removeItem("Authorization");
         await localStorage.removeItem("AuthorizationId");
-        // <Redirect to="/login" />
     }
 
     static async onLogin(authorization, userId) {
         await localStorage.setItem("Authorization", authorization);
         await localStorage.setItem("AuthorizationId", userId);
-        // <Redirect to="/" />
     }
 }

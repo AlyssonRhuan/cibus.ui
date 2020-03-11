@@ -1,14 +1,16 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import NotFoundView from '../views/notFoundView/NotFound';
 import LoginView from '../views/loginView/Login';
 import HomeView from '../views/homeView/Home';
 import React from 'react';
+import Auth from "../services/Auth";
 
 function SwitchRotas(props) {
   const rotas = props.rotas;
 
   function PrivateRoute({ path, component }) {
-    return <Route exact path={path}  component={component}/>
+    !Auth.isAuthenticated() && props.onLogout()
+    return Auth.isAuthenticated() && <Route exact path={path} component={component}/>
   }
 
   return <main>

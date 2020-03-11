@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Rotas from '../../services/Routes';
-import bg from '../../assets/background/bg.jpg'
 
 function Home() {
   const [rotas, setRotas] = useState();

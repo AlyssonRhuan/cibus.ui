@@ -26,7 +26,8 @@ function Home(props) {
           Toast.success("Welcome");
           const authorization = response.headers.authorization;
           const userId = response.headers.authorizationid;
-          Auth.onLogin(authorization, userId);
+          Auth.onLogin(authorization, userId).then(response =>
+            props.onLogin());
         })
       }
       catch (e) {
@@ -37,7 +38,6 @@ function Home(props) {
       setInvalidEmail(true)
     }
     setLoading(false)
-
   }
 
   function error(e) {
@@ -59,11 +59,6 @@ function Home(props) {
             <h1>Login</h1>
             <form>
               {invalidEmail && <small className="form-text text-muted">Invalid e-mail!</small>}
-              {/* <Input 
-                placeholder="Email"
-                isValid={false}
-                isInvalid={false}
-              /> */}
               <input
                 type="email"
                 name="u"
