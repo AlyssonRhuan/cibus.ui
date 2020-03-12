@@ -19,7 +19,12 @@ function App() {
 
   useEffect(() => {
     setLoading(true);
+    setIsAuth(Auth.isAuthenticated());    
+    setLoading(false);
+  }, [])
 
+  useEffect(() => {
+    setLoading(true);
     setIsAuth(Auth.isAuthenticated());
     Auth.isAuthenticated()
       ? Rotas()
@@ -33,8 +38,7 @@ function App() {
           setLoading(false)
         )
       : setLoading(false);
-
-  }, [])
+  }, [isAuth])
 
   function onLogin() {
     setIsAuth(Auth.isAuthenticated());

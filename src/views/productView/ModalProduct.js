@@ -1,7 +1,8 @@
-import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
+import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import React, { useState, useEffect } from 'react';
-import api from '../../services/api'
-import Select from 'react-select'
+import Auth from '../../services/Auth';
+import api from '../../services/api';
+import Select from 'react-select';
 
 function ModalComponent(props) {
   const [isOpen, setIsOpen] = useState(false)
@@ -17,7 +18,7 @@ function ModalComponent(props) {
   }, [])
 
   async function getListCategorys() {
-      const dados = await api.get(`category/valuelabel`);
+      const dados = await api.get(`category/valuelabel`, await Auth.getAuthHeader());
       setListCategorys(dados.data);
   }
 

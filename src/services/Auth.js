@@ -23,4 +23,12 @@ export default class Auth{
         await localStorage.setItem("Authorization", authorization);
         await localStorage.setItem("AuthorizationId", userId);
     }
+
+    static async getAuthHeader() {
+        return {
+            headers: { 
+                Authorization: localStorage.getItem("Authorization") 
+            }
+        }
+    }
 }

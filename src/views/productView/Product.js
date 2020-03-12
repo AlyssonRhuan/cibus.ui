@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import Toast from '../../components/Toast';
 import Table from '../../components/Table';
 import ModalProduct from './ModalProduct';
+import Auth from '../../services/Auth';
 import api from '../../services/api';
 
 const rotasBreadcrumb =[
@@ -40,7 +41,7 @@ function Product() {
 
   async function getAllProducts(page, quantity) {
     try {
-      const response = await api.get(`${END_POINT}?page=${page || 1}&quantity=${quantity || 10}`)
+      const response = await api.get(`${END_POINT}?page=${page || 1}&quantity=${quantity || 10}`, await Auth.getAuthHeader())
       setProducts(response.data);
     }
     catch (e) {
@@ -50,7 +51,7 @@ function Product() {
 
   async function addProduct(data) {
     try {
-      await api.post(`${END_POINT}`, data);
+      await api.post(`${END_POINT}`, data, await Auth.getAuthHeader());
       Toast.success(`${PAGE_TITLE} added!`)
     }
     catch (e) {
@@ -62,7 +63,7 @@ function Product() {
 
   async function editProduct(data) {
     try {
-      await api.put(`${END_POINT}/${productToAction.id}`, data);
+      await api.put(`${END_POINT}/${productToAction.id}`, data, await Auth.getAuthHeader());
       Toast.success(`${PAGE_TITLE} updated!`);
     }
     catch (e) {
@@ -75,7 +76,7 @@ function Product() {
   async function deleteProduct(validation) {
     try {
       if (validation) {
-        await api.delete(`${END_POINT}/${productToAction.id}`);
+        await api.delete(`${END_POINT}/${productToAction.id}`, await Auth.getAuthHeader(), await Auth.getAuthHeader());
         Toast.success(`${PAGE_TITLE} removed!`);
       }
     }

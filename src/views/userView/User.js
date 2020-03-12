@@ -4,8 +4,10 @@ import Breadcrumb from '../../components/Breadcrumb';
 import React, { useState, useEffect } from 'react';
 import Table from '../../components/Table';
 import Toast from '../../components/Toast';
+import Auth from '../../services/Auth'; 
 import api from '../../services/api';
 import ModalUser from './ModalUser';
+
 
 const rotasBreadcrumb =[
   { name: "Home",     path: "/"},
@@ -40,7 +42,7 @@ function User() {
 
     async function getAllUsers(page, quantity) {
         try{
-            const response = await api.get(`${END_POINT}?page=${page || 1}&quantity=${quantity || 10}`);
+            const response = await api.get(`${END_POINT}?page=${page || 1}&quantity=${quantity || 10}`, await Auth.getAuthHeader());
             setUsers(response.data)
         }
         catch(e){
@@ -50,7 +52,7 @@ function User() {
 
     async function addUser(data) {
         try{
-            await api.post(`${END_POINT}`, data);
+            await api.post(`${END_POINT}`, data, await Auth.getAuthHeader());
             Toast.success(`${PAGE_TITLE} added!`);
         }
         catch(e){
@@ -62,7 +64,7 @@ function User() {
 
     async function editUser(dados) {
         try{
-            await api.put(`${END_POINT}/${userToAction.id}`, dados);
+            await api.put(`${END_POINT}/${userToAction.id}`, dados, await Auth.getAuthHeader());
             Toast.success(`${PAGE_TITLE} updated!`);
         }
         catch(e){
@@ -75,7 +77,7 @@ function User() {
     async function deleteUser(validacao) {
         try{
             if (validacao) {
-                await api.delete(`${END_POINT}/${userToAction.id}`);
+                await api.delete(`${END_POINT}/${userToAction.id}`, await Auth.getAuthHeader());
                 Toast.success(`${PAGE_TITLE} removed!`);
             }            
         }

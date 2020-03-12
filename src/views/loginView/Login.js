@@ -12,7 +12,7 @@ const END_POINT = 'login'
 
 function Home(props) {
   const [user, setUser] = useState({ email: null, pass: null });
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState();
   const [invalidEmail, setInvalidEmail] = useState(false)
 
   async function login(e) {
@@ -22,22 +22,24 @@ function Home(props) {
 
     if (validateEmail(user.email)) {
       try {
-        api.post(END_POINT, user).then(response => {
+        api.post(END_POINT, user, await Auth.getAuthHeader()).then(response => {
           Toast.success("Welcome");
           const authorization = response.headers.authorization;
           const userId = response.headers.authorizationid;
           Auth.onLogin(authorization, userId).then(response =>
             props.onLogin());
+        }).catch(err => {          
+          setLoading(false)
         })
       }
       catch (e) {
         error(e);
+        setLoading(false)
       }
     } else {
       Toast.error('Email nao é valido');
       setInvalidEmail(true)
     }
-    setLoading(false)
   }
 
   function error(e) {

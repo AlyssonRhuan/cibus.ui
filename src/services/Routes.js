@@ -10,7 +10,8 @@ import Auth from './Auth';
 
 export default async function Routes() {       
     const userId = await Auth.getUserId(); 
-    const { data } = await api.get(`view/user/${userId}`)
+
+    const { data } = await (await api.get(`view/user/${userId}`, await Auth.getAuthHeader()))
     
     let rotas = []
 

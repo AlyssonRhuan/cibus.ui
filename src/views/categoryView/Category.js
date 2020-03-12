@@ -6,6 +6,7 @@ import ModalCategory from './ModalCategory';
 import Table from '../../components/Table';
 import Toast from '../../components/Toast';
 import api from '../../services/api';
+import Auth from '../../services/Auth';
 
 const rotasBreadcrumb =[
   { name: "Home",     path: "/"},
@@ -40,7 +41,7 @@ function Category() {
 
     async function getAllCategorys(novaPagina, novaQtdElementos) {
         try{
-            const response = await api.get(`${END_POINT}?page=${novaPagina || 1}&quantity=${novaQtdElementos || 10}`);
+            const response = await api.get(`${END_POINT}?page=${novaPagina || 1}&quantity=${novaQtdElementos || 10}`, await Auth.getAuthHeader());
             setCategorys(response.data)
         }
         catch(e){
@@ -50,7 +51,7 @@ function Category() {
 
     async function addCategory(dados) {
         try{
-            await api.post(`${END_POINT}`, dados);
+            await api.post(`${END_POINT}`, dados, await Auth.getAuthHeader());
             Toast.success(`${PAGE_TITLE} added!`)
         }
         catch(e){
@@ -62,7 +63,7 @@ function Category() {
 
     async function editCategory(dados) {
         try{
-            await api.put(`${END_POINT}/${categoryToAction.id}`, dados);
+            await api.put(`${END_POINT}/${categoryToAction.id}`, dados, await Auth.getAuthHeader());
             Toast.success(`${PAGE_TITLE} updated!`)
         }
         catch(e){
@@ -75,7 +76,7 @@ function Category() {
     async function deleteCategory(validacao) {
         try{
             if (validacao) {
-                await api.delete(`${END_POINT}/${categoryToAction.id}`);
+                await api.delete(`${END_POINT}/${categoryToAction.id}`, await Auth.getAuthHeader());
                 Toast.success(`${PAGE_TITLE} removed!`)
             }            
         }
