@@ -4,31 +4,26 @@ import Icons from '../../utils/IconsUtils';
 import Toast from '../../components/Toast';
 import Auth from '../../services/Auth';
 import api from '../../services/api';
-import './Login.css';
-
-import validateEmail from '../../utils/ValidateEmail.utils';
+import './NewPassword.css';
 
 const END_POINT = 'login';
 
-function Login(props) {
-  const [user, setUser] = useState({ email: null, pass: null });
+function NewPassword() {
+  const [password, setPassword] = useState({ pass: null, confirmPass: null });
+  const [user, setUser] = useState({id: 1, pass: null});
+  const [invalidPassword, setInvalidPassword] = useState(false);
   const [loading, setLoading] = useState();
-  const [invalidEmail, setInvalidEmail] = useState(false)
 
-  async function login(e) {
+  async function sendNewPass(e) {
     setLoading(true)
-    setInvalidEmail(false);
-    e.preventDefault();
 
-    if (validateEmail(user.email)) {
+    if(password.pass == password.confirmPass){
       try {
-        api.post(END_POINT, user, await Auth.getAuthHeader()).then(response => {
-          Toast.success("Welcome");
-          const authorization = response.headers.authorization;
-          const userId = response.headers.authorizationid;
-          Auth.onLogin(authorization, userId).then(response =>
-            props.onLogin());
-        }).catch(err => {          
+        setUser({id: 0, pass: password.pass});
+        api.put(END_POINT, user).then(response => {
+          Toast.success("Password reset!");
+          Auth.onResetPassword();
+        }).catch(err => {
           setLoading(false)
         })
       }
@@ -36,9 +31,11 @@ function Login(props) {
         error(e);
         setLoading(false)
       }
-    } else {
-      Toast.error('This email is not valid!');
-      setInvalidEmail(true)
+    }
+    else {
+      Toast.error('Passowrds doesn\'t match!');
+      setInvalidPassword(true)
+      setLoading(false)
     }
   }
 
@@ -58,29 +55,29 @@ function Login(props) {
         loading
           ? <Loading />
           : <section className="login">
-            <h1>Login</h1>
+            <h1>New password</h1>
             <form>
-              {invalidEmail && <small className="form-text text-muted">This email is not valid!</small>}
+              {invalidPassword && <small className="form-text text-muted">Passowrds doesn't match!</small>}
               <input
-                type="email"
+                type="password"
                 name="u"
-                placeholder="Email"
+                placeholder="Password"
                 required
-                onChange={event => setUser({ ...user, email: event.target.value })}
+                onChange={event => setPassword({ ...password, pass: event.target.value })}
               />
               <input
                 type="password"
                 name="p"
-                placeholder="Password"
+                placeholder="Confirm password"
                 required
-                onChange={event => setUser({ ...user, pass: event.target.value })}
+                onChange={event => setPassword({ ...password, confirmPass: event.target.value })}
               />
               <button
                 className="btn btn-primary btn-block btn-large"
-                onClick={(e) => login(e)}
-                disabled={!user.email || !user.pass}
+                onClick={sendNewPass}
+                disabled={!password.pass || !password.confirmPass}
               >
-                Let me in.
+                Send
                   </button>
             </form>
           </section>
@@ -89,4 +86,4 @@ function Login(props) {
   );
 }
 
-export default Login;
+export default NewPassword;

@@ -3,6 +3,7 @@ import NotFoundView from '../views/notFoundView/NotFound';
 import HomeView from '../views/homeView/Home';
 import React from 'react';
 import Auth from "../services/Auth";
+import NewPassword from '../views/newPasswordView/NewPassword';
 
 function SwitchRotas(props) {
   const rotas = props.rotas;
@@ -16,7 +17,8 @@ function SwitchRotas(props) {
     {/* SWITCH DE ROTA */}
     <div>
       <Switch>
-        <Route exact path={"/"}       component={HomeView}/>
+        <Route exact path={"/"}           component={HomeView}/>
+        <Route exact path={"/newPassword"}    component={NewPassword}/>
         {
           rotas && rotas.map(
             (rota, key) => <PrivateRoute exact path={rota.path} key={key} component={rota.view}/>

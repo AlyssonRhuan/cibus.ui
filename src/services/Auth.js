@@ -24,6 +24,11 @@ export default class Auth{
         await localStorage.setItem("AuthorizationId", userId);
     }
 
+    static async onResetPassword(){
+        await localStorage.removeItem("Authorization");
+        await localStorage.removeItem("AuthorizationId");
+    }
+
     static async getAuthHeader() {
         return {
             headers: { 
