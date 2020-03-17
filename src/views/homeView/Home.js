@@ -5,9 +5,9 @@ function Home() {
   const [rotas, setRotas] = useState();
 
   useEffect(() => {        
-    Rotas().then(res => {
-      setRotas(res)
-    });
+    // Rotas().then(res => {
+    //   setRotas(res)
+    // });
   }, [])
 
   return (
@@ -15,7 +15,8 @@ function Home() {
       <section style={{display: "flex", flexFlow: "column", justifyContent: "space-between", height:"100vh"}}>
 
         <div className="col-12 row justify-content-center align-items-center">
-          {
+          TESTE
+          {/* {
             rotas && rotas.filter(
               rota => rota.path !== '/'
             ).map(
@@ -24,7 +25,7 @@ function Home() {
                 <h5 className="card-title">{rota.name}</h5>
               </a>
             )
-          }
+          } */}
         </div>   
 
       </section>

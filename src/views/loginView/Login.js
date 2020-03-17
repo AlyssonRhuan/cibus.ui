@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Loading from '../../components/Loading';
 import Icons from '../../utils/IconsUtils';
 import Toast from '../../components/Toast';
-import Auth from '../../services/Auth';
 import api from '../../services/api';
 import './Login.css';
 
@@ -21,21 +20,20 @@ function Login(props) {
     e.preventDefault();
 
     if (validateEmail(user.email)) {
+
       try {
-        api.post(END_POINT, user, await Auth.getAuthHeader()).then(response => {
+        api.post(END_POINT, user).then(response => {
           Toast.success("Welcome");
           const authorization = response.headers.authorization;
           const userId = response.headers.authorizationid;
-          Auth.onLogin(authorization, userId).then(response =>
-            props.onLogin());
-        }).catch(err => {          
-          setLoading(false)
+          props.onLogin(authorization, userId);
         })
       }
       catch (e) {
         error(e);
         setLoading(false)
       }
+
     } else {
       Toast.error('This email is not valid!');
       setInvalidEmail(true)

@@ -10,42 +10,46 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Toast from './components/Toast';
 import Rotas from './services/Routes';
 import Auth from './services/Auth';
+import Me from './services/Me';
 import './App.css';
 
 function App() {
+  const MeContext = React.createContext();
+  const RouterContext = React.createContext();
+
   const [rotas, setRotas] = useState();
   const [loading, setLoading] = useState();
   const [isAuth, setIsAuth] = useState();
+  const [me, setMe] = useState();
 
   useEffect(() => {
     setLoading(true);
-    setIsAuth(Auth.isAuthenticated());    
+    setIsAuth(Auth.isAuthenticated());
     setLoading(false);
   }, [])
 
-  useEffect(() => {
+  function onLogin(authorization, userId) {
     setLoading(true);
-    setIsAuth(Auth.isAuthenticated());
-    Auth.isAuthenticated()
-      ? Rotas()
-        .then(res => {
-          setRotas(res);
-        })
-        .catch(res => {
-          Toast.error(res.message)
-        })
-        .finally(fin =>
-          setLoading(false)
-        )
-      : setLoading(false);
-  }, [isAuth])
-
-  function onLogin() {
-    setIsAuth(Auth.isAuthenticated());
+    Auth.onLogin(authorization, userId)
+      .then(response => {
+        setIsAuth(true);
+        Rotas().then(res => { setRotas(res); })
+        Me().then(res => { setMe(res); })
+      })
+      .catch(err => {
+        Toast.error(err.message)
+        Auth.onLogout();
+        setIsAuth(false);
+      })
+      .finally(fin =>
+        setLoading(false)
+      )
   }
 
   function onLogout() {
+    setLoading(true);
     setIsAuth(Auth.isAuthenticated());
+    setLoading(false);
   }
 
   return (
@@ -57,10 +61,14 @@ function App() {
           ? <LoadingPaginaInteira />
           : !isAuth
             ? <LoginView onLogin={onLogin} />
-            : <Router>
-              <SideBarMenu rotas={rotas} onLogout={onLogout} />
-              <SwitchRotas rotas={rotas} onLogout={onLogout} />
-            </Router>
+            : <MeContext.Provider value={me}>
+              <RouterContext.Provider value={rotas}>
+                <Router>
+                  <SideBarMenu rotas={rotas} onLogout={onLogout} />
+                  <SwitchRotas rotas={rotas} onLogout={onLogout} />
+                </Router>
+              </RouterContext.Provider>
+            </MeContext.Provider>
       }
     </section>
   );

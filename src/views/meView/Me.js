@@ -18,7 +18,7 @@ const rotasBreadcrumb =[
 const END_POINT = 'me'
 const PAGE_TITLE = 'Me'
 
-function User() {
+function User(props) {
     const [key, setKey] = useState('aboutYou');
     const [me, setMe] = useState();
     const [user, setUser] = useState({})
@@ -30,6 +30,7 @@ function User() {
     const [cardProfileSalesman, setCardProfileSalesman] = useState(false)
 
     useEffect(() => {
+        debugger
         getMe();
     }, [])
 
