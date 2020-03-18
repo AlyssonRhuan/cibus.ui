@@ -1,5 +1,5 @@
 import axios from 'axios';
-import Auth from '../services/Auth';
+import Auth from '../storage/Auth.storage';
 import Toast from '../components/Toast';
 
 let api = axios.create({

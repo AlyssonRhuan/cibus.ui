@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, NavLink } from "react-router-dom";
 import Icons from '../utils/IconsUtils';
 import React from 'react';
-import Auth from '../services/Auth'
+import Auth from '../storage/Auth.storage'
 
 function SidebarMenu(props) {
   const rotas = props.rotas;

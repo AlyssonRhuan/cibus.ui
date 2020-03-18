@@ -6,7 +6,7 @@ import UserView from '../views/userView/User'
 import ProductView from '../views/productView/Product'
 import CategoryView from '../views/categoryView/Category'
 import MeView from '../views/meView/Me'
-import Auth from './Auth';
+import Auth from '../storage/Auth.storage';
 
 export default async function Routes() {       
     const userId = await Auth.getUserId(); 

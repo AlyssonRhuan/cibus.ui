@@ -1,5 +1,5 @@
 import api from './api'
-import Auth from './Auth';
+import Auth from '../storage/Auth.storage';
 
 export default async function Me() {       
     const userId = await Auth.getUserId(); 

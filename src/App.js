@@ -5,12 +5,19 @@ import SwitchRotas from './components/SwitchRotas';
 import React, { useState, useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import LoginView from './views/loginView/Login';
-import 'react-toastify/dist/ReactToastify.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Toast from './components/Toast';
 import Rotas from './services/Routes';
-import Auth from './services/Auth';
+
 import Me from './services/Me';
+
+// STORAGES
+import AuthStorage from './storage/Auth.storage';
+import MeStorage from './storage/Me.storage';
+import RotasStorage from './storage/Rotas.storage';
+
+// STYLES
+import 'react-toastify/dist/ReactToastify.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 function App() {
@@ -24,21 +31,23 @@ function App() {
 
   useEffect(() => {
     setLoading(true);
-    setIsAuth(Auth.isAuthenticated());
+    setIsAuth(AuthStorage.isAuthenticated());
     setLoading(false);
   }, [])
 
   function onLogin(authorization, userId) {
     setLoading(true);
-    Auth.onLogin(authorization, userId)
+    AuthStorage.onLogin(authorization, userId)
       .then(response => {
         setIsAuth(true);
+
         Rotas().then(res => { setRotas(res); })
         Me().then(res => { setMe(res); })
+
       })
       .catch(err => {
         Toast.error(err.message)
-        Auth.onLogout();
+        AuthStorage.onLogout();
         setIsAuth(false);
       })
       .finally(fin =>
@@ -48,7 +57,7 @@ function App() {
 
   function onLogout() {
     setLoading(true);
-    setIsAuth(Auth.isAuthenticated());
+    setIsAuth(AuthStorage.isAuthenticated());
     setLoading(false);
   }
 

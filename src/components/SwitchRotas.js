@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import NotFoundView from '../views/notFoundView/NotFound';
 import HomeView from '../views/homeView/Home';
 import React from 'react';
-import Auth from "../services/Auth";
+import Auth from "../storage/Auth.storage";
 import NewPassword from '../views/newPasswordView/NewPassword';
 
 function SwitchRotas(props) {

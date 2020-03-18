@@ -1,6 +1,6 @@
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import React, { useState, useEffect } from 'react';
-import Auth from '../../services/Auth';
+import Auth from '../../storage/Auth.storage';
 import api from '../../services/api';
 import Select from 'react-select';
 

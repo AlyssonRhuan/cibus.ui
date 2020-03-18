@@ -6,7 +6,7 @@ import ModalCategory from './ModalCategory';
 import Table from '../../components/Table';
 import Toast from '../../components/Toast';
 import api from '../../services/api';
-import Auth from '../../services/Auth';
+import Auth from '../../storage/Auth.storage';
 
 const rotasBreadcrumb =[
   { name: "Home",     path: "/"},
