@@ -2,8 +2,8 @@ import React from 'react';
 import { Route, Redirect } from "react-router-dom";
 
 export default class Auth{
-    static isAuthenticated(){
-        return localStorage.getItem("Authorization") ? true : false;
+    static async isAuthenticated(){
+        return await localStorage.getItem("Authorization") ? true : false;
     }
 
     static async getUserId(){
