@@ -8,17 +8,13 @@ import MenuWhiteIcon from '../assets/icons/menu_white.svg'
 import MeWhiteIcon from '../assets/icons/me_white.svg'
 import LogoutWhiteIcon from '../assets/icons/logout_white.svg'
 
-import ProfileColorfulIcon from '../assets/icons/profile_colorful.svg'
-import UserColorfulIcon from '../assets/icons/user_colorful.svg'
-import CategoryColorfulIcon from '../assets/icons/category_colorful.svg'
-import ProductColorfulIcon from '../assets/icons/product_colorful.svg'
-import MeWColorfulIcon from '../assets/icons/me_colorful.svg'
-
 import LogoIcon from '../assets/icons/logo.svg'
 import LogoWhiteIcon from '../assets/icons/logo_white.svg'
 
 import DeleteIcon from '../assets/icons/delete.svg'
 import EditIcon from '../assets/icons/edit.svg'
+
+import GoogleLoginIcon from '../assets/icons/google_login.svg'
 
 export default {       
 
@@ -31,16 +27,12 @@ export default {
     MenuWhite: MenuWhiteIcon,
     MeWhite: MeWhiteIcon,
     LogoutWhite: LogoutWhiteIcon,
-    
-    UserColorful: UserColorfulIcon,
-    CategoryColorful: CategoryColorfulIcon,
-    ProductColorful: ProductColorfulIcon,
-    ProfileColorful: ProfileColorfulIcon,
-    MeWColorful: MeWColorfulIcon,
 
     Logo: LogoIcon,
     LogoWhite: LogoWhiteIcon,
 
     Delete: DeleteIcon,
     Edit: EditIcon,
+
+    GoogleLogin: GoogleLoginIcon,
 }

@@ -56,7 +56,7 @@ function Login(props) {
         loading
           ? <Loading />
           : <section className="login">
-            <h1>Login</h1>
+            <h3>Welcome</h3>
             <form>
               {invalidEmail && <small className="form-text text-muted">This email is not valid!</small>}
               <input
@@ -67,20 +67,34 @@ function Login(props) {
                 onChange={event => setUser({ ...user, email: event.target.value })}
               />
               <input
+              className="mb-0"
                 type="password"
                 name="p"
                 placeholder="Password"
                 required
                 onChange={event => setUser({ ...user, pass: event.target.value })}
               />
+              <p className="text-right font-weight-light"><a href='#'>Forgot password?</a></p>
               <button
-                className="btn btn-primary btn-block btn-large"
+                className="btn btn-primary btn-block btn-large my-3"
                 onClick={(e) => login(e)}
                 disabled={!user.email || !user.pass}
               >
                 Let me in.
                   </button>
             </form>
+
+            <p className="text-center">Or</p>
+
+            <button
+              className="btn btn-light btn-block btn-large my-3"
+              onClick={(e) => login(e)}
+            >
+              <img className="GoogleLogin" src={Icons.GoogleLogin} alt="Google logo"/>
+              Sign in with Google
+                  </button>
+
+            <p className="text-center">Don't have account? <a href='#'>SingUp</a></p>
           </section>
       }
     </main>

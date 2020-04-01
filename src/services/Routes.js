@@ -1,53 +1,29 @@
-import api from './api'
-import Icons from '../utils/IconsUtils'
+import CategoryView from '../views/categoryView/Category';
+import ProductView from '../views/productView/Product';
+import MeView from '../views/meView/Me';
+import Icons from '../utils/IconsUtils';
 
-import NotFoundView from '../views/notFoundView/NotFound'
-import UserView from '../views/userView/User'
-import ProductView from '../views/productView/Product'
-import CategoryView from '../views/categoryView/Category'
-import MeView from '../views/meView/Me'
-import Auth from '../storage/Auth.storage';
-
-export default async function Routes() {       
-    const userId = await Auth.getUserId(); 
-
-    const { data } = await (await api.get(`view/user/${userId}`, await Auth.getAuthHeader()))
-    
-    let rotas = []
-
-    data.map( 
-        (tela, key) => {rotas.push({ ...tela, view: NotFoundView });
-    })
-
-    rotas.map(
-        (tela, key) => {
-        switch (tela.path) {
-            case "/me":
-                tela.view = MeView;
-                tela.icon = Icons.MeWhite;
-                tela.iconHome = Icons.MeWColorful;   
-                break;
-            case "/user":
-                tela.view = UserView;
-                tela.icon = Icons.UserWhite;   
-                tela.iconHome = Icons.UserColorful;             
-                break;
-            case "/product":
-                tela.view = ProductView;
-                tela.icon = Icons.ProductWhite;
-                tela.iconHome = Icons.ProductColorful;
-                break;
-            case "/category":
-                tela.view = CategoryView;
-                tela.icon = Icons.CategoryWhite;
-                tela.iconHome = Icons.CategoryColorful;
-                break;
-            default:
-                tela.view = NotFoundView;
-                break;
+export default function Routes() {
+    const rotas = [
+        {
+            path: "/me",
+            name: "Me",
+            view: MeView,
+            icon: Icons.MeWhite
+        },
+        {
+            path: "/product",
+            name: "Product",
+            view: ProductView,
+            icon: Icons.ProductWhite
+        },
+        {
+            path: "/category",
+            name: "Category",
+            view: CategoryView,
+            icon: Icons.CategoryWhite
         }
-    })
+    ];
 
-    await Promise.resolve(rotas);
     return rotas;
 }

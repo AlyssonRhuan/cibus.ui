@@ -25,11 +25,9 @@ function App() {
     setLoading(true);
     AuthStorage.isAuthenticated().then(response => {
       setIsAuth(response);
-      response ? Rotas().then(res => { 
-        setRotas(res); 
-        setLoading(false);
-      })
-      : setLoading(false);
+      
+      setRotas(Rotas());
+      setLoading(false);
     });
   }, [])
 
@@ -39,9 +37,7 @@ function App() {
       .then(response => {
         setIsAuth(true);
 
-        Rotas().then(res => { 
-          setRotas(res); 
-        })
+        setRotas(Rotas())
 
       })
       .catch(err => {

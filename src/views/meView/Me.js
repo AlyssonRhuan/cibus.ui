@@ -116,15 +116,10 @@ function User(props) {
                                                 </div>
 
                                                 <div className="col-8 row align-self-start">
-                                                    <div className="form-group col-6">
+                                                    <div className="form-group col-12">
                                                         <label htmlFor='userName'>Name</label>
                                                         <input type='text' className="form-control" id='userName' placeholder='User name'
                                                             onChange={event => changeMe({ ...me, name: event.target.value })} value={me.name} />
-                                                    </div>
-                                                    <div className="form-group col-6">
-                                                        <label htmlFor='userLogin'>Login</label>
-                                                        <input type='text' className="form-control" id='userLogin' placeholder='User login'
-                                                            onChange={event => changeMe({ ...me, login: event.target.value })} value={me.login} />
                                                     </div>
                                                     <div className="form-group col-12">
                                                         <label htmlFor='userEmail'>Email</label>
