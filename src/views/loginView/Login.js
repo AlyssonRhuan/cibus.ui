@@ -46,7 +46,7 @@ function Login(props) {
   }
 
   const responseGoogle = (response) => {
-    Toast.success(response);
+    console.log(response)
   }
 
   function error(e) {
@@ -84,7 +84,7 @@ function Login(props) {
                 required
                 onChange={event => setUser({ ...user, pass: event.target.value })} />
               <button
-                className="btn btn-light btn-block btn-large my-3"
+                className="btn btn-info btn-block btn-large my-3"
                 onClick={(e) => login(e)}
                 disabled={!user.email || !user.pass}>
                 Let me in.
@@ -94,7 +94,7 @@ function Login(props) {
             <p className="text-center">Or</p>
 
             <GoogleLogin
-              className="btn btn-block"
+              className="btn btn-block display-flex justify-content-center"
               clientId="434223395402-301l8hmns2fd4m59cob4o7snporr2vuc.apps.googleusercontent.com"
               buttonText="Sign in with Google"
               onSuccess={responseGoogle}
