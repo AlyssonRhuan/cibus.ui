@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Loading from '../../components/Loading';
-import Icons from '../../utils/IconsUtils';
+import GoogleLogin from 'react-google-login';
 import Toast from '../../components/Toast';
+import Icons from '../../utils/IconsUtils';
 import api from '../../services/api';
 import './Login.css';
 
@@ -40,6 +41,14 @@ function Login(props) {
     }
   }
 
+  function googleLogin() {
+    Toast.success('Google login')
+  }
+
+  const responseGoogle = (response) => {
+    Toast.success(response);
+  }
+
   function error(e) {
     Toast.error(e.response ? e.response.data.message : e.message);
     console.error(e.response ? e.response.data.message : e.message);
@@ -62,39 +71,41 @@ function Login(props) {
               <input
                 type="email"
                 name="u"
+                autocomplete="off"
                 placeholder="Email"
                 required
-                onChange={event => setUser({ ...user, email: event.target.value })}
-              />
+                onChange={event => setUser({ ...user, email: event.target.value })} />
               <input
-              className="mb-0"
+                className="mb-0"
                 type="password"
                 name="p"
+                autocomplete="off"
                 placeholder="Password"
                 required
-                onChange={event => setUser({ ...user, pass: event.target.value })}
-              />
-              <p className="text-right font-weight-light"><a href='#'>Forgot password?</a></p>
+                onChange={event => setUser({ ...user, pass: event.target.value })} />
               <button
-                className="btn btn-primary btn-block btn-large my-3"
+                className="btn btn-light btn-block btn-large my-3"
                 onClick={(e) => login(e)}
-                disabled={!user.email || !user.pass}
-              >
+                disabled={!user.email || !user.pass}>
                 Let me in.
-                  </button>
+              </button>
             </form>
 
             <p className="text-center">Or</p>
 
-            <button
-              className="btn btn-light btn-block btn-large my-3"
-              onClick={(e) => login(e)}
-            >
-              <img className="GoogleLogin" src={Icons.GoogleLogin} alt="Google logo"/>
-              Sign in with Google
-                  </button>
+            <GoogleLogin
+              className="btn btn-block"
+              clientId="434223395402-301l8hmns2fd4m59cob4o7snporr2vuc.apps.googleusercontent.com"
+              buttonText="Sign in with Google"
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+              cookiePolicy={'single_host_origin'}
+            />
 
-            <p className="text-center">Don't have account? <a href='#'>SingUp</a></p>
+            <section className="mt-4 pt-3" style={{ borderTop: '1px solid rgba(158, 158, 158, .3)' }}>
+              <p className="text-center font-weight-light"><a href='#'>Forgot password?</a></p>
+              <p className="text-center">Don't have account? <a href='#'>Sing Up</a></p>
+            </section>
           </section>
       }
     </main>
