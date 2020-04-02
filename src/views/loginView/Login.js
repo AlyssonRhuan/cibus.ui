@@ -104,7 +104,7 @@ function Login(props) {
 
             <section className="mt-4 pt-3" style={{ borderTop: '1px solid rgba(158, 158, 158, .3)' }}>
               <p className="text-center font-weight-light"><a href='#'>Forgot password?</a></p>
-              <p className="text-center">Don't have account? <a href='#'>Sing Up</a></p>
+              <p className="text-center">Don't have account? <a href='#'>Sign Up</a></p>
             </section>
           </section>
       }
