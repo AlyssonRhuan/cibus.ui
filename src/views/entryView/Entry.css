@@ -13,7 +13,7 @@
 
 html { width: 100%; height:100%; overflow:hidden; }
 
-.mainLogin { 
+.entryMain { 
 	z-index: 3;
     height: 100vh;
 	width: 100vw;
@@ -34,7 +34,7 @@ html { width: 100%; height:100%; overflow:hidden; }
 	left: 50%;
 	margin: -150px 0 0 -150px;
 	width:300px;
-	height:300px;
+	height:600px;
 }
 
 .login h1, h2, h3 { color: #9e9e9e; text-shadow: 0 0 10px rgba(0,0,0,0.3); letter-spacing:1px; text-align:center; margin-bottom: 20px !important; }

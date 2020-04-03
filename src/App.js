@@ -4,7 +4,7 @@ import SideBarMenu from './components/SidebarMenu';
 import SwitchRotas from './components/SwitchRotas';
 import React, { useState, useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
-import LoginView from './views/loginView/Login';
+import EntryView from './views/entryView/Entry';
 import Toast from './components/Toast';
 import Rotas from './services/Routes';
 
@@ -65,7 +65,7 @@ function App() {
         loading
           ? <LoadingPaginaInteira />
           : !isAuth
-            ? <LoginView onLogin={onLogin} />
+            ? <EntryView onLogin={onLogin} />
             : <Router>
                   <SideBarMenu rotas={rotas} onLogout={onLogout} />
                   <SwitchRotas rotas={rotas} onLogout={onLogout} />
