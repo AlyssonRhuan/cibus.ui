@@ -22,7 +22,7 @@ export default function Routes() {
             name: "Category",
             view: CategoryView,
             icon: Icons.CategoryWhite
-        }
+        },
     ];
 
     return rotas;

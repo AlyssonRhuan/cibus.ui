@@ -20,15 +20,18 @@ function App() {
   const [rotas, setRotas] = useState();
   const [loading, setLoading] = useState();
   const [isAuth, setIsAuth] = useState();
+  const [isConfirmAccount, setIsConfirmAccount] = useState(false);
 
-  useEffect(() => {
+  useEffect(() => {    
     setLoading(true);
+    
     AuthStorage.isAuthenticated().then(response => {
       setIsAuth(response);
       
       setRotas(Rotas());
       setLoading(false);
     });
+
   }, [])
 
   function onLogin(authorization, userId) {
@@ -56,7 +59,7 @@ function App() {
     AuthStorage.onLogout();
     setLoading(false);
   }
-
+  
   return (
     <section className="ml-5">
       <ToastContainer hideProgressBar />
@@ -65,7 +68,7 @@ function App() {
         loading
           ? <LoadingPaginaInteira />
           : !isAuth
-            ? <EntryView onLogin={onLogin} />
+            ? <EntryView isConfirmedAccount={isConfirmAccount} onLogin={onLogin} />
             : <Router>
                   <SideBarMenu rotas={rotas} onLogout={onLogout} />
                   <SwitchRotas rotas={rotas} onLogout={onLogout} />

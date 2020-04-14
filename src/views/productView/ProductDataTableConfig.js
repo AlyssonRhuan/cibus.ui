@@ -11,9 +11,10 @@ export default [
       format: row => `R$ ${row.price.toFixed(2)}`
     },
     {
-      name: 'Stock',
-      selector: 'stockQuantity',
-      sortable: true
+      name: 'Digital',
+      selector: 'prodcutDigital',
+      sortable: true,
+      format: row => row.prodcutDigital ? "Yes" : "No"
     },
     {
       name: 'Categorys',
@@ -25,6 +26,6 @@ export default [
       name: 'Visible',
       selector: 'visible',
       sortable: true,
-      format: row => row.visivel ? "Yes" : "No"
+      format: row => row.visible ? "Yes" : "No"
     }
 ];

@@ -6,17 +6,22 @@ let api = axios.create({
     baseURL: process.env.REACT_APP_API_URL
 });
 
+function error(e) {
+  Toast.error(e.response ? e.response.data.message : e.message);
+  console.error(e.response ? e.response.data.message : e.message);
+}
+
 api.interceptors.response.use(function (response) {
     return response;
-}, function (error) {
-    Toast.error(error.message);
+}, function (e) {
+    error(e);
 
-    if (error.message === "Network Error") {
+    if (e.message === "Network Error") {
         localStorage.removeItem("Authorization");
         Auth.onLogout();
     }
-    else if (error.response) {
-        if (error.response.status && error.response.status === 403) {
+    else if (e.response) {
+        if (e.response.status && e.response.status === 403) {
             localStorage.removeItem("Authorization");
             Auth.onLogout();
         }

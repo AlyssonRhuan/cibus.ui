@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Icons from '../../utils/IconsUtils';
+import Toast from '../../components/Toast';
+import api from '../../services/api';
 import './Entry.css';
 
 import ForgotPassword from './ForgotPassword';
@@ -9,7 +11,20 @@ import Login from './Login';
 
 function Entry(props) {
   const [view, setView] = useState(1);
-
+  
+  useEffect(() => {
+    const locationHref = window.location.href;
+    
+    if(locationHref.includes("confirmAccount")){
+      const urlParams = new URLSearchParams(window.location.search);
+      const userId = urlParams.get('i');
+      
+      api.put('login/account/' + userId)
+        .then(res => Toast.success("Account confirmed!"))
+    }
+      
+  }, [])  
+  
   function onSetView(v){
     setView(v);
   }

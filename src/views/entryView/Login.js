@@ -23,11 +23,14 @@ function Login(props) {
 
       try {
         api.post(END_POINT, user).then(response => {
-          debugger
           Toast.success("Welcome");
           const authorization = response.headers.authorization;
           const userId = response.headers.authorizationid;
           props.onLogin(authorization, userId);
+        })
+        .catch(e => {          
+          error(e);
+          setLoading(false)
         })
       }
       catch (e) {
@@ -43,14 +46,18 @@ function Login(props) {
 
   const responseGoogleSuccess = (googleLogin) => {
     setLoading(true)
-    const user = { email: googleLogin.Qt.zu, pass: googleLogin.Qt.dV }
-
+    
     try {
+      const user = { email: googleLogin.profileObj.email, pass: googleLogin.profileObj.googleId }
       api.post(END_POINT, user).then(response => {
         Toast.success("Welcome");
         const authorization = response.headers.authorization;
         const userId = response.headers.authorizationid;
         props.onLogin(authorization, userId);
+      })
+      .catch(e => {          
+        error(e);
+        setLoading(false)
       })
     }
     catch (e) {

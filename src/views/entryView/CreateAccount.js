@@ -23,7 +23,7 @@ function CreateAccount(props) {
 
       try {
         api.post(END_POINT, user).then(response => {
-          Toast.success("Account created.");
+          Toast.success("Account created. Check your email and confirm accout.");
           props.onSetView(1);
         })
       }
@@ -40,9 +40,9 @@ function CreateAccount(props) {
 
   const responseGoogleSuccess = (googleLogin) => {
     setLoading(true)
-    const user = { email: googleLogin.Qt.zu, name: googleLogin.Qt.Ad, pass: googleLogin.Qt.dV }
-
+    
     try {
+      const user = { email: googleLogin.profileObj.email, pass: googleLogin.profileObj.googleId, name: googleLogin.profileObj.name }
       api.post(END_POINT, user).then(response => {
         Toast.success("Account created.");
         props.onSetView(1);

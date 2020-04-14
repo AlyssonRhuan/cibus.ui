@@ -16,7 +16,7 @@ function SwitchRotas(props) {
     {/* SWITCH DE ROTA */}
     <div>
       <Switch>
-        <Route exact path={"/"}           component={HomeView}/>
+        <Route exact path={"/"}               component={HomeView}/>
         {
           rotas && rotas.map(
             (rota, key) => <PrivateRoute exact path={rota.path} key={key} component={rota.view}/>
