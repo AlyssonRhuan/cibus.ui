@@ -26,6 +26,10 @@ function CreateAccount(props) {
           Toast.success("Account created. Check your email and confirm accout.");
           props.onSetView(1);
         })
+        .catch(e => {
+          error(e);
+          setLoading(false)
+        })
       }
       catch (e) {
         error(e);
@@ -43,9 +47,14 @@ function CreateAccount(props) {
     
     try {
       const user = { email: googleLogin.profileObj.email, pass: googleLogin.profileObj.googleId, name: googleLogin.profileObj.name }
-      api.post(END_POINT, user).then(response => {
-        Toast.success("Account created.");
+      api.post(END_POINT, user)
+      .then(response => {
+        Toast.success("Account created. Check your email and confirm accout.");
         props.onSetView(1);
+      })
+      .catch(e => {
+        error(e);
+        setLoading(false)
       })
     }
     catch (e) {

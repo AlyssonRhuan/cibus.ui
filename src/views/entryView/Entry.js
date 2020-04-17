@@ -20,7 +20,9 @@ function Entry(props) {
       const userId = urlParams.get('i');
       
       api.put('login/account/' + userId)
-        .then(res => Toast.success("Account confirmed!"))
+        .then(res => {
+          window.location.href = window.location.origin;
+        })
     }
       
   }, [])  
