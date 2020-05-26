@@ -29,7 +29,7 @@ function Table(props) {
           name: 'Actions',
           width: '150px',
           cell: row => <div className="actionsBar">
-            <a onClick={() => props.onAction('EDI', row)} data-toggle="tooltip" title="Edit"><img className="buttonIcon" src={IconsUtils.Edit}/></a>
+            <a onClick={() => props.onDetails ? props.onDetails(row) : props.onAction('EDI', row)} data-toggle="tooltip" title="Edit"><img className="buttonIcon" src={IconsUtils.Edit}/></a>
             <a onClick={() => props.onAction('DEL', row)} data-toggle="tooltip" title="Delete"><img className="buttonIcon" src={IconsUtils.Delete}/></a>
           </div>
         }
@@ -41,7 +41,7 @@ function Table(props) {
                 {
                     props.data
                     ? <DataTable
-                        className="dataTable"
+                        className="dataTable float-right"
                         style={{height:'70vh', overflowY:'hidden'}}    
                         columns={[...props.columns, ...actions]}                            //COLUNAS
                         data={props.data.content}                                           //VALORES

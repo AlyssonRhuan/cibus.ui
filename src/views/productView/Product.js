@@ -1,16 +1,17 @@
-import ModalConfirmation from '../../utils/ModalConfirmationUtils';
-import ProductDataTableConfig from './ProductDataTableConfig';
-import Breadcrumb from '../../components/Breadcrumb';
-import React, { useState, useEffect } from 'react';
+import api from '../../services/api';
+import ModalProduct from './ModalProduct';
 import Toast from '../../components/Toast';
 import Table from '../../components/Table';
-import ModalProduct from './ModalProduct';
 import Auth from '../../storage/Auth.storage';
-import api from '../../services/api';
+import Loading from '../../components/Loading';
+import React, { useState, useEffect } from 'react';
+import Breadcrumb from '../../components/Breadcrumb';
+import ProductDataTableConfig from './ProductDataTableConfig';
+import ModalConfirmation from '../../utils/ModalConfirmationUtils';
 
-const rotasBreadcrumb =[
-  { name: "Home",     path: "/"},
-  { name: "Product"}
+const rotasBreadcrumb = [
+  { name: "Home", path: "/" },
+  { name: "Product" }
 ]
 
 const END_POINT = 'product'
@@ -20,6 +21,7 @@ function Product() {
   const [products, setProducts] = useState();
   const [productToAction, setProductToAction] = useState();
   const [modal, setModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     getAllProducts();
@@ -39,6 +41,10 @@ function Product() {
 
   // FUNÇÕES 
 
+  function onDetails(data) {
+    window.location.href = window.location.href + '/' + data.id
+  }
+
   async function getAllProducts(page, quantity) {
     try {
       const response = await api.get(`${END_POINT}?page=${page || 1}&quantity=${quantity || 10}`, await Auth.getAuthHeader())
@@ -51,13 +57,14 @@ function Product() {
 
   async function addProduct(data) {
     try {
-      await api.post(`${END_POINT}`, data, await Auth.getAuthHeader());
-      Toast.success(`${PAGE_TITLE} added!`)
+      setIsLoading(true);
+      data = await api.post(`${END_POINT}`, data, await Auth.getAuthHeader());
+      onDetails(data.data)
     }
     catch (e) {
       error(e);
     }
-    
+
     closeModal();
   }
 
@@ -96,31 +103,35 @@ function Product() {
 
   return (
     <main className="App col-12 pr-4 ml-1 pl-4">
-      <section>        
-        <Breadcrumb routes={rotasBreadcrumb}/>
+      {isLoading
+        ? <Loading />
+        : <section>
+          <Breadcrumb routes={rotasBreadcrumb} />
 
-        {/* BARRA MENU INTERNO */}
-        <div style={{ alignItems: 'center' }} className="col-12 row justify-content-between mx-0 px-0">
-          <span>
-            <h1 className="display-4">{PAGE_TITLE}</h1>
-          </span>
-          <span>
-            <button type="button" className="btn btn-success ml-2" onClick={() => openModal('ADD')}>
-              Add Product
-            </button>
-          </span>
-        </div>
+          {/* BARRA MENU INTERNO */}
+          <div style={{ alignItems: 'center' }} className="col-12 row justify-content-between mx-0 px-0">
+            <span>
+              <h1 className="display-4">{PAGE_TITLE}</h1>
+            </span>
+            <span>
+              <button type="button" className="btn btn-success ml-2" onClick={() => openModal('ADD')}>
+                Add Product
+              </button>
+            </span>
+          </div>
 
-        {
-          products && <Table
-            data={products}
-            columns={ProductDataTableConfig}
-            onAction={openModal}
-            onGetAll={getAllProducts}
-          />
-        }
+          {
+            products && <Table
+              data={products}
+              columns={ProductDataTableConfig}
+              onAction={openModal}
+              onGetAll={getAllProducts}
+              onDetails={onDetails}
+            />
+          }
 
-      </section>
+        </section>
+      }
       <section>
 
         {/* MODAIS */}
@@ -131,15 +142,6 @@ function Product() {
             onClose={closeModal}
             onSave={addProduct}
             isOpen={modal === 'ADD'} />
-        }
-
-        {
-          modal && modal === 'EDI' && <ModalProduct
-            title={`Edit ${PAGE_TITLE}`}
-            data={productToAction}
-            onClose={closeModal}
-            onSave={editProduct}
-            isOpen={modal === 'EDI'} />
         }
 
         {

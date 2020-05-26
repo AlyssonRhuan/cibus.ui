@@ -1,0 +1,1260 @@
+{
+    "id": 5372550,
+    "name": "Tênis Infantil Nike Pico 5 Velcro",
+    "permalink": "https://www.netshoes.com.br/HZM-2257",
+    "genderTheWearWasDesignedFor": "M",
+    "feedProductId": null,
+    "coverImage": "https://static.netshoes.com.br/produtos/tenis-infantil-nike-pico-5-velcro/78/HZM-2257-278/HZM-2257-278_zoom1.jpg?ts=1580486187",
+    "isShoe": 0,
+    "szbMainCategoryId": 0,
+    "szbSubCategoryId": 0,
+    "szbMainCategoryName": null,
+    "szbSubCategoryName": null,
+    "categoryName": "Tênis",
+    "modelingName": "Nike Tênis infantil (M)",
+    "observation": null,
+    "bottomOnly": false,
+    "clothesType": "FULL_BODY",
+    "sizeType": null,
+    "status": true,
+    "ageGroup": "kids",
+    "measures": {
+        "22.5": {
+            "sizeName": "22.5",
+            "chest": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "hip": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "waist": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "sleeve": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "length": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "insideLeg": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "biceps": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "height": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "fist": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "neck": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "thigh": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "centralSeam": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "underBust": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "shoulderWidth": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "insoleLength": {
+                "initialValue": 13.0,
+                "finalValue": 13.0,
+                "text": null,
+                "type": "MEASURE"
+            },
+            "insoleWidth": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "waistUpper": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "waistLower": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "label1": {
+                "initialValue": 1.1,
+                "finalValue": 1.1,
+                "text": "7C",
+                "type": "LABEL"
+            },
+            "label2": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "LABEL"
+            },
+            "label3": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "LABEL"
+            },
+            "ageChart": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "TEXT"
+            },
+            "weightChart": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "TEXT"
+            },
+            "equivalence": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "headCircumference": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            }
+        },
+        "24": {
+            "sizeName": "24",
+            "chest": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "hip": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "waist": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "sleeve": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "length": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "insideLeg": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "biceps": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "height": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "fist": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "neck": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "thigh": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "centralSeam": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "underBust": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "shoulderWidth": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "insoleLength": {
+                "initialValue": 14.0,
+                "finalValue": 14.0,
+                "text": null,
+                "type": "MEASURE"
+            },
+            "insoleWidth": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "waistUpper": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "waistLower": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "label1": {
+                "initialValue": 1.1,
+                "finalValue": 1.1,
+                "text": "8C",
+                "type": "LABEL"
+            },
+            "label2": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "LABEL"
+            },
+            "label3": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "LABEL"
+            },
+            "ageChart": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "TEXT"
+            },
+            "weightChart": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "TEXT"
+            },
+            "equivalence": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "headCircumference": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            }
+        },
+        "25": {
+            "sizeName": "25",
+            "chest": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "hip": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "waist": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "sleeve": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "length": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "insideLeg": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "biceps": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "height": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "fist": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "neck": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "thigh": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "centralSeam": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "underBust": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "shoulderWidth": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "insoleLength": {
+                "initialValue": 15.0,
+                "finalValue": 15.0,
+                "text": null,
+                "type": "MEASURE"
+            },
+            "insoleWidth": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "waistUpper": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "waistLower": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "label1": {
+                "initialValue": 1.1,
+                "finalValue": 1.1,
+                "text": "9C",
+                "type": "LABEL"
+            },
+            "label2": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "LABEL"
+            },
+            "label3": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "LABEL"
+            },
+            "ageChart": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "TEXT"
+            },
+            "weightChart": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "TEXT"
+            },
+            "equivalence": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "headCircumference": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            }
+        },
+        "26": {
+            "sizeName": "26",
+            "chest": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "hip": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "waist": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "sleeve": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "length": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "insideLeg": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "biceps": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "height": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "fist": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "neck": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "thigh": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "centralSeam": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "underBust": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "shoulderWidth": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "insoleLength": {
+                "initialValue": 16.0,
+                "finalValue": 16.0,
+                "text": null,
+                "type": "MEASURE"
+            },
+            "insoleWidth": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "waistUpper": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "waistLower": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "label1": {
+                "initialValue": 1.1,
+                "finalValue": 1.1,
+                "text": "10C",
+                "type": "LABEL"
+            },
+            "label2": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "LABEL"
+            },
+            "label3": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "LABEL"
+            },
+            "ageChart": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "TEXT"
+            },
+            "weightChart": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "TEXT"
+            },
+            "equivalence": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "headCircumference": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            }
+        },
+        "18.5": {
+            "sizeName": "18.5",
+            "chest": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "hip": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "waist": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "sleeve": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "length": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "insideLeg": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "biceps": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "height": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "fist": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "neck": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "thigh": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "centralSeam": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "underBust": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "shoulderWidth": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "insoleLength": {
+                "initialValue": 10.0,
+                "finalValue": 10.0,
+                "text": null,
+                "type": "MEASURE"
+            },
+            "insoleWidth": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "waistUpper": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "waistLower": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "label1": {
+                "initialValue": 1.1,
+                "finalValue": 1.1,
+                "text": "4C",
+                "type": "LABEL"
+            },
+            "label2": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "LABEL"
+            },
+            "label3": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "LABEL"
+            },
+            "ageChart": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "TEXT"
+            },
+            "weightChart": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "TEXT"
+            },
+            "equivalence": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "headCircumference": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            }
+        },
+        "17.5": {
+            "sizeName": "17.5",
+            "chest": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "hip": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "waist": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "sleeve": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "length": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "insideLeg": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "biceps": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "height": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "fist": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "neck": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "thigh": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "centralSeam": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "underBust": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "shoulderWidth": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "insoleLength": {
+                "initialValue": 9.0,
+                "finalValue": 9.0,
+                "text": null,
+                "type": "MEASURE"
+            },
+            "insoleWidth": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "waistUpper": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "waistLower": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "label1": {
+                "initialValue": 1.1,
+                "finalValue": 1.1,
+                "text": "3C",
+                "type": "LABEL"
+            },
+            "label2": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "LABEL"
+            },
+            "label3": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "LABEL"
+            },
+            "ageChart": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "TEXT"
+            },
+            "weightChart": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "TEXT"
+            },
+            "equivalence": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "headCircumference": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            }
+        },
+        "20": {
+            "sizeName": "20",
+            "chest": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "hip": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "waist": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "sleeve": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "length": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "insideLeg": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "biceps": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "height": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "fist": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "neck": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "thigh": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "centralSeam": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "underBust": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "shoulderWidth": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "insoleLength": {
+                "initialValue": 11.0,
+                "finalValue": 11.0,
+                "text": null,
+                "type": "MEASURE"
+            },
+            "insoleWidth": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "waistUpper": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "waistLower": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "label1": {
+                "initialValue": 1.1,
+                "finalValue": 1.1,
+                "text": "5C",
+                "type": "LABEL"
+            },
+            "label2": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "LABEL"
+            },
+            "label3": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "LABEL"
+            },
+            "ageChart": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "TEXT"
+            },
+            "weightChart": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "TEXT"
+            },
+            "equivalence": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "headCircumference": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            }
+        },
+        "21": {
+            "sizeName": "21",
+            "chest": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "hip": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "waist": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "sleeve": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "length": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "insideLeg": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "biceps": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "height": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "fist": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "neck": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "thigh": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "centralSeam": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "underBust": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "shoulderWidth": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "insoleLength": {
+                "initialValue": 12.0,
+                "finalValue": 12.0,
+                "text": null,
+                "type": "MEASURE"
+            },
+            "insoleWidth": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "waistUpper": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "waistLower": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "label1": {
+                "initialValue": 1.1,
+                "finalValue": 1.1,
+                "text": "6C",
+                "type": "LABEL"
+            },
+            "label2": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "LABEL"
+            },
+            "label3": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "LABEL"
+            },
+            "ageChart": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "TEXT"
+            },
+            "weightChart": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "TEXT"
+            },
+            "equivalence": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            },
+            "headCircumference": {
+                "initialValue": -1.0,
+                "finalValue": -1.0,
+                "text": "",
+                "type": "MEASURE"
+            }
+        }
+    },
+    "accessory": true,
+    "tenantId": 782,
+    "strongBrandId": 0,
+    "strongBrandName": null,
+    "strongTypeId": 0,
+    "strongTypeName": null,
+    "strongCategoryId": 0,
+    "strongCategoryName": null,
+    "strongSubcategoryId": 0,
+    "strongSubcategoryName": null,
+    "strongModelId": 0,
+    "strongModelName": null,
+    "weightStyle": 0.0
+}

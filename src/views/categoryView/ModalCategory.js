@@ -5,10 +5,9 @@ function ModalComponent(props) {
     const [isOpen, setIsOpen] = useState(false)
     const [category, setCategory] = useState({
       id: 0,
-      nome: "",
-      descricao: "",
-      ativo: true,
-      icone: ""
+      name: "",
+      description: "",
+      active: true
     })
     
   useEffect(() => {
