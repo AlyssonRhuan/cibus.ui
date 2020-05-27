@@ -3,20 +3,26 @@ import reactCSS from 'reactcss'
 import { ChromePicker } from 'react-color'
 
 class ColorPicker extends React.Component {
-  state = this.props.colorCode
-    ? {
-      displayColorPicker: false,
-      color: {
-        r: this.props.colorCode.split(',')[0],
-        g: this.props.colorCode.split(',')[1],
-        b: this.props.colorCode.split(',')[2],
-        a: this.props.colorCode.split(',')[3],
-      },
-    }
-    : {
-      displayColorPicker: false,
-      color: {r: '0',g: '0',b: '0',a: '1',},
-    }
+  constructor(props) {
+    super(props);
+    this.state = this.props.colorCode
+      ? {
+        displayColorPicker: false,
+        color: {
+          r: this.props.colorCode.split(',')[0],
+          g: this.props.colorCode.split(',')[1],
+          b: this.props.colorCode.split(',')[2],
+          a: this.props.colorCode.split(',')[3],
+        },
+      }
+      : {
+        displayColorPicker: false,
+        color: { r: '0', g: '0', b: '0', a: '1', },
+      };
+
+      const colorCode = this.state.color.r + ',' + this.state.color.g + ',' + this.state.color.b + ',' + this.state.color.a;
+      this.props.onChange(colorCode);
+  }
 
   handleClick = () => {
     this.setState({ displayColorPicker: !this.state.displayColorPicker })

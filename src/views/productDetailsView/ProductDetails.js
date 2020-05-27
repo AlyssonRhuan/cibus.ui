@@ -1,11 +1,12 @@
 import ModalConfirmation from '../../utils/ModalConfirmationUtils';
 import ProductSkuDataTableConfig from './ProductSkuDataTableConfig';
+import ModalProductDetails from './ModalProductDetails';
 import Breadcrumb from '../../components/Breadcrumb';
+import TextEditor from '../../components/TextEditor';
 import React, { useState, useEffect } from 'react';
+import Auth from '../../storage/Auth.storage';
 import Toast from '../../components/Toast';
 import Table from '../../components/Table';
-import ModalProductDetails from './ModalProductDetails';
-import Auth from '../../storage/Auth.storage';
 import api from '../../services/api';
 import Select from 'react-select';
 
@@ -195,12 +196,8 @@ function Product(props) {
           </div>
 
           <div className="form-row col-6">
-            <div className="form-group col-12">
-              <label for="exampleFormControlTextarea1">Description</label>
-              <textarea className="form-control" id="exampleFormControlTextarea1" rows="8"
-                value={product.description}
-                  onChange={event => setProduct({ ...product, description: event.target.value })}/>
-            </div>
+            {product.description && <TextEditor value={product.description} label='Description'
+              onChange={value => setProduct({ ...product, description: value })}/>}
           </div>
 
         </form>
@@ -243,7 +240,7 @@ function Product(props) {
         {
           modal && modal === 'DEL' && <ModalConfirmation
             title={`Delete ${PAGE_TITLE}`}
-            text={`Deseja deletar o produto ${productToAction.colorName}`}
+            text={`Deseja deletar o produto cor ${productToAction.colorName}, de tamanho ${productToAction.size} e preço RS ${productToAction.price}`}
             onClose={closeModal}
             onResponse={deleteProductSku}
             isOpen={modal === 'DEL'} />
