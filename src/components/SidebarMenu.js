@@ -1,7 +1,9 @@
 import { BrowserRouter as Router, NavLink } from "react-router-dom";
+import Auth from '../storage/Auth.storage';
+import { BiHomeAlt } from "react-icons/bi";
+import { HiLogout } from "react-icons/hi"; 
 import Icons from '../utils/IconsUtils';
 import React from 'react';
-import Auth from '../storage/Auth.storage'
 
 function SidebarMenu(props) {
   const rotas = props.rotas;
@@ -18,8 +20,8 @@ function SidebarMenu(props) {
       <ul className="nav nav-pills flex-column">
         <li>
           <section className="nav-logo-link align-middle">
-            <img className="icon_small" src={Icons.LogoWhite} />
-            <span>Cibus</span>
+            <img className="icon" src={Icons.LogoWhite} />
+            <span className="ml-3">Cibus</span>
           </section>
         </li>
       </ul>
@@ -33,8 +35,8 @@ function SidebarMenu(props) {
             activeClassName='active'
             className='nav-link align-middle'
             to={"/"}>
-            <img className="icon_small" src={Icons.HomeWhite} />
-            <span>Home</span>
+            <BiHomeAlt/>
+            <span className="ml-3">Home</span>
           </NavLink>
         </li>
         {
@@ -45,22 +47,34 @@ function SidebarMenu(props) {
                 activeClassName='active'
                 className='nav-link align-middle'
                 to={rota && rota.path}>
-                <img className="icon_small" src={rota.icon} />
-                <span>{rota.name}</span>
+                {rota.icon}
+                <span className="ml-3">{rota.name}</span>
               </NavLink>
             </li>
           )
         }
       </ul>
 
-      {/* LOGOUT */}
       <ul className="nav nav-pills flex-column">
+        
+        {/* LANGUAGE */}
         <li className="nav-item" >
           <section className="nav-link align-middle" onClick={() => onLogout()}>
-            <img className="icon_small" src={Icons.LogoutWhite} />
-            <span>Logout</span>
+            EN
+          </section>
+          <section className="nav-link align-middle" onClick={() => onLogout()}>
+            PT
           </section>
         </li>
+
+        {/* LOGOUT */}
+        <li className="nav-item" >
+          <section className="nav-link align-middle" onClick={() => onLogout()}>
+            <HiLogout/>
+            <span className="ml-3">Logout</span>
+          </section>
+        </li>
+
       </ul>
 
     </div>

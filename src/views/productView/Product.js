@@ -41,10 +41,6 @@ function Product() {
 
   // FUNÇÕES 
 
-  function onDetails(data) {
-    window.location.href = window.location.href + '/' + data.id
-  }
-
   async function getAllProducts(page, quantity) {
     try {
       const response = await api.get(`${END_POINT}?page=${page || 1}&quantity=${quantity || 10}`, await Auth.getAuthHeader())
@@ -59,7 +55,6 @@ function Product() {
     try {
       setIsLoading(true);
       data = await api.post(`${END_POINT}`, data, await Auth.getAuthHeader());
-      onDetails(data.data)
     }
     catch (e) {
       error(e);
@@ -126,7 +121,6 @@ function Product() {
               columns={ProductDataTableConfig}
               onAction={openModal}
               onGetAll={getAllProducts}
-              onDetails={onDetails}
             />
           }
 
@@ -142,6 +136,15 @@ function Product() {
             onClose={closeModal}
             onSave={addProduct}
             isOpen={modal === 'ADD'} />
+        }
+
+        {
+          modal && modal === 'EDI' && <ModalProduct
+              title={`Edit ${PAGE_TITLE}`}
+              data={productToAction}
+              onClose={closeModal}
+              onSave={editProduct}
+              isOpen={modal === 'EDI'} />
         }
 
         {

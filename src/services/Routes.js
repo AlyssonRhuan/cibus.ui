@@ -1,8 +1,9 @@
 import CategoryView from '../views/categoryView/Category';
 import ProductView from '../views/productView/Product';
-import ProductDetailsView from '../views/productDetailsView/ProductDetails';
+import { AiOutlineUser, AiOutlineAppstore, AiOutlineBulb } from "react-icons/ai";
 import MeView from '../views/meView/Me';
-import Icons from '../utils/IconsUtils';
+import React from 'react';
+
 
 export default function Routes() {
     const rotas = [
@@ -10,28 +11,21 @@ export default function Routes() {
             path: "/me",
             name: "Me",
             view: MeView,
-            icon: Icons.MeWhite,
+            icon: <AiOutlineUser/>,
             isInSideBar: true
         },
         {
             path: "/product",
             name: "Product",
             view: ProductView,
-            icon: Icons.ProductWhite,
+            icon: <AiOutlineBulb/>,
             isInSideBar: true
-        },
-        {
-            path: "/product/:productId",
-            name: "Product details",
-            view: ProductDetailsView,
-            icon: null,
-            isInSideBar: false
         },
         {
             path: "/category",
             name: "Category",
             view: CategoryView,
-            icon: Icons.CategoryWhite,
+            icon: <AiOutlineAppstore/>,
             isInSideBar: true
         },
     ];

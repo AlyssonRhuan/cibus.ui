@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Loading from '../../components/Loading';
 import GoogleLogin from 'react-google-login';
 import Toast from '../../components/Toast';
-import Icons from '../../utils/IconsUtils';
 import api from '../../services/api';
 
 import validateEmail from '../../utils/ValidateEmail.utils';

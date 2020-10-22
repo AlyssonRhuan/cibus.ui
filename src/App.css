@@ -40,7 +40,7 @@
 
 .sideBarMenu {
   position: absolute;
-  width: 55px;
+  width: 49px;
   height: 100vh;
   background-color: #19222A;
   z-index: 1;
@@ -69,9 +69,8 @@
   height: 60vh !important;
 }
 
-.icon_small{
-  width: 20px;
-  margin-right: 20px;
+.icon{
+  width: 17px;
 }
 
 .icon_medium{

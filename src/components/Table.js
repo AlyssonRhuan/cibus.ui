@@ -1,7 +1,8 @@
 import DataTable from 'react-data-table-component';
-import IconsUtils from '../utils/IconsUtils'
 import React, { useState } from 'react';
 import Loading from './Loading'
+import { AiOutlineDelete } from "react-icons/ai";
+import { FiEdit } from "react-icons/fi";
 
 
 // referencia https://www.npmjs.com/package/react-data-table-component#1626-header
@@ -29,8 +30,14 @@ function Table(props) {
           name: 'Actions',
           width: '150px',
           cell: row => <div className="actionsBar">
-            <a onClick={() => props.onDetails ? props.onDetails(row) : props.onAction('EDI', row)} data-toggle="tooltip" title="Edit"><img className="buttonIcon" src={IconsUtils.Edit}/></a>
-            <a onClick={() => props.onAction('DEL', row)} data-toggle="tooltip" title="Delete"><img className="buttonIcon" src={IconsUtils.Delete}/></a>
+            <a  data-toggle="tooltip" title="Edit"
+                className="px-1"
+                onClick={() => props.onDetails ? props.onDetails(row) : props.onAction('EDI', row)} 
+                style={{cursor:'pointer'}}> <FiEdit/> </a>
+            <a  data-toggle="tooltip" title="Delete"
+                className="px-1"
+                onClick={() => props.onAction('DEL', row)} 
+                style={{cursor:'pointer'}}> <AiOutlineDelete/> </a>
           </div>
         }
     ];

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import IconsUtils from '../utils/IconsUtils'
 
 function Input(props) {
   return (

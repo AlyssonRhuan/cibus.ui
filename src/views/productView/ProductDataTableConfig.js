@@ -4,17 +4,11 @@ export default [
       selector: 'name',
       sortable: true,
     },
-    // {
-    //   name: 'Price',
-    //   selector: 'price',
-    //   sortable: true,
-    //   format: row => `R$ ${row.price.toFixed(2)}`
-    // },
     {
-      name: 'Digital',
-      selector: 'prodcutDigital',
+      name: 'Price',
+      selector: 'price',
       sortable: true,
-      format: row => row.prodcutDigital ? "Yes" : "No"
+      format: row => row.price && `R$ ${row.price.toFixed(2)}`
     },
     {
       name: 'Categorys',

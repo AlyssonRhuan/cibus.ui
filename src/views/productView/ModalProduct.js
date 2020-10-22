@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Auth from '../../storage/Auth.storage';
 import api from '../../services/api';
 import Select from 'react-select';
+import Language from '../../languages/Index';
 
 function ModalComponent(props) {
   const [isOpen, setIsOpen] = useState(false)
@@ -55,18 +56,22 @@ function ModalComponent(props) {
             </div>
 
             <div className="form-group col-12">
+              <label htmlFor='description'>{Language.Get('MODALPRODUCT.DESCRIPTION.LABEL')}</label>
+              <input type='text' className="form-control" id='description' placeholder={Language.Get('MODALPRODUCT.DESCRIPTION.PLACEHOLDER')}
+                onChange={event => setProduct({ ...product, description: event.target.value })} value={product.description} />
+            </div>
+
+            <div className="form-group col-12">
+              <label htmlFor='price'>{Language.Get('MODALPRODUCT.PRICE.LABEL')}</label>
+              <input type='text' className="form-control" id='price' placeholder={Language.Get('MODALPRODUCT.PRICE.PLACEHOLDER')}
+                onChange={event => setProduct({ ...product, price: event.target.value })} value={product.price} />
+            </div>
+
+            <div className="form-group col-12">
               <label htmlFor="productCategory">Category</label>
               <Select isMulti className="basic-multi-select" classNamePrefix="select"
                 onChange={event => setProduct({ ...product, categorys: event })}
                 options={listCategorys && listCategorys} value={product.categorys} />
-            </div>
-
-            <div className="form-group col-6">
-              <div className="custom-control custom-switch">
-                <input type="checkbox" className="custom-control-input" id="switchDigital" checked={product.prodcutDigital}
-                  onChange={event => setProduct({ ...product, prodcutDigital: event.target.checked })} />
-                <label className="custom-control-label" htmlFor="switchDigital">Product digital</label>
-              </div>
             </div>
 
             <div className="form-group col-6">
