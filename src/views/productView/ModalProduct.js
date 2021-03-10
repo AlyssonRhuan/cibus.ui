@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import Auth from '../../storage/Auth.storage';
 import api from '../../services/api';
 import Select from 'react-select';
-import Language from '../../languages/Index';
 
 function ModalComponent(props) {
   const [isOpen, setIsOpen] = useState(false)
@@ -56,14 +55,14 @@ function ModalComponent(props) {
             </div>
 
             <div className="form-group col-12">
-              <label htmlFor='description'>{Language.Get('MODALPRODUCT.DESCRIPTION.LABEL')}</label>
-              <input type='text' className="form-control" id='description' placeholder={Language.Get('MODALPRODUCT.DESCRIPTION.PLACEHOLDER')}
+              <label htmlFor='description'>Description</label>
+              <input type='text' className="form-control" id='description' placeholder='Description'
                 onChange={event => setProduct({ ...product, description: event.target.value })} value={product.description} />
             </div>
 
             <div className="form-group col-12">
-              <label htmlFor='price'>{Language.Get('MODALPRODUCT.PRICE.LABEL')}</label>
-              <input type='text' className="form-control" id='price' placeholder={Language.Get('MODALPRODUCT.PRICE.PLACEHOLDER')}
+              <label htmlFor='price'>Price</label>
+              <input type='text' className="form-control" id='price' placeholder='Price'
                 onChange={event => setProduct({ ...product, price: event.target.value })} value={product.price} />
             </div>
 

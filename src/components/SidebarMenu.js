@@ -17,7 +17,7 @@ function SidebarMenu(props) {
     <div className="sideBarMenu">
 
       {/* LOGO */}
-      <ul className="nav nav-pills flex-column">
+      <ul className="nav nav-pills flex-column mb-3">
         <li>
           <section className="nav-logo-link align-middle">
             <img className="icon" src={Icons.LogoWhite} />
@@ -55,17 +55,7 @@ function SidebarMenu(props) {
         }
       </ul>
 
-      <ul className="nav nav-pills flex-column">
-        
-        {/* LANGUAGE */}
-        <li className="nav-item" >
-          <section className="nav-link align-middle" onClick={() => onLogout()}>
-            EN
-          </section>
-          <section className="nav-link align-middle" onClick={() => onLogout()}>
-            PT
-          </section>
-        </li>
+      <ul className="nav nav-pills flex-column mt-3">
 
         {/* LOGOUT */}
         <li className="nav-item" >
