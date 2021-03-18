@@ -1,6 +1,7 @@
 import CategoryView from '../views/categoryView/Category';
 import ProductView from '../views/productView/Product';
-import { AiOutlineUser, AiOutlineAppstore, AiOutlineBulb } from "react-icons/ai";
+import SaleView from '../views/saleView/Sale';
+import { AiOutlineUser, AiOutlineAppstore, AiOutlineBulb, AiFillCreditCard } from "react-icons/ai";
 import MeView from '../views/meView/Me';
 import React from 'react';
 
@@ -8,10 +9,10 @@ import React from 'react';
 export default function Routes() {
     const rotas = [
         {
-            path: "/me",
-            name: "Me",
-            view: MeView,
-            icon: <AiOutlineUser/>,
+            path: "/category",
+            name: "Category",
+            view: CategoryView,
+            icon: <AiOutlineAppstore/>,
             isInSideBar: true
         },
         {
@@ -22,12 +23,19 @@ export default function Routes() {
             isInSideBar: true
         },
         {
-            path: "/category",
-            name: "Category",
-            view: CategoryView,
-            icon: <AiOutlineAppstore/>,
+            path: "/sale",
+            name: "Sales",
+            view: SaleView,
+            icon: <AiFillCreditCard/>,
             isInSideBar: true
         },
+        {
+            path: "/me",
+            name: "Me",
+            view: MeView,
+            icon: <AiOutlineUser/>,
+            isInSideBar: true
+        }
     ];
 
     return rotas;

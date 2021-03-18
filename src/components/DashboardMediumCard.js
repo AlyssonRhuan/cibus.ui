@@ -9,16 +9,8 @@ import {
 } from "bizcharts";
 
 function DashboardMediumCard(props) {
-  
-    const data = [
-      { item: "Assados", percent: 0.4 },
-      { item: "Sucos", percent: 0.21 },
-      { item: "Agua", percent: 0.17 },
-      { item: "Kit", percent: 0.13 },
-      { item: "Almoço", percent: 0.09 },
-    ];
 
-    const colors = data.reduce((pre, cur, idx) => {
+    const colors = props.value.reduce((pre, cur, idx) => {
       pre[cur.item] = getTheme().colors10[idx];
       return pre;
     }, {});
@@ -38,8 +30,8 @@ function DashboardMediumCard(props) {
       <div className="card" style={{borderRadius:'10px', borderLeft: `10px solid ${props.color}`, height: '450px'}}>
         <div className="card-body row align-items-center">    
           <div className='col'>
-            <h6 className="card-title" style={{color: props.color, textAlign: 'left'}}>CATEGORIAS MAIS VENDIDAS</h6>
-            <Chart height={400} data={data} scale={cols} interactions={['element-active']} autoFit>
+            <h6 className="card-title" style={{color: props.color, textAlign: 'left'}}>{props.title}</h6>
+            <Chart height={400} data={props.value} scale={cols} interactions={['element-active']} autoFit>
               <Coordinate type="theta" radius={0.75} />
               <Tooltip showTitle={false} />
               <Axis visible={false} />

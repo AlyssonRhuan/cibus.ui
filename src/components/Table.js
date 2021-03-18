@@ -50,11 +50,13 @@ function Table(props) {
                     ? <DataTable
                         className="dataTable float-right"
                         style={{height:'70vh', overflowY:'hidden'}}    
-                        columns={[...props.columns, ...actions]}                            //COLUNAS
+                        columns={props.hasAction ? [...props.columns, ...actions] : props.columns}                            //COLUNAS
                         data={props.data.content}                                           //VALORES
                         pagination={true}                                                   //HABILITA PAGINAÇÃO
                         striped={true}                                                      //LINHAS INTERVALADAS DE COR
                         noHeader={true}                                                     //RETIRAR O CABEÇALHO
+                        subHeader={props.filters ? true : false}                            //RETIRAR O SUBCABEÇALHO
+                        subHeaderComponent={props.filters && props.filters}                 //COMPONENTES DO FILTRO
                         fixedHeader={true}                                                  //DEIXA O CABEÇALHO FIXO
                         fixedHeaderScrollHeight='59vh'                                      //DEFINE ALTURA DO CORPO
                         paginationServer={true}                                             //PAGINAÇÃO NO BACK

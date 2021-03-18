@@ -13,7 +13,13 @@ const PAGE_TITLE = 'Dashboard'
 
 function Home() {
   const [isLoading, setIsLoading] = useState(false);
-  const [dashboardData, setDashboardData] = useState();
+  const [dashboardData, setDashboardData] = useState({
+    'salesTotal': 0,
+    'ordersOpenned': 0,
+    'ordersClosed': 0,
+    'products': [],
+    'categories': []
+  });
 
   useEffect(() => {   
     getData();
@@ -50,21 +56,19 @@ function Home() {
           </div>
 
           <div className='row'>
-            <DashboardSimpleCard title='VENDAS DO DIA' value='R$ 123,12' color='blue' col='col-sm-4' icon={<FiDollarSign/>}/>
-            <DashboardSimpleCard title='PEDIDOS EM ABERTO' value='12' color='orange' col='col-sm-4' icon={<FiBookOpen/>}/>
-            <DashboardSimpleCard title='PEDIDOS FECHADOS' value='123' color='green' col='col-sm-4' icon={<FiBook/>}/>
+            <DashboardSimpleCard title='VENDAS DO DIA' value={dashboardData.salesTotal.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})} color='blue' col='col-sm-4' icon={<FiDollarSign/>}/>
+            <DashboardSimpleCard title='PEDIDOS EM ABERTO' value={dashboardData.ordersOpenned} color='orange' col='col-sm-4' icon={<FiBookOpen/>}/>
+            <DashboardSimpleCard title='PEDIDOS FECHADOS' value={dashboardData.ordersClosed} color='green' col='col-sm-4' icon={<FiBook/>}/>
           </div>
 
           <div className='row mt-4'>
 
-            <div className="col-8">
-              <DashboardLargeCard title='PEDIDOS FECHADOS' value='123' color='black' col='col px-0' icon={<FiBook/>}/>
-            
-           
+            <div className="col-sm-8">
+              <DashboardLargeCard title='ITENS MAIS VENDIDOS' value={dashboardData.products} color='lightblue' col='col px-0' icon={<FiBook/>}/>
             </div>
 
             <div className="col-sm-4">
-              <DashboardMediumCard title='PEDIDOS FECHADOS' value='123' color='black' col='col px-0' icon={<FiBook/>}/>
+              <DashboardMediumCard title='CATEGORIAS MAIS VENDIDAS' value={dashboardData.categories} color='brown ' col='col px-0' icon={<FiBook/>}/>
             </div>
           </div>
 

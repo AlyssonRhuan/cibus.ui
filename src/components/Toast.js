@@ -43,7 +43,8 @@ export default class Toast {
     };
     
     static error(message){
-        return toast.error(message,
+        
+        return message && toast.error(message,
             {
                 className: css({
                     borderRadius: '10px !important',
