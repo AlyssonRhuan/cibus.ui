@@ -7,9 +7,10 @@ import api from '../../services/api';
 import Auth from '../../storage/Auth.storage';
 import Toast from '../../components/Toast';
 import { FiDollarSign, FiBookOpen, FiBook, FiAnchor } from 'react-icons/fi';
+import PageTitle from '../../components/PageTitle';
 
 const END_POINT = 'dashboard'
-const PAGE_TITLE = 'Dashboard'
+const PAGE_TITLE = 'Home'
 
 function Home() {
   const [isLoading, setIsLoading] = useState(false);
@@ -50,12 +51,10 @@ function Home() {
 
           {/* BARRA MENU INTERNO */}
           <div className="row mx-0">
-            <span>
-              <h1 className="display-4 py-4">{PAGE_TITLE}</h1>
-            </span>
+            <PageTitle title={PAGE_TITLE} />
           </div>
 
-          <div className='row'>
+          <div className='row mt-3'>
             <DashboardSimpleCard title='VENDAS DO DIA' value={dashboardData.salesTotal.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})} color='blue' col='col-sm-4' icon={<FiDollarSign/>}/>
             <DashboardSimpleCard title='PEDIDOS EM ABERTO' value={dashboardData.ordersOpenned} color='orange' col='col-sm-4' icon={<FiBookOpen/>}/>
             <DashboardSimpleCard title='PEDIDOS FECHADOS' value={dashboardData.ordersClosed} color='green' col='col-sm-4' icon={<FiBook/>}/>

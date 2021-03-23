@@ -5,7 +5,7 @@ import Table from '../../components/Table';
 import Auth from '../../storage/Auth.storage';
 import Loading from '../../components/Loading';
 import React, { useState, useEffect } from 'react';
-import Breadcrumb from '../../components/Breadcrumb';
+import PageTitle from '../../components/PageTitle';
 import ProductDataTableConfig from './ProductDataTableConfig';
 import ModalConfirmation from '../../utils/ModalConfirmationUtils';
 
@@ -101,18 +101,13 @@ function Product() {
       {isLoading
         ? <Loading />
         : <section>
-          <Breadcrumb routes={rotasBreadcrumb} />
 
           {/* BARRA MENU INTERNO */}
           <div style={{ alignItems: 'center' }} className="col-12 row justify-content-between mx-0 px-0">
-            <span>
-              <h1 className="display-4">{PAGE_TITLE}</h1>
-            </span>
-            <span>
-              <button type="button" className="btn btn-success ml-2" onClick={() => openModal('ADD')}>
-                Add Product
-              </button>
-            </span>
+            <PageTitle title={PAGE_TITLE} breadcrumb={rotasBreadcrumb} />
+            <button type="button" className="btn btn-success ml-2" onClick={() => openModal('ADD')}>
+              Add Product
+            </button>
           </div>
 
           {

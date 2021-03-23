@@ -46,6 +46,7 @@ function SidebarMenu(props) {
                 exact={true}
                 activeClassName='active'
                 className='nav-link align-middle'
+                style={rota.style}
                 to={rota && rota.path}>
                 {rota.icon}
                 <span className="ml-3">{rota.name}</span>

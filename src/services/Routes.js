@@ -1,9 +1,11 @@
 import CategoryView from '../views/categoryView/Category';
 import ProductView from '../views/productView/Product';
 import SaleView from '../views/saleView/Sale';
-import { AiOutlineUser, AiOutlineAppstore, AiOutlineBulb, AiFillCreditCard } from "react-icons/ai";
+import { AiOutlineUser, AiOutlineAppstore, AiOutlineBulb, AiFillCreditCard, AiOutlineShoppingCart } from "react-icons/ai";
 import MeView from '../views/meView/Me';
+import PurchaseView from '../views/purchaseView/Purchase';
 import React from 'react';
+import UnavailableService from '../views/errorsView/UnavailableService';
 
 
 export default function Routes() {
@@ -35,6 +37,23 @@ export default function Routes() {
             view: MeView,
             icon: <AiOutlineUser/>,
             isInSideBar: true
+        },
+        {
+            path: "/purchase",
+            name: "Purchase",
+            view: PurchaseView,
+            icon: <AiOutlineShoppingCart/>,
+            isInSideBar: true,
+            style: {
+                marginTop: '20px'
+            }
+        },
+        {
+            path: "/unavailableservice",
+            name: "UnavailableService",
+            view: UnavailableService,
+            icon: <AiOutlineUser/>,
+            isInSideBar: false
         }
     ];
 

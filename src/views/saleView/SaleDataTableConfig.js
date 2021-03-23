@@ -7,11 +7,6 @@ export default [
     sortable: true,
   },
   {
-    name: 'Category',
-    selector: 'category.name',
-    sortable: true,
-  },
-  {
     name: 'Quantity',
     selector: 'quantity',
     sortable: true,
@@ -26,6 +21,7 @@ export default [
     name: 'Sale Date',
     selector: 'saleDate',
     sortable: true,
+    format: row => ((new Date(row.saleDate).getDate() )) + "/" + ((new Date(row.saleDate).getMonth() + 1)) + "/" + new Date(row.saleDate).getFullYear()
   },
   {
     name: 'Sale Status',

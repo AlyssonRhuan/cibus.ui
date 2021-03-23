@@ -1,6 +1,6 @@
 import ModalConfirmation from '../../utils/ModalConfirmationUtils';
 import CategoryDataTableConfig from './CategoryDataTableConfig';
-import Breadcrumb from '../../components/Breadcrumb';
+import PageTitle from '../../components/PageTitle';
 import React, { useState, useEffect } from 'react';
 import ModalCategory from './ModalCategory';
 import Table from '../../components/Table';
@@ -97,18 +97,13 @@ function Category() {
     return (
         <main className="App col-12 pr-4 ml-1 pl-4">
             <section>
-                <Breadcrumb routes={rotasBreadcrumb}/>
 
                 {/* BARRA MENU INTERNO */}
                 <div style={{ alignItems: 'center' }} className="col-12 row justify-content-between mx-0 px-0">
-                    <span>
-                        <h1 className="display-4">{PAGE_TITLE}</h1>
-                    </span>
-                    <span>
-                        <button type="button" className="btn btn-success ml-2" onClick={() => openModal('ADD', undefined)}>
-                            Add Category
-                        </button>
-                    </span>
+                    <PageTitle title={PAGE_TITLE} breadcrumb={rotasBreadcrumb} />
+                    <button type="button" className="btn btn-success ml-2" onClick={() => openModal('ADD', undefined)}>
+                        Add Category
+                    </button>
                 </div>
 
                 <Table

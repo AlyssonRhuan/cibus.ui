@@ -1,5 +1,5 @@
 import SalesDataTableConfig from './SaleDataTableConfig';
-import Breadcrumb from '../../components/Breadcrumb';
+import PageTitle from '../../components/PageTitle';
 import React, { useState, useEffect } from 'react';
 import Table from '../../components/Table';
 import Toast from '../../components/Toast';
@@ -18,6 +18,12 @@ const PAGE_TITLE = 'Sales'
 
 function Sale() {
     const [sales, setSales] = useState();    
+    const [filters, setFilters] = useState({
+        'product': '',
+        'category': '',
+        'date': '',
+        'status': ''
+    });
 
 
     useEffect(() => {
@@ -28,7 +34,16 @@ function Sale() {
 
     async function getAll(novaPagina, novaQtdElementos) {
         try{
-            const response = await api.get(`${END_POINT}?page=${novaPagina || 1}&quantity=${novaQtdElementos || 10}`, await Auth.getAuthHeader());
+            const response = await api.get(
+                END_POINT + 
+                "?page=" +  ( novaPagina || 1 ) +
+                "&quantity=" + ( novaQtdElementos || 10 ) +
+                "&product=" + filters.product +
+                "&date=" + filters.date +
+                "&status=" + filters.status
+                , await Auth.getAuthHeader()
+            );
+                
             setSales(response.data)
         }
         catch(e){
@@ -46,16 +61,11 @@ function Sale() {
     return (
         <main className="App col-12 pr-4 ml-1 pl-4">
             <section>
-                <Breadcrumb routes={rotasBreadcrumb}/>
 
                 {/* BARRA MENU INTERNO */}
                 <div style={{ alignItems: 'center' }} className="col-12 row justify-content-between mx-0 px-0">
-                    <span>
-                        <h1 className="display-4">{PAGE_TITLE}</h1>
-                    </span>
-                    <span>        
-
-                    </span>
+                    <PageTitle title={PAGE_TITLE} breadcrumb={rotasBreadcrumb} />
+                    <Filters/>
                 </div>
 
                 <Table
@@ -63,7 +73,6 @@ function Sale() {
                     columns={SalesDataTableConfig}            
                     onGetAll={getAll}
                     hasAction={false}
-                    filters={<Filters/>}
                     />
 
             </section>

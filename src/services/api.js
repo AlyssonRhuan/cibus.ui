@@ -19,6 +19,7 @@ api.interceptors.response.use(function (response) {
     if (e.message === "Network Error") {
         localStorage.removeItem("Authorization");
         Auth.onLogout();
+        window.location.href = "/unavailableservice";
     }
     else if (e.response) {
         if (e.response.status && e.response.status === 403) {
