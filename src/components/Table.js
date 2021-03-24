@@ -55,7 +55,8 @@ function Table(props) {
                         pagination={true}                                                   //HABILITA PAGINAÇÃO
                         striped={true}                                                      //LINHAS INTERVALADAS DE COR
                         noHeader={true}                                                     //RETIRAR O CABEÇALHO
-                        subHeader={false}                                                   //RETIRAR O SUBCABEÇALHO
+                        subHeader={props.filters ? true : false}                            //RETIRAR O SUBCABEÇALHO
+                        subHeaderComponent={props.filters}
                         fixedHeader={true}                                                  //DEIXA O CABEÇALHO FIXO
                         fixedHeaderScrollHeight='59vh'                                      //DEFINE ALTURA DO CORPO
                         paginationServer={true}                                             //PAGINAÇÃO NO BACK

@@ -1,7 +1,7 @@
 import React from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 
-function Filters(props) {
+function FiltersSale(props) {
 
   return (
     <main>
@@ -10,7 +10,11 @@ function Filters(props) {
           <input type="text" className="form-control" id="Product" placeholder="Product"/>
         </div>
         <div className="col-auto">
-          <input type="text" className="form-control" id="Category" placeholder="Category"/>
+          <select className="form-control" aria-label="Default select example">
+            <option value="">Category</option>
+            <option value="YES">Assado</option>
+            <option value="NO">Sobremesa</option>
+          </select>
         </div>
         <div className="col-auto">
           <input type="text" className="form-control" id="Date" placeholder="Date"/>
@@ -22,12 +26,12 @@ function Filters(props) {
             <option value="ORDER">Pedido</option>
           </select>
         </div>
-        <div className="col-auto">
-          <button type="button" className="btn btn-primary"><AiOutlineSearch/></button>
+        <div className="col-auto pr-0">
+          <button type="button" className="btn btn-primary">Buscar <AiOutlineSearch/></button>
         </div>
       </div>
     </main>
   );
 }
 
-export default Filters;
+export default FiltersSale;

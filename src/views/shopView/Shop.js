@@ -88,7 +88,6 @@ function Shop(props) {
       let productToCart = {
         quantity: 1,
         price: product.price,
-        saleDate: '2021-03-23',
         product: product
       }
 

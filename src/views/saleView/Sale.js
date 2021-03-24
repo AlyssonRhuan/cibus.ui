@@ -5,7 +5,7 @@ import Table from '../../components/Table';
 import Toast from '../../components/Toast';
 import api from '../../services/api';
 import Auth from '../../storage/Auth.storage';
-import Filters from './Filters';
+import FiltersSale from './FiltersSale';
 import { AiFillCaretDown } from 'react-icons/ai';
 
 const rotasBreadcrumb =[
@@ -65,13 +65,13 @@ function Sale() {
                 {/* BARRA MENU INTERNO */}
                 <div style={{ alignItems: 'center' }} className="col-12 row justify-content-between mx-0 px-0">
                     <PageTitle title={PAGE_TITLE} breadcrumb={rotasBreadcrumb} />
-                    <Filters/>
                 </div>
 
                 <Table
                     data={sales}
                     columns={SalesDataTableConfig}            
                     onGetAll={getAll}
+                    filters={<FiltersSale/>}
                     hasAction={false}
                     />
 

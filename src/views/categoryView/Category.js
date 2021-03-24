@@ -7,6 +7,7 @@ import Table from '../../components/Table';
 import Toast from '../../components/Toast';
 import api from '../../services/api';
 import Auth from '../../storage/Auth.storage';
+import FilterCategory from './FilterCategory';
 
 const rotasBreadcrumb =[
   { name: "Home",     path: "/"},
@@ -109,7 +110,8 @@ function Category() {
                 <Table
                     data={categorys}
                     columns={CategoryDataTableConfig}
-                    onAction={openModal}                   
+                    onAction={openModal}     
+                    filters={<FilterCategory/>}              
                     onGetAll={getAllCategorys}
                     />
 
@@ -138,7 +140,7 @@ function Category() {
                 {
                     modal && modal === 'DEL' && <ModalConfirmation
                         title="Delete category"
-                        text={`Deseja deletar a categoria ${categoryToAction.nome}`}
+                        text={`Deseja deletar a categoria ${categoryToAction.name}`}
                         onClose={closeModal}
                         onResponse={deleteCategory}
                         isOpen={modal === 'DEL'} />

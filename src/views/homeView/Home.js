@@ -8,12 +8,19 @@ import Auth from '../../storage/Auth.storage';
 import Toast from '../../components/Toast';
 import { FiDollarSign, FiBookOpen, FiBook, FiAnchor } from 'react-icons/fi';
 import PageTitle from '../../components/PageTitle';
+import FilterHome from './FilterHome';
 
 const END_POINT = 'dashboard'
 const PAGE_TITLE = 'Home'
 
+const rotasBreadcrumb =[
+  { name: "Home",     path: "/"},
+  { name: "Sales"}
+]
+
 function Home() {
   const [isLoading, setIsLoading] = useState(false);
+  const [filterSelected, setFilterSelected] = useState('DAY');
   const [dashboardData, setDashboardData] = useState({
     'salesTotal': 0,
     'ordersOpenned': 0,
@@ -23,13 +30,18 @@ function Home() {
   });
 
   useEffect(() => {   
-    getData();
+    getData(filterSelected);
   }, [])
 
-  async function getData() {
+  function onFilterSelected(period){
+    setFilterSelected(period);
+    getData(period);
+  }
+
+  async function getData(period) {
     try {
       setIsLoading(true);
-      const response = await api.get(`${END_POINT}`, await Auth.getAuthHeader())
+      const response = await api.get(`${END_POINT}/${period}`, await Auth.getAuthHeader())
       setDashboardData(response.data);
       setIsLoading(false);
     }
@@ -50,12 +62,13 @@ function Home() {
         : <section>
 
           {/* BARRA MENU INTERNO */}
-          <div className="row mx-0">
-            <PageTitle title={PAGE_TITLE} />
+          <div style={{ alignItems: 'center' }}  className="col-12 row justify-content-between mx-0 px-0">
+            <PageTitle title={PAGE_TITLE}/>
+            <FilterHome onSelected={onFilterSelected} filterSelected={filterSelected}/>
           </div>
 
           <div className='row mt-3'>
-            <DashboardSimpleCard title='VENDAS DO DIA' value={dashboardData.salesTotal.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})} color='blue' col='col-sm-4' icon={<FiDollarSign/>}/>
+            <DashboardSimpleCard title='VALOR EM VENDAS' value={dashboardData.salesTotal.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})} color='blue' col='col-sm-4' icon={<FiDollarSign/>}/>
             <DashboardSimpleCard title='PEDIDOS EM ABERTO' value={dashboardData.ordersOpenned} color='orange' col='col-sm-4' icon={<FiBookOpen/>}/>
             <DashboardSimpleCard title='PEDIDOS FECHADOS' value={dashboardData.ordersClosed} color='green' col='col-sm-4' icon={<FiBook/>}/>
           </div>

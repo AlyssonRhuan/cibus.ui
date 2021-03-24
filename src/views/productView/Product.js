@@ -8,6 +8,7 @@ import React, { useState, useEffect } from 'react';
 import PageTitle from '../../components/PageTitle';
 import ProductDataTableConfig from './ProductDataTableConfig';
 import ModalConfirmation from '../../utils/ModalConfirmationUtils';
+import FilterProduct from './FilterProduct';
 
 const rotasBreadcrumb = [
   { name: "Home", path: "/" },
@@ -115,6 +116,7 @@ function Product() {
               data={products}
               columns={ProductDataTableConfig}
               onAction={openModal}
+              filters={<FilterProduct/>}
               onGetAll={getAllProducts}
             />
           }
