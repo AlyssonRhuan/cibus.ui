@@ -1,71 +1,72 @@
 import api from '../../services/api';
-import ModalProduct from './ModalProduct';
+import ModalCash from './ModalCash';
 import Toast from '../../components/Toast';
 import Table from '../../components/Table';
 import Auth from '../../storage/Auth.storage';
 import Loading from '../../components/Loading';
 import React, { useState, useEffect } from 'react';
 import PageTitle from '../../components/PageTitle';
-import ProductDataTableConfig from './ProductDataTableConfig';
+import CashDataTableConfig from './CashDataTableConfig';
 import ModalConfirmation from '../../utils/ModalConfirmationUtils';
-import FilterProduct from './FilterProduct';
+import FilterCash from './FilterCash';
 
 const rotasBreadcrumb = [
   { name: "Home", path: "/" },
-  { name: "Produtos" }
+  { name: "Caixa" }
 ]
 
-const END_POINT = 'product'
-const PAGE_TITLE = 'Produto'
+const END_POINT = 'cash'
+const PAGE_TITLE = 'Caixa'
 
-function Product() {
-  const [products, setProducts] = useState();
-  const [productToAction, setProductToAction] = useState();
+function Cash() {
+  const [cash, setCashs] = useState();
+  const [cashToAction, setCashToAction] = useState();
   const [modal, setModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [filters, setFilters] = useState({})
 
   useEffect(() => {
-    getAllProducts();
+    getAll();
   }, [])
 
   // FUNÇÕES PARA ABRIR MODAL
 
   function openModal(modal, dado = undefined) {
     setModal(modal);
-    setProductToAction(dado);
+    setCashToAction(dado);
   }
 
   function closeModal() {
     setModal(undefined);
-    getAllProducts();
+    getAll();
   }
 
   // FUNÇÕES 
   function onFilter(){
-    getAllProducts();
+    getAll();
   }
 
-  async function getAllProducts(page, quantity) {
+  async function getAll(page, quantity) {
     try {
       const response = await api.get(END_POINT + "?page=" + (page || 1)
           + "&quantity=" + (quantity || 10)
-          + "&name=" + (filters.name || '')
-          + "&categoryId=" + (filters.category || 0)
-          + "&active=" + (filters.active || 'BOUTH')
+          + "&user=" + (filters.user || '')
+          + "&description=" + (filters.description || '')
+          + "&openDate=" + (filters.openDate || '')
+          + "&closeDate=" + (filters.closeDate || '')
           , await Auth.getAuthHeader());
-      setProducts(response.data);
+      setCashs(response.data);
     }
     catch (e) {
       error(e);
     }
   }
 
-  async function addProduct(data) {
+  async function addCash(data) {
     try {
       setIsLoading(true);
       data = await api.post(`${END_POINT}`, data, await Auth.getAuthHeader());
-      Toast.success(`${PAGE_TITLE} adicionado!`);
+      Toast.success(`${PAGE_TITLE} adicionado!`)
       setIsLoading(false);
     }
     catch (e) {
@@ -75,9 +76,9 @@ function Product() {
     closeModal();
   }
 
-  async function editProduct(data) {
+  async function editCash(data) {
     try {
-      await api.put(`${END_POINT}/${productToAction.id}`, data, await Auth.getAuthHeader());
+      await api.put(`${END_POINT}/${cashToAction.id}`, data, await Auth.getAuthHeader());
       Toast.success(`${PAGE_TITLE} atualizado!`);
     }
     catch (e) {
@@ -87,10 +88,10 @@ function Product() {
     closeModal();
   }
 
-  async function deleteProduct(validation) {
+  async function deleteCash(validation) {
     try {
       if (validation) {
-        await api.delete(`${END_POINT}/${productToAction.id}`, await Auth.getAuthHeader(), await Auth.getAuthHeader());
+        await api.delete(`${END_POINT}/${cashToAction.id}`, await Auth.getAuthHeader(), await Auth.getAuthHeader());
         Toast.success(`${PAGE_TITLE} removido!`);
       }
     }
@@ -118,17 +119,17 @@ function Product() {
           <div style={{ alignItems: 'center' }} className="col-12 row justify-content-between mx-0 px-0">
             <PageTitle title={PAGE_TITLE} breadcrumb={rotasBreadcrumb} />
             <button type="button" className="btn btn-success ml-2" onClick={() => openModal('ADD')}>
-              Adicionar produto
+              Adicionar caixa
             </button>
           </div>
 
           {
-            products && <Table
-              data={products}
-              columns={ProductDataTableConfig}
+            cash && <Table
+              data={cash}
+              columns={CashDataTableConfig}
               onAction={openModal}
-              filters={<FilterProduct filters={filters} onSetFilters={setFilters} onFilter={onFilter}/>}
-              onGetAll={getAllProducts}
+              filters={<FilterCash filters={filters} onSetFilters={setFilters} onFilter={onFilter}/>}
+              onGetAll={getAll}
             />
           }
 
@@ -138,29 +139,29 @@ function Product() {
 
         {/* MODAIS */}
         {
-          modal && modal === 'ADD' && <ModalProduct
+          modal && modal === 'ADD' && <ModalCash
             title={`Adicionar ${PAGE_TITLE}`}
             data={undefined}
             onClose={closeModal}
-            onSave={addProduct}
+            onSave={addCash}
             isOpen={modal === 'ADD'} />
         }
 
         {
-          modal && modal === 'EDI' && <ModalProduct
+          modal && modal === 'EDI' && <ModalCash
               title={`Editar ${PAGE_TITLE}`}
-              data={productToAction}
+              data={cashToAction}
               onClose={closeModal}
-              onSave={editProduct}
+              onSave={editCash}
               isOpen={modal === 'EDI'} />
         }
 
         {
           modal && modal === 'DEL' && <ModalConfirmation
             title={`Deletar ${PAGE_TITLE}`}
-            text={`Deseja deletar o produto ${productToAction.name}`}
+            text={`Deseja deletar o caixa ${cashToAction.name}`}
             onClose={closeModal}
-            onResponse={deleteProduct}
+            onResponse={deleteCash}
             isOpen={modal === 'DEL'} />
         }
 
@@ -169,4 +170,4 @@ function Product() {
   );
 }
 
-export default Product;
+export default Cash;

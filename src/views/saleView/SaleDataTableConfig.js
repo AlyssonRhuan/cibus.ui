@@ -2,29 +2,29 @@ import React from 'react';
 
 export default [  
   {
-    name: 'Product',
+    name: 'Produto',
     selector: 'product.name',
     sortable: true,
   },
   {
-    name: 'Quantity',
+    name: 'Quantidade',
     selector: 'quantity',
     sortable: true,
   },
   {
-    name: 'Price',
+    name: 'Preço',
     selector: 'price',
     sortable: true,
     format: row => row.price && `R$ ${row.price.toFixed(2)}`
   },
   {
-    name: 'Sale Date',
+    name: 'Data',
     selector: 'saleDate',
     sortable: true,
     format: row => ((new Date(row.saleDate).getDate() )) + "/" + ((new Date(row.saleDate).getMonth() + 1)) + "/" + new Date(row.saleDate).getFullYear()
   },
   {
-    name: 'Sale Status',
+    name: 'Status',
     selector: 'saleStatus',
     sortable: true,
     format: row => row.saleStatus === 'PAID' ? 'Pago' : 'Pedido'

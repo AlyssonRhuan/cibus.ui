@@ -82,7 +82,7 @@ function UploadImage(props) {
       <div className="col-12">        
         <input id="uploadPhoto" type="file" accept="image/*" style={{display:"none"}}  onChange={e => onSelectFile(e)}/>
         <label htmlFor="uploadPhoto" className="btn btn btn-light mt-2">
-            Upload picture
+            Carregar foto
         </label>
         {hasError && <small className="form-text text-danger mb-3">File size exceeds 2 MB. Please, try again!</small>}
       </div>

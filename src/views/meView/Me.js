@@ -6,17 +6,18 @@ import Auth from '../../storage/Auth.storage';
 import Table from '../../components/Table';
 import Toast from '../../components/Toast';
 import api from '../../services/api';
+import IconsUtils from '../../utils/IconsUtils';
 
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 
 const rotasBreadcrumb = [
     { name: "Home", path: "/" },
-    { name: "Me" }
+    { name: "Eu" }
 ]
 
 const END_POINT = 'me'
-const PAGE_TITLE = 'Me'
+const PAGE_TITLE = 'Eu'
 
 function User(props) {
     const [key, setKey] = useState('aboutYou');
@@ -101,26 +102,26 @@ function User(props) {
 
                             <Tabs defaultActiveKey="home" transition={false} id="noanim-tab-example" activeKey={key} onSelect={k => setKey(k)}>
 
-                                <Tab eventKey="aboutYou" title="About you">
+                                <Tab eventKey="aboutYou" title="Sombre mim">
 
                                     <form>
                                         <section className="col-12 mt-5 row">
                                             <div className="d-flex flex-row flex-wrap w-100">
 
                                                 <div className="col-4">
-                                                    <img className='figure-img img-fluid img-thumbnail' style={{ width: "70%" }} src={image} />
+                                                    <img className='figure-img img-fluid img-thumbnail' style={{ width: "70%" }} src={image ? image : IconsUtils.Logo} />
                                                     <UploadImage onSave={saveImage} />
                                                 </div>
 
                                                 <div className="col-8 row align-self-start">
                                                     <div className="form-group col-12">
-                                                        <label htmlFor='userName'>Name</label>
-                                                        <input type='text' className="form-control" id='userName' placeholder='User name'
+                                                        <label htmlFor='userName'>Nome</label>
+                                                        <input type='text' className="form-control" id='userName' placeholder='Nome'
                                                             onChange={event => changeMe({ ...me, name: event.target.value })} value={me.name} />
                                                     </div>
                                                     <div className="form-group col-12">
                                                         <label htmlFor='userEmail'>Email</label>
-                                                        <input type='text' className="form-control" id='userEmail' placeholder='User email'
+                                                        <input type='text' className="form-control" id='userEmail' placeholder='Email'
                                                             onChange={event => changeMe({ ...me, email: event.target.value })} value={me.email} />
                                                     </div>
                                                 </div>
@@ -132,15 +133,15 @@ function User(props) {
                                             onClick={saveChanges}
                                             disabled={!isMeChanged}
                                         >
-                                            Save
+                                            Salvar
                                     </button>
                                     </form>
                                 </Tab>
 
-                                <Tab eventKey="settings" title="Settings">
+                                <Tab eventKey="settings" title="Configurações">
                                     <section className="col-12 mt-5">
                                         <div>
-                                            Soon
+                                            Em breve
                                     </div>
                                     </section>
                                 </Tab>

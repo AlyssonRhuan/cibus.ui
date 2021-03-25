@@ -27,7 +27,7 @@ function Table(props) {
 
     const actions = [
         {
-          name: 'Actions',
+          name: 'Ações',
           width: '150px',
           cell: row => <div className="actionsBar">
             <a  data-toggle="tooltip" title="Edit"
@@ -49,7 +49,7 @@ function Table(props) {
                     props.data
                     ? <DataTable
                         className="dataTable float-right"
-                        style={{height:'70vh', overflowY:'hidden'}}    
+                        style={{height:'60vh', overflowY:'hidden'}}    
                         columns={props.hasAction == false ?  [...props.columns] : [...props.columns, ...actions]}                            //COLUNAS
                         data={props.data.content}                                           //VALORES
                         pagination={true}                                                   //HABILITA PAGINAÇÃO

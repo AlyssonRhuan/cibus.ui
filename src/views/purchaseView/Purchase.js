@@ -10,11 +10,11 @@ import { AiOutlineShoppingCart } from 'react-icons/ai'
 
 const rotasBreadcrumb = [
   { name: "Home", path: "/" },
-  { name: "Purchase" }
+  { name: "Vendas" }
 ]
 
 const END_POINT = ''
-const PAGE_TITLE = 'Purchase'
+const PAGE_TITLE = 'Vendas'
 
 function Purchase() {
   const [isLoading, setIsLoading] = useState(false);

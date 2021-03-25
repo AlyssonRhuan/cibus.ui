@@ -55,19 +55,19 @@ function ModalComponent(props) {
             </div>
 
             <div className="form-group col-12">
-              <label htmlFor='description'>Description</label>
-              <input type='text' className="form-control" id='description' placeholder='Description'
+              <label htmlFor='description'>Descrição</label>
+              <input type='text' className="form-control" id='description' placeholder='Descrição'
                 onChange={event => setProduct({ ...product, description: event.target.value })} value={product.description} />
             </div>
 
             <div className="form-group col-12">
-              <label htmlFor='price'>Price</label>
-              <input type='text' className="form-control" id='price' placeholder='Price'
+              <label htmlFor='price'>Preço</label>
+              <input type='text' className="form-control" id='price' placeholder='Preço'
                 onChange={event => setProduct({ ...product, price: event.target.value })} value={product.price} />
             </div>
 
             <div className="form-group col-12">
-              <label htmlFor="productCategory">Category</label>
+              <label htmlFor="productCategory">Categorias</label>
               <Select isMulti className="basic-multi-select" classNamePrefix="select"
                 onChange={event => setProduct({ ...product, categorys: event })}
                 options={listCategorys && listCategorys} value={product.categorys} />
@@ -77,7 +77,7 @@ function ModalComponent(props) {
               <div className="custom-control custom-switch">
                 <input type="checkbox" className="custom-control-input" id="switchVisivel" checked={product.visible}
                   onChange={event => setProduct({ ...product, visible: event.target.checked })} />
-                <label className="custom-control-label" htmlFor="switchVisivel">Product {product.visible ? "visible" : "invisible"}</label>
+                <label className="custom-control-label" htmlFor="switchVisivel">Produto {!product.visible && "não"} visível</label>
               </div>
             </div>
           </ModalBody>

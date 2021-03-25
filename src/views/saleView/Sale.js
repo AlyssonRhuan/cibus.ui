@@ -10,40 +10,34 @@ import { AiFillCaretDown } from 'react-icons/ai';
 
 const rotasBreadcrumb =[
   { name: "Home",     path: "/"},
-  { name: "Sales"}
+  { name: "Vendas"}
 ]
 
 const END_POINT = 'sale'
-const PAGE_TITLE = 'Sales'
+const PAGE_TITLE = 'Vendas'
 
 function Sale() {
     const [sales, setSales] = useState();    
-    const [filters, setFilters] = useState({
-        'product': '',
-        'category': '',
-        'date': '',
-        'status': ''
-    });
-
+    const [filters, setFilters] = useState({})
 
     useEffect(() => {
         getAll();
     }, [])
 
     // FUNÇÕES 
+    function onFilter(){
+        getAll();
+    }
 
     async function getAll(novaPagina, novaQtdElementos) {
-        try{
-            const response = await api.get(
-                END_POINT + 
-                "?page=" +  ( novaPagina || 1 ) +
-                "&quantity=" + ( novaQtdElementos || 10 ) +
-                "&product=" + filters.product +
-                "&date=" + filters.date +
-                "&status=" + filters.status
-                , await Auth.getAuthHeader()
-            );
-                
+        try {
+          const response = await api.get(END_POINT + "?page=" + (novaPagina || 1)
+              + "&quantity=" + (novaQtdElementos || 10)
+              + "&product=" + (filters.product || '')
+              + "&date=" + (filters.date || '')
+              + "&saleStatus=" + (filters.status || 'BOUTH')
+              , await Auth.getAuthHeader());
+
             setSales(response.data)
         }
         catch(e){
@@ -71,7 +65,7 @@ function Sale() {
                     data={sales}
                     columns={SalesDataTableConfig}            
                     onGetAll={getAll}
-                    filters={<FiltersSale/>}
+                    filters={<FiltersSale filters={filters} onSetFilters={setFilters} onFilter={onFilter}/>}
                     hasAction={false}
                     />
 

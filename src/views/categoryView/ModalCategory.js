@@ -42,14 +42,14 @@ function ModalComponent(props) {
                 
                 <ModalBody className="row">                    
                   <div className="form-group col-12">
-                    <label for='userName'>Name</label>
-                    <input type='text' className="form-control" id='categoryName' placeholder='Category name'
+                    <label for='userName'>Nome</label>
+                    <input type='text' className="form-control" id='categoryName' placeholder='Nome da categoria'
                       onChange={event => setCategory({...category, name:event.target.value})} value={category.name}/>
                   </div>  
 
                   <div className="form-group col-12">
-                    <label for='userName'>Description</label>
-                    <input type='text' className="form-control" id='categoryName' placeholder='Category name'
+                    <label for='userName'>Descrição</label>
+                    <input type='text' className="form-control" id='categoryName' placeholder='Descrição'
                       onChange={event => setCategory({...category, description:event.target.value})} value={category.description}/>
                   </div>  
                                                                
@@ -63,8 +63,8 @@ function ModalComponent(props) {
                 </ModalBody>
 
                 <ModalFooter>
-                    <button type="button" onClick={() => closeModal()} className="btn btn-light">Cancel</button>
-                    <button type="button" onClick={() => saveModal()} className="btn btn-success">Save</button>
+                    <button type="button" onClick={() => closeModal()} className="btn btn-light">Cancelar</button>
+                    <button type="button" onClick={() => saveModal()} className="btn btn-success">Salvar</button>
                 </ModalFooter>
 
             </Modal>

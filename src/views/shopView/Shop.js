@@ -173,13 +173,13 @@ function Shop(props) {
                     <nav aria-label="Page navigation example" style={{width: '100%'}}>
                     <ul className="pagination">
                       <li className={`page-item ${pagination.first ? "disabled" : ""}`}>
-                        <a className="page-link" href="#" tabindex="-1" aria-disabled={`${pagination.first ? "true" : "false"}`} onClick={() => onPreviousPage()}>Previous</a>
+                        <a className="page-link" href="#" tabindex="-1" aria-disabled={`${pagination.first ? "true" : "false"}`} onClick={() => onPreviousPage()}>Anterior</a>
                       </li>
                       <li className="page-item disabled">
                         { pagination ? <a className="page-link" href="#" tabindex="-1" aria-disabled="true">{pagination.page} de {pagination.totalPages}</a> : "0"}
                       </li>
                       <li className={`page-item ${pagination.last ? "disabled" : ""}`}>
-                        <a className="page-link" href="#" aria-disabled={`${pagination.last ? "true" : "false"}`} onClick={() => onNextPage()}>Next</a>
+                        <a className="page-link" href="#" aria-disabled={`${pagination.last ? "true" : "false"}`} onClick={() => onNextPage()}>Próximo</a>
                       </li>
                     </ul>
                   </nav>

@@ -34,8 +34,8 @@ function ModalConfirmationUtils(props) {
                 </ModalBody>
 
                 <ModalFooter>
-                    <button type="button" onClick={() => response(false)} className="btn btn-danger">No</button>
-                    <button type="button" onClick={() => response(true)} className="btn btn-success">Yes</button>
+                    <button type="button" onClick={() => response(false)} className="btn btn-danger">Não</button>
+                    <button type="button" onClick={() => response(true)} className="btn btn-success">Sim</button>
                 </ModalFooter>
 
             </Modal>

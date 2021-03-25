@@ -11,16 +11,17 @@ import FilterCategory from './FilterCategory';
 
 const rotasBreadcrumb =[
   { name: "Home",     path: "/"},
-  { name: "Category"}
+  { name: "Categoria"}
 ]
 
 const END_POINT = 'category'
-const PAGE_TITLE = 'Category'
+const PAGE_TITLE = 'Categoria'
 
 function Category() {
     const [categorys, setCategorys] = useState();
     const [categoryToAction, setCategoryToAction] = useState()
     const [modal, setModal] = useState(undefined)
+    const [filters, setFilters] = useState({})
 
     useEffect(() => {
         getAllCategorys();
@@ -40,9 +41,18 @@ function Category() {
 
     // FUNÇÕES 
 
+    function onFilter(){
+        getAllCategorys();
+    }
+
     async function getAllCategorys(novaPagina, novaQtdElementos) {
         try{
-            const response = await api.get(`${END_POINT}?page=${novaPagina || 1}&quantity=${novaQtdElementos || 10}`, await Auth.getAuthHeader());
+            const response = await api.get(END_POINT + "?page=" + (novaPagina || 1)
+                + "&quantity=" + (novaQtdElementos || 10)
+                + "&name=" + (filters.name || '')
+                + "&description=" + (filters.description || '')
+                + "&active=" + (filters.active || 'BOUTH')
+                , await Auth.getAuthHeader());
             setCategorys(response.data)
         }
         catch(e){
@@ -53,7 +63,7 @@ function Category() {
     async function addCategory(dados) {
         try{
             await api.post(`${END_POINT}`, dados, await Auth.getAuthHeader());
-            Toast.success(`${PAGE_TITLE} added!`)
+            Toast.success(`${PAGE_TITLE} adicionada!`)
         }
         catch(e){
             error(e);
@@ -65,7 +75,7 @@ function Category() {
     async function editCategory(dados) {
         try{
             await api.put(`${END_POINT}/${categoryToAction.id}`, dados, await Auth.getAuthHeader());
-            Toast.success(`${PAGE_TITLE} updated!`)
+            Toast.success(`${PAGE_TITLE} atualizada!`)
         }
         catch(e){
             error(e);
@@ -78,7 +88,7 @@ function Category() {
         try{
             if (validacao) {
                 await api.delete(`${END_POINT}/${categoryToAction.id}`, await Auth.getAuthHeader());
-                Toast.success(`${PAGE_TITLE} removed!`)
+                Toast.success(`${PAGE_TITLE} removida!`)
             }            
         }
         catch(e){
@@ -103,7 +113,7 @@ function Category() {
                 <div style={{ alignItems: 'center' }} className="col-12 row justify-content-between mx-0 px-0">
                     <PageTitle title={PAGE_TITLE} breadcrumb={rotasBreadcrumb} />
                     <button type="button" className="btn btn-success ml-2" onClick={() => openModal('ADD', undefined)}>
-                        Add Category
+                        Adicionar categoria
                     </button>
                 </div>
 
@@ -111,7 +121,7 @@ function Category() {
                     data={categorys}
                     columns={CategoryDataTableConfig}
                     onAction={openModal}     
-                    filters={<FilterCategory/>}              
+                    filters={<FilterCategory filters={filters} onSetFilters={setFilters} onFilter={onFilter}/>}              
                     onGetAll={getAllCategorys}
                     />
 
@@ -121,7 +131,7 @@ function Category() {
                 {/* MODAIS */}
                 {
                     modal && modal === 'ADD' && <ModalCategory
-                        title="Add category"
+                        title="Adicionar categoria"
                         data={undefined}
                         onClose={closeModal}
                         onSave={addCategory}
@@ -130,7 +140,7 @@ function Category() {
 
                 {
                     modal && modal === 'EDI' && <ModalCategory
-                        title="Edit category"
+                        title="Editar categoria"
                         data={categoryToAction}
                         onClose={closeModal}
                         onSave={editCategory}
@@ -139,7 +149,7 @@ function Category() {
 
                 {
                     modal && modal === 'DEL' && <ModalConfirmation
-                        title="Delete category"
+                        title="Deletar categoria"
                         text={`Deseja deletar a categoria ${categoryToAction.name}`}
                         onClose={closeModal}
                         onResponse={deleteCategory}

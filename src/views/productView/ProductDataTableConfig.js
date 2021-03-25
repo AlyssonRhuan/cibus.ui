@@ -1,25 +1,27 @@
 export default [
     {
-      name: 'Name',
+      name: 'Nome',
       selector: 'name',
       sortable: true,
     },
     {
-      name: 'Price',
+      name: 'Preço',
       selector: 'price',
       sortable: true,
       format: row => row.price && `R$ ${row.price.toFixed(2)}`
     },
     {
-      name: 'Categorys',
+      name: 'Categorias',
       selector: 'categorys',
       sortable: true,
-      format: row => row.categorys.length
+      format: row => row.categorys.map( (category, key) => {
+        return category.label + ( key + 1 !== row.categorys.length ? ' - ' : '' )
+      })
     },
     {
-      name: 'Visible',
+      name: 'Visivel',
       selector: 'visible',
       sortable: true,
-      format: row => row.visible ? "Yes" : "No"
+      format: row => row.visible ? "Sim" : "Não"
     }
 ];
