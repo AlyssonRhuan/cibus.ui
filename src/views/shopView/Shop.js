@@ -6,9 +6,7 @@ import api from '../../services/api';
 import Auth from '../../storage/Auth.storage';
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 import ModalCart from './ModalCart';
-
-const END_POINT = ''
-const PAGE_TITLE = 'Purchase'
+import ModalPayment from './ModalPayment';
 
 function Shop(props) {
   const [isLoading, setIsLoading] = useState(false);
@@ -16,6 +14,7 @@ function Shop(props) {
   const [pagination, setPagination] = useState({  });
   const [cart, setCart] = useState([]);
   const [modal, setModal] = useState();
+  const [loadCart, setLoadCart] = useState(true);
 
   const [categories, setCategories] = useState();
   const [products, setProducts] = useState();
@@ -57,6 +56,11 @@ function Shop(props) {
       first: dados.data.first
     })
     setIsLoading(false);
+  }
+
+  function onModalPayment(){
+    closeModal();
+    setModal('PAYMENT');
   }
 
   function onNextPage(){
@@ -107,10 +111,10 @@ function Shop(props) {
     setCart([])
   }
   
-  async function onConfirmOrder(){
+  async function onConfirmOrder(cart){
     try {
       setIsLoading(true);
-      await api.post(`sale/all`, cart, await Auth.getAuthHeader());
+      await api.post(`sale/all`, this.cart, await Auth.getAuthHeader());
       Toast.success(`Compra realizada com sucesso.`)
     }
     catch (e) {
@@ -187,7 +191,7 @@ function Shop(props) {
                 }
               
                 <div>
-                  <button type="button" className="btn btn-warning ml-2" onClick={() => openModal('ADD')}>
+                  <button type="button" className="btn btn-warning ml-2" onClick={() => openModal('CART')}>
                     <AiOutlineShoppingCart/> Carrinho <span className="badge badge-light">{cart.length}</span>
                   </button>
                 </div>
@@ -196,13 +200,22 @@ function Shop(props) {
           <section>
             {/* MODAIS */}
             {
-              modal && modal === 'ADD' && <ModalCart
+              modal && modal === 'CART' && <ModalCart
                 title={`Carrinho`}
                 cart={cart}
                 onClose={closeModal}
                 onCancelOrder={onCancelOrder}
+                onModalPayment={onModalPayment}
+                isOpen={modal === 'CART'} />
+            }
+            {
+              modal && modal === 'PAYMENT' && <ModalPayment
+                title={`Pagamento`}
+                cart={cart}
+                onClose={closeModal}
+                onCancelOrder={onCancelOrder}
                 onConfirmOrder={onConfirmOrder}
-                isOpen={modal === 'ADD'} />
+                isOpen={modal === 'PAYMENT'} />
             }
           </section>
         </section>

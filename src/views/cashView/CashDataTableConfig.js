@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default [
     {
       name: 'Usuário',
@@ -25,7 +27,7 @@ export default [
       name: 'Data de fechamento',
       selector: 'closeDate',
       sortable: true,
-      format: row => row.closeDate && ((new Date(row.closeDate).getDate() )) + "/" + ((new Date(row.closeDate).getMonth() + 1)) + "/" + new Date(row.closeDate).getFullYear()
+      format: row => row.closeDate ? ((new Date(row.closeDate).getDate() )) + "/" + ((new Date(row.closeDate).getMonth() + 1)) + "/" + new Date(row.closeDate).getFullYear() : <b style={{color: 'green'}}>ABERTO</b>
     },
     {
       name: 'Valor',

@@ -21,7 +21,7 @@ function ModalConfirmationUtils(props) {
   return (
     <main>
         <section>
-            <Modal isOpen={isOpen}>
+            <Modal size="lg" isOpen={isOpen}>
 
                 <ModalHeader>
                     {props.title}

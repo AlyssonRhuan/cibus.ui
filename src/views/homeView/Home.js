@@ -6,7 +6,8 @@ import DashboardLargeCard from '../../components/DashboardLargeCard';
 import api from '../../services/api';
 import Auth from '../../storage/Auth.storage';
 import Toast from '../../components/Toast';
-import { FiDollarSign, FiBookOpen, FiBook, FiAnchor } from 'react-icons/fi';
+import { FiDollarSign, FiBookOpen, FiBook } from 'react-icons/fi';
+import { FaCashRegister } from "react-icons/fa";
 import PageTitle from '../../components/PageTitle';
 import FilterHome from './FilterHome';
 
@@ -69,8 +70,8 @@ function Home() {
 
           <div className='row mt-3'>
             <DashboardSimpleCard title='VALOR EM VENDAS' value={dashboardData.salesTotal.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})} color='blue' col='col-sm-4' icon={<FiDollarSign/>}/>
-            <DashboardSimpleCard title='PEDIDOS EM ABERTO' value={dashboardData.ordersOpenned} color='orange' col='col-sm-4' icon={<FiBookOpen/>}/>
-            <DashboardSimpleCard title='PEDIDOS FECHADOS' value={dashboardData.ordersClosed} color='green' col='col-sm-4' icon={<FiBook/>}/>
+            <DashboardSimpleCard title='PEDIDOS' value={dashboardData.orders} color='orange' col='col-sm-4' icon={<FiBookOpen/>}/>
+            <DashboardSimpleCard title='CAIXAS ABERTOS' value={dashboardData.cashs} color='green' col='col-sm-4' icon={<FaCashRegister/>}/>
           </div>
 
           <div className='row mt-4'>

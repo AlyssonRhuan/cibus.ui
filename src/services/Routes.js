@@ -2,33 +2,35 @@ import CategoryView from '../views/categoryView/Category';
 import ProductView from '../views/productView/Product';
 import SaleView from '../views/saleView/Sale';
 import { AiOutlineUser, AiOutlineAppstore, AiOutlineBulb, AiFillCreditCard, AiOutlineShoppingCart } from "react-icons/ai";
+import { MdNotifications } from 'react-icons/md';
 import { FaCashRegister } from "react-icons/fa";
 import MeView from '../views/meView/Me';
 import PurchaseView from '../views/purchaseView/Purchase';
 import React from 'react';
 import UnavailableService from '../views/errorsView/UnavailableService';
 import CashView from '../views/cashView/Cash';
+import NotificationView from '../views/notificationView/Notifications';
 
 
 export default function Routes() {
     const rotas = [
         {
             path: "/category",
-            name: "Categoria",
+            name: "Categorias",
             view: CategoryView,
             icon: <AiOutlineAppstore/>,
             isInSideBar: true
         },
         {
             path: "/product",
-            name: "Produto",
+            name: "Produtos",
             view: ProductView,
             icon: <AiOutlineBulb/>,
             isInSideBar: true
         },
         {
             path: "/cash",
-            name: "Caixa",
+            name: "Caixas",
             view: CashView,
             icon: <FaCashRegister/>,
             isInSideBar: true
@@ -39,6 +41,13 @@ export default function Routes() {
             view: SaleView,
             icon: <AiFillCreditCard/>,
             isInSideBar: true
+        },
+        {
+            path: "/notifications",
+            name: "Notificações",
+            view: NotificationView,
+            icon: <MdNotifications/>,
+            isInSideBar: true,
         },
         {
             path: "/me",

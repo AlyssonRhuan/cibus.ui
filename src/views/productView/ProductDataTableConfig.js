@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default [
     {
       name: 'Nome',
@@ -23,5 +25,16 @@ export default [
       selector: 'visible',
       sortable: true,
       format: row => row.visible ? "Sim" : "Não"
+    },
+    {
+      name: 'Estoque atual',
+      selector: 'stockQuantity',
+      sortable: true,
+      format: row => row.stockQuantity < row.minimumStock  ? <div style={{color: 'red'}}>{row.stockQuantity}</div> : row.stockQuantity
+    },
+    {
+      name: 'Estoque minimo',
+      selector: 'minimumStock',
+      sortable: true,
     }
 ];

@@ -6,7 +6,6 @@ import Toast from '../../components/Toast';
 import api from '../../services/api';
 import Auth from '../../storage/Auth.storage';
 import FiltersSale from './FiltersSale';
-import { AiFillCaretDown } from 'react-icons/ai';
 
 const rotasBreadcrumb =[
   { name: "Home",     path: "/"},
