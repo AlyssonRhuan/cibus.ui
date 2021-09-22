@@ -5,7 +5,7 @@ import { AiOutlineUser, AiOutlineAppstore, AiOutlineBulb, AiFillCreditCard, AiOu
 import { MdNotifications } from 'react-icons/md';
 import { FaCashRegister } from "react-icons/fa";
 import MeView from '../views/meView/Me';
-import PurchaseView from '../views/purchaseView/Purchase';
+import ShopView from '../views/shopView/Shop';
 import React from 'react';
 import UnavailableService from '../views/errorsView/UnavailableService';
 import CashView from '../views/cashView/Cash';
@@ -57,9 +57,9 @@ export default function Routes() {
             isInSideBar: true
         },
         {
-            path: "/purchase",
+            path: "/shop",
             name: "Loja",
-            view: PurchaseView,
+            view: ShopView,
             icon: <AiOutlineShoppingCart/>,
             isInSideBar: true,
             style: {

@@ -9,17 +9,16 @@ import { AiOutlinePlus, AiOutlineLine } from 'react-icons/ai';
 function ModalCart(props) {
   const [isOpen, setIsOpen] = useState(false)
   const [cart, setCart] = useState([]);
-  const [totalCart, setTotalCart] = useState(0);
   const [openCashs, setOpenCashs] = useState([]);
-  const [payments, setPayments] = useState([
-    {id:1, payment:'Dinheiro', value:30},
-    {id:3, payment:'Cartão de crédito', value:10}
-  ]);
+  const [payment, setPayment] = useState();
+  const [paymentKey, setPaymentKey] = useState();
+  const [paymentsMethods, setPaymentMethods] = useState();
 
   useEffect(() => {
     setIsOpen(props.isOpen);
     setCart(props.cart);
     getAllOpenCashs();
+    getPaymentMothods();
   }, [])
 
   function closeModal() {
@@ -27,45 +26,34 @@ function ModalCart(props) {
     props.onClose(false)
   }
 
-  async function getAllOpenCashs(){    
+  async function getAllOpenCashs() {
     const dados = await api.get(`cash/all/open`, await Auth.getAuthHeader());
     setOpenCashs(dados.data);
   }
 
-  function saveModal() {
-    props.onSave()
-    setIsOpen(!isOpen)
+  async function getPaymentMothods() {
+    const dados = await api.get(`payment`, await Auth.getAuthHeader());
+    setPaymentMethods(dados.data);
   }
 
-  function onCancelOrder(){
+  function onCancelOrder() {
     props.onCancelOrder();
     closeModal();
   }
 
-  function onConfirmOrder(){
-    props.onConfirmOrder();
+  function onConfirmOrder() {
+    props.onConfirmOrder(payment);
     closeModal();
   }
 
-  function onIncreasingQuantity(productId){
-    cart.map(product => {
-      if(product.product.id === productId){
-        product.quantity = product.quantity + 1;
-      }
-    })
-  }
-  
-  function onDecreasingQuantity(productId){
-    cart.map(product => {
-      if(product.product.id === productId){
-        product.quantity = product.quantity + 1;
-      }
-    })
+  function onSelectPayment(payment, key) {
+    setPayment(payment);
+    setPaymentKey(key);
   }
 
-  function getTotalCart(){
+  function getTotalCart() {
     let total = 0;
-    cart.map( product => total = total + ( product.quantity * product.price ) )
+    cart.map(product => total = total + (product.quantity * product.price))
     return total.toFixed(2);
   }
 
@@ -93,44 +81,26 @@ function ModalCart(props) {
             </div>
             <div className="form-group col-12 mb-0">
               <label htmlFor='nomeProduto'>Formas de pagamento</label>
-            </div>
-            <div className="form-group col-4 mb-0">
-              <select className="form-control" aria-label="Default select example">
-                  <option value="dinheiro" >Dinheiro</option>
-                  <option value="dinheiro" >Cartão de crédito</option>
-                  <option value="dinheiro" >Cartão de débito</option>
-                  <option value="dinheiro" >Credito em conta</option>
-              </select>
-            </div>
-            <div className="form-group col-4 mb-0">
-              <input type='text' className="form-control" id='nomeProduto' placeholder='Valor'/>
-            </div>
-            <div className="form-group col-4 mb-0">
-              <button type="button" className="btn btn-light">Adicionar pagamento</button>
-            </div>
-            <div className="form-group col-12">
               <ol className="list-group list-group-numbered">
                 {
-                  payments && payments.map(
-                    (payment, key) => {
-                      return <li key={key} className="list-group-item d-flex justify-content-between align-items-start">
-                        <div className="ms-2 me-auto">
-                          <div className="fw-bold">{payment.payment}</div>
-                          R$ {payment.value.toFixed(2)}
-                        </div>
-                        <button type="button" class="btn btn-outline-primary">Remover</button>
-                      </li>
-                    }
-                  )
+                  paymentsMethods && paymentsMethods.map((payment, key) => {
+                    return <li key={key} className={`list-group-item d-flex justify-content-between align-items-start ${paymentKey == key ? 'list-group-item-primary' : ''}`}
+                      onClick={() => onSelectPayment(payment, key)}>
+                      <div className="ms-2 me-auto">
+                        <div className="fw-bold">{payment.payment}</div>
+                        <small>{payment.description}</small>
+                      </div>
+                    </li>
+                  })
                 }
               </ol>
             </div>
           </ModalBody>
 
           <ModalFooter>
-            <p className="mr-5">Total R$ { getTotalCart() }</p>
+            <p className="mr-5">Total R$ {getTotalCart()}</p>
             <button type="button" onClick={() => onCancelOrder()} className="btn btn-light">Cancelar pedido</button>
-            <button type="button" onClick={() => onConfirmOrder(cart)} className="btn btn-success">Comprar</button>
+            <button type="button" onClick={() => onConfirmOrder()} className="btn btn-success" disabled={payment == null}>Comprar</button>
           </ModalFooter>
 
         </Modal>
