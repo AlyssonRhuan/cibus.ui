@@ -3,7 +3,7 @@ import React from 'react';
 export default [
     {
       name: 'Usuário',
-      selector: 'user',
+      selector: 'user.name',
       sortable: true,
     },
     {

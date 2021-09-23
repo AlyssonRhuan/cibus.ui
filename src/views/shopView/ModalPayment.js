@@ -11,6 +11,8 @@ function ModalCart(props) {
   const [cart, setCart] = useState([]);
   const [openCashs, setOpenCashs] = useState([]);
   const [payment, setPayment] = useState();
+  const [cash, setCash] = useState();
+  const [cashKey, setCashKey] = useState();
   const [paymentKey, setPaymentKey] = useState();
   const [paymentsMethods, setPaymentMethods] = useState();
 
@@ -32,7 +34,7 @@ function ModalCart(props) {
   }
 
   async function getPaymentMothods() {
-    const dados = await api.get(`payment`, await Auth.getAuthHeader());
+    const dados = await api.get(`payment/visible`, await Auth.getAuthHeader());
     setPaymentMethods(dados.data);
   }
 
@@ -42,13 +44,18 @@ function ModalCart(props) {
   }
 
   function onConfirmOrder() {
-    props.onConfirmOrder(payment);
+    props.onConfirmOrder(payment, cash);
     closeModal();
   }
 
   function onSelectPayment(payment, key) {
     setPayment(payment);
     setPaymentKey(key);
+  }
+
+  function onSelectCash(cash, key) {
+    setCash(cash);
+    setCashKey(key);
   }
 
   function getTotalCart() {
@@ -69,17 +76,21 @@ function ModalCart(props) {
           <ModalBody className="row">
             <div className="form-group col-12">
               <label htmlFor='nomeProduto'>Selecione um caixa</label>
-              <select className="form-control" aria-label="Default select example">
+              <ol className="list-group list-group-numbered">
                 {
-                  openCashs && openCashs.map(
-                    (cash, key) => {
-                      return <option value={cash.id} key={key}>{cash.description} - R$ {cash.currentValue.toFixed(2)}</option>
-                    }
-                  )
+                  openCashs && openCashs.map((cash, key) => {
+                    return <li key={key} className={`list-group-item d-flex justify-content-between align-items-start ${cashKey == key ? 'list-group-item-primary' : ''}`}
+                      onClick={() => onSelectCash(cash, key)}>
+                      <div className="ms-2 me-auto">
+                        <div className="fw-bold">{cash.description}</div>
+                        <small>R$ {cash.currentValue.toFixed(2)}</small>
+                      </div>
+                    </li>
+                  })
                 }
-              </select>
+              </ol>
             </div>
-            <div className="form-group col-12 mb-0">
+            <div className="form-group col-12">
               <label htmlFor='nomeProduto'>Formas de pagamento</label>
               <ol className="list-group list-group-numbered">
                 {
@@ -100,7 +111,7 @@ function ModalCart(props) {
           <ModalFooter>
             <p className="mr-5">Total R$ {getTotalCart()}</p>
             <button type="button" onClick={() => onCancelOrder()} className="btn btn-light">Cancelar pedido</button>
-            <button type="button" onClick={() => onConfirmOrder()} className="btn btn-success" disabled={payment == null}>Comprar</button>
+            <button type="button" onClick={() => onConfirmOrder()} className="btn btn-success" disabled={payment == null || cash == null}>Comprar</button>
           </ModalFooter>
 
         </Modal>

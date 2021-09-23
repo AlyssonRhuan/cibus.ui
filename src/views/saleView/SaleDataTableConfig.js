@@ -1,27 +1,22 @@
 import React from 'react';
 
-export default [  
+export default [
   {
-    name: 'Produto',
-    selector: 'product.name',
+    name: 'Pagamento',
+    selector: 'payment.payment',
     sortable: true,
   },
   {
-    name: 'Quantidade',
-    selector: 'quantity',
-    sortable: true,
-  },
-  {
-    name: 'Preço',
+    name: 'Preço total',
     selector: 'price',
     sortable: true,
-    format: row => row.price && `R$ ${row.price.toFixed(2)}`
+    format: row => row.saleProducts && `R$ ${row.saleProducts.reduce((result, saleProduct) => result + ( saleProduct.price * saleProduct.quantity ), 0 ).toFixed(2)}`
   },
   {
     name: 'Data',
     selector: 'saleDate',
     sortable: true,
-    format: row => ((new Date(row.saleDate).getDate() )) + "/" + ((new Date(row.saleDate).getMonth() + 1)) + "/" + new Date(row.saleDate).getFullYear()
+    format: row => ((new Date(row.saleDate).getDate())) + "/" + ((new Date(row.saleDate).getMonth() + 1)) + "/" + new Date(row.saleDate).getFullYear()
   },
   {
     name: 'Status',

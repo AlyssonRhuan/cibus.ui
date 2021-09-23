@@ -34,9 +34,9 @@ function App() {
 
   }, [])
 
-  function onLogin(authorization, userId) {
+  function onLogin(authorization, userId, userRole) {
     setLoading(true);
-    AuthStorage.onLogin(authorization, userId)
+    AuthStorage.onLogin(authorization, userId, userRole)
       .then(response => {
         setIsAuth(true);
 

@@ -5,10 +5,10 @@ function FiltersSale(props) {
   return (
     <main>
       <div className="row">
-        <div className="col-auto">
+        {/* <div className="col-auto">
           <input type="text" className="form-control" id="product" placeholder="Produto"
           onChange={event => props.onSetFilters({...props.filters, product: event.target.value})} value={props.filters.product}/>
-        </div>
+        </div> */}
         <div className="col-auto">
           <input type="text" className="form-control" id="date" placeholder="Data"
           onChange={event => props.onSetFilters({...props.filters, date: event.target.value})} value={props.filters.date}/>

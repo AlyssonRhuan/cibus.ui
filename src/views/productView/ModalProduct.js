@@ -66,19 +66,19 @@ function ModalComponent(props) {
                 onChange={event => setProduct({ ...product, price: event.target.value })} value={product.price} />
             </div>
 
-            <div className="form-group col-12">
-              <label htmlFor="productCategory">Categorias</label>
-              <Select isMulti className="basic-multi-select" classNamePrefix="select"
-                onChange={event => setProduct({ ...product, categorys: event })}
-                options={listCategorys && listCategorys} value={product.categorys} />
-            </div>
-
             <div className="form-group col-6">
               <div className="custom-control custom-switch">
                 <input type="checkbox" className="custom-control-input" id="switchVisivel" checked={product.visible}
                   onChange={event => setProduct({ ...product, visible: event.target.checked })} />
                 <label className="custom-control-label" htmlFor="switchVisivel">Produto {!product.visible && "não"} visível</label>
               </div>
+            </div>
+
+            <div className="form-group col-12">
+              <label htmlFor="productCategory">Categorias</label>
+              <Select isMulti className="basic-multi-select" classNamePrefix="select"
+                onChange={event => setProduct({ ...product, categorys: event })}
+                options={listCategorys && listCategorys} value={product.categorys} />
             </div>
           </ModalBody>
 

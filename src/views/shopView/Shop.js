@@ -147,10 +147,10 @@ function Shop(props) {
     setCart([])
   }
 
-  async function onConfirmOrder(payment) {
+  async function onConfirmOrder(payment, cash) {
     try {
       setIsLoading(true);
-      let data = await api.post(`sale`, { saleProducts: this.cart, payment: payment}, await Auth.getAuthHeader());
+      let data = await api.post(`sale`, { saleProducts: this.cart, payment: payment, cash: cash}, await Auth.getAuthHeader());
       setOrderId(data.data.id);
       setPayment(payment);
       setModal('VOUCHER');

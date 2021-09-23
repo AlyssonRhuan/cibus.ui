@@ -25,7 +25,8 @@ function Login(props) {
           Toast.success("Welcome");
           const authorization = response.headers.authorization;
           const userId = response.headers.authorizationid;
-          props.onLogin(authorization, userId);
+          const userRole = response.headers.authorizationrole;
+          props.onLogin(authorization, userId, userRole);
         })
         .catch(e => {          
           error(e);

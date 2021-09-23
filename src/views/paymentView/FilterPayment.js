@@ -1,13 +1,13 @@
 import React from 'react';
-import { AiOutlineSearch, AiOutlineCloseCircle } from 'react-icons/ai';
+import { AiOutlineSearch } from 'react-icons/ai';
 
 function FilterCategory(props) {
 
   return (
     <main>
-      <div className="row ">
+      <div className="row">
         <div className="col-auto">
-          <input type="text" className="form-control" id="name" placeholder="Nome" 
+          <input type="text" className="form-control" id="name" placeholder="Pagamento" 
           onChange={event => props.onSetFilters({...props.filters, name: event.target.value})} value={props.filters.name}/>
         </div>
         <div className="col-auto">
