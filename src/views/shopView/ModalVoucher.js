@@ -2,6 +2,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import React, { useState, useEffect } from 'react';
 import IconsUtils from '../../utils/IconsUtils';
 import { AiOutlineQrcode } from 'react-icons/ai';
+import QRCode from "react-qr-code";
 
 function ModalVoucher(props) {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,8 +35,8 @@ function ModalVoucher(props) {
             <div className="form-group col-12">
               <div className="card mb-3" style={{ maxWidth: '540px;', border: '0px' }}>
                 <div className="row g-0">
-                  <div className="col-md-3" style={{ textAlign: 'center' }}>
-                    <AiOutlineQrcode size='100px' />
+                  <div className="col-md-5" style={{ textAlign: 'center' }}>
+                    <QRCode value={props}/>
                   </div>
                   <div className="px-0 py-0 card-body">
                     <ol className="list-group list-group-numbered">

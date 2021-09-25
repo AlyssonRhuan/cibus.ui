@@ -12,6 +12,12 @@ export default [
     sortable: true,
   },
   {
+    name: 'Movimenta o caixa',
+    selector: 'isCashMoviment',
+    sortable: true,
+    format: row => row.isCashMoviment == true ? 'Sim' : 'Não'
+  },
+  {
     name: 'Visivel',
     selector: 'visible',
     sortable: true,
