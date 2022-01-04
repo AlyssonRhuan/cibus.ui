@@ -39,12 +39,12 @@ function ModalComponent(props) {
           </ModalHeader>
 
           <ModalBody className="row">
-            <div className="form-group col-12">
+            <div className="form-group col-8">
               <label htmlFor='description'>Descrição</label>
               <input type='text' className="form-control" id='description' placeholder='Descrição'
                 onChange={event => setProduct({ ...product, description: event.target.value })} value={product.description} />
             </div>
-            <div className="form-group col-12">
+            <div className="form-group col-4">
               <label htmlFor='openValue'>Valor de abertura</label>
               <input type='text' className="form-control" id='openValue' placeholder='Valor de abertura'
                 onChange={event => setProduct({ ...product, startValue: event.target.value })} value={product.startValue} />

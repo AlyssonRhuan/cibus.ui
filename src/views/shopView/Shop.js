@@ -91,35 +91,34 @@ function Shop(props) {
   }
 
   function onBuy(product) {
-    var productNotUpdated = true;
+    let newCart = cart;
+    let check_index = newCart.findIndex(p => p.product.id == product.id);
+    let productToCart;
 
-    cart.map(p => {
-      if (p.product.id === product.id) {
-        p.quantity++;
-        productNotUpdated = false;
-        setCart(cart)
-      }
-    })
-
-    if (productNotUpdated) {
-      let productToCart = {
+    if (check_index !== -1) {
+      productToCart = newCart[check_index];
+      newCart.splice(check_index, 1);
+      productToCart.quantity++;
+    } else {
+      productToCart = {
         quantity: 1,
         price: product.price,
         product: product
       }
-
-      setCart([...cart, productToCart])
     }
+
+    newCart = [...cart, productToCart]
+    setCart(newCart);
   }
 
   function onChangeQuantity(productId, quantity) {
+    let check_index = cart.findIndex(p => p.product.id == productId);
+    let productToCart = cart[check_index];
+    cart.splice(check_index, 1);
+
     if (quantity > 0) {
-      cart.map(p => {
-        if (p.product.id === productId) {
-          p.quantity = quantity;
-          setCart(cart)
-        }
-      })
+      productToCart.quantity = quantity;
+      setCart([...cart, productToCart])
     }
     else {
       onRemoveProduct(productId)
@@ -232,7 +231,11 @@ function Shop(props) {
             <div className="col-12 row mx-0 px-0" style={{ minHeight: '83vh' }}>
               <ul className="list-group col-12">
                 <p style={{ textAlign: 'center' }}><b>Carrinho</b></p>
-                {cart && cart.map((product, key) => <li key={key} className="row list-group-item d-flex align-items-center" style={{ height: '110px', borderRight: '0px', borderLeft: '0px' }}>
+                {cart && cart.sort(function (a, b) {
+                  if (a.product.name < b.product.name) { return -1; }
+                  if (a.product.name > b.product.name) { return 1; }
+                  return 0;
+                }).map((product, key) => <li key={key} className="row list-group-item d-flex align-items-center" style={{ height: '110px', borderRight: '0px', borderLeft: '0px' }}>
                   <div className="col-12 d-flex justify-content-between px-0">
                     <b>{product.product.name}</b>
                     <span>R$ {(product.quantity * product.product.price).toFixed(2)}</span>

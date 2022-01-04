@@ -4,6 +4,7 @@ import Auth from '../../storage/Auth.storage';
 import api from '../../services/api';
 import Select from 'react-select';
 import IconsUtils from '../../utils/IconsUtils';
+import { FaCashRegister } from "react-icons/fa";
 import { AiOutlinePlus, AiOutlineLine } from 'react-icons/ai';
 
 function ModalCart(props) {
@@ -101,6 +102,10 @@ function ModalCart(props) {
                         <div className="fw-bold">{payment.payment}</div>
                         <small>{payment.description}</small>
                       </div>
+                      <div data-toggle="tooltip" title="Movimenta o caixa">
+                        {payment.isCashMoviment && <FaCashRegister color="gray" />}
+                      </div>
+
                     </li>
                   })
                 }

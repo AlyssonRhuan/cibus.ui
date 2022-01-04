@@ -55,17 +55,17 @@ function ModalComponent(props) {
 
             <div className="form-group col-6">
               <div className="custom-control custom-switch">
-                <input type="checkbox" className="custom-control-input" id="switchVisivel" checked={payment.visible}
+                <input type="checkbox" className="custom-control-input" id="switchVisiblel" checked={payment.visible}
                   onChange={event => setPayment({ ...payment, visible: event.target.checked })} />
-                <label className="custom-control-label" htmlFor="switchVisivel">{payment.visible ? "Visível" : "Não visível"}</label>
+                <label className="custom-control-label" htmlFor="switchVisiblel">{payment.visible ? "Visível" : "Não visível"}</label>
               </div>
             </div>
 
             <div className="form-group col-6">
               <div className="custom-control custom-switch">
-                <input type="checkbox" className="custom-control-input" id="switchVisivel" checked={payment.isCashMoviment}
+                <input type="checkbox" className="custom-control-input" id="switchMoveCash" checked={payment.isCashMoviment}
                   onChange={event => setPayment({ ...payment, isCashMoviment: event.target.checked })} />
-                <label className="custom-control-label" htmlFor="switchVisivel">{payment.isCashMoviment ? "Movimenta o caixa" : "Não movimenta o caixa"}</label>
+                <label className="custom-control-label" htmlFor="switchMoveCash">{payment.isCashMoviment ? "Movimenta o caixa" : "Não movimenta o caixa"}</label>
               </div>
             </div>
           </ModalBody>

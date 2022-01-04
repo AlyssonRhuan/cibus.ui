@@ -4,7 +4,9 @@ import SaleView from '../views/saleView/Sale';
 import { AiOutlineUser, AiOutlineAppstore, AiOutlineBulb, AiFillCreditCard, AiOutlineShoppingCart } from "react-icons/ai";
 import { MdNotifications, MdAttachMoney } from 'react-icons/md';
 import { FaCashRegister } from "react-icons/fa";
+import { HiOutlineDocumentReport } from "react-icons/hi";
 import MeView from '../views/meView/Me';
+import ReportView from '../views/reportView/Report';
 import PaymentView from '../views/paymentView/Payment';
 import ShopView from '../views/shopView/Shop';
 import React from 'react';
@@ -16,11 +18,21 @@ import NotificationView from '../views/notificationView/Notifications';
 export default function Routes() {
     const rotas = [
         {
+            path: "/shop",
+            name: "Loja",
+            view: ShopView,
+            icon: <AiOutlineShoppingCart/>,
+            isInSideBar: true
+        },
+        {
             path: "/category",
             name: "Categorias",
             view: CategoryView,
             icon: <AiOutlineAppstore/>,
-            isInSideBar: true
+            isInSideBar: true,
+            style: {
+                marginTop: '20px'
+            }
         },
         {
             path: "/product",
@@ -58,21 +70,18 @@ export default function Routes() {
             isInSideBar: true,
         },
         {
+            path: "/report",
+            name: "Relatórios",
+            view: ReportView,
+            icon: <HiOutlineDocumentReport/>,
+            isInSideBar: true
+        },
+        {
             path: "/me",
             name: "Eu",
             view: MeView,
             icon: <AiOutlineUser/>,
             isInSideBar: true
-        },
-        {
-            path: "/shop",
-            name: "Loja",
-            view: ShopView,
-            icon: <AiOutlineShoppingCart/>,
-            isInSideBar: true,
-            style: {
-                marginTop: '20px'
-            }
         },
         {
             path: "/unavailableservice",
