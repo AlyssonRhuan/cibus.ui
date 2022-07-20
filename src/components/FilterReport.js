@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 
-function FilterHome({ onSelected, filterSelected }) {
+function FilterReport({ onSelected, filterSelected }) {
 
   return (
     <main>
@@ -18,4 +18,4 @@ function FilterHome({ onSelected, filterSelected }) {
   );
 }
 
-export default FilterHome;
+export default FilterReport;

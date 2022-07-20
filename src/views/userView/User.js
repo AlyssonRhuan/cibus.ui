@@ -1,67 +1,67 @@
 import api from '../../services/api';
-import ModalProduct from './ModalProduct';
+import ModalUser from './ModalUser';
 import Toast from '../../components/Toast';
 import Table from '../../components/Table';
 import Auth from '../../storage/Auth.storage';
 import Loading from '../../components/Loading';
 import React, { useState, useEffect } from 'react';
 import PageTitle from '../../components/PageTitle';
-import ProductDataTableConfig from './ProductDataTableConfig';
+import UserDataTableConfig from './UserDataTableConfig';
 import ModalConfirmation from '../../utils/ModalConfirmationUtils';
-import FilterProduct from './FilterProduct';
+import FilterUser from './FilterUser';
 
 const rotasBreadcrumb = [
   { name: "Home", path: "/" },
-  { name: "Produtos" }
+  { name: "Usuários" }
 ]
 
-const END_POINT = 'product'
-const PAGE_TITLE = 'Produto'
+const END_POINT = 'user'
+const PAGE_TITLE = 'Usuários'
 
-function Product() {
-  const [products, setProducts] = useState();
-  const [productToAction, setProductToAction] = useState();
+function User() {
+  const [users, setUsers] = useState();
+  const [userToAction, setUserToAction] = useState();
   const [modal, setModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [filters, setFilters] = useState({})
 
   useEffect(() => {
-    getAllProducts();
+    getAllUsers();
   }, [])
 
   // FUNÇÕES PARA ABRIR MODAL
 
   function openModal(modal, dado = undefined) {
     setModal(modal);
-    setProductToAction(dado);
+    setUserToAction(dado);
   }
 
   function closeModal() {
     setModal(undefined);
-    getAllProducts();
+    getAllUsers();
   }
 
   // FUNÇÕES 
-  function onFilter(){
-    getAllProducts();
+
+  function onFilter(name, login) {
+    getAllUsers();
   }
 
-  async function getAllProducts(page, quantity) {
+  async function getAllUsers(page, quantity) {
     try {
       const response = await api.get(END_POINT + "?page=" + (page || 1)
-          + "&quantity=" + (quantity || 10)
-          + "&name=" + (filters.name || '')
-          + "&categoryId=" + (filters.category || 0)
-          + "&active=" + (filters.active || 'BOUTH')
-          , await Auth.getAuthHeader());
-      setProducts(response.data);
+        + "&quantity=" + (quantity || 10)
+        + "&name=" + (filters.name || '')
+        + "&login=" + (filters.login || '')
+        , await Auth.getAuthHeader());
+      setUsers(response.data);
     }
     catch (e) {
       error(e);
     }
   }
 
-  async function addProduct(data) {
+  async function addUser(data) {
     try {
       setIsLoading(true);
       data = await api.post(`${END_POINT}`, data, await Auth.getAuthHeader());
@@ -75,9 +75,9 @@ function Product() {
     closeModal();
   }
 
-  async function editProduct(data) {
+  async function editUser(data) {
     try {
-      await api.put(`${END_POINT}/${productToAction.id}`, data, await Auth.getAuthHeader());
+      await api.put(`${END_POINT}/${userToAction.id}`, data, await Auth.getAuthHeader());
       Toast.success(`${PAGE_TITLE} atualizado!`);
     }
     catch (e) {
@@ -87,10 +87,10 @@ function Product() {
     closeModal();
   }
 
-  async function deleteProduct(validation) {
+  async function deleteUser(validation) {
     try {
       if (validation) {
-        await api.delete(`${END_POINT}/${productToAction.id}`, await Auth.getAuthHeader(), await Auth.getAuthHeader());
+        await api.delete(`${END_POINT}/${userToAction.id}`, await Auth.getAuthHeader(), await Auth.getAuthHeader());
         Toast.success(`${PAGE_TITLE} removido!`);
       }
     }
@@ -118,17 +118,17 @@ function Product() {
           <div style={{ alignItems: 'center' }} className="col-12 row justify-content-between mx-0 px-0">
             <PageTitle title={PAGE_TITLE} breadcrumb={rotasBreadcrumb} />
             <button type="button" className="btn btn-success ml-2" onClick={() => openModal('ADD')}>
-              Adicionar produto
+              Adicionar usuário
             </button>
           </div>
 
           {
-            products && <Table
-              data={products}
-              columns={ProductDataTableConfig}
+            users && <Table
+              data={users}
+              columns={UserDataTableConfig}
               onAction={openModal}
-              filters={<FilterProduct filters={filters} onSetFilters={setFilters} onFilter={onFilter}/>}
-              onGetAll={getAllProducts}
+              filters={<FilterUser filters={filters} onSetFilters={setFilters} onFilter={onFilter} />}
+              onGetAll={getAllUsers}
             />
           }
 
@@ -138,29 +138,29 @@ function Product() {
 
         {/* MODAIS */}
         {
-          modal && modal === 'ADD' && <ModalProduct
+          modal && modal === 'ADD' && <ModalUser
             title={`Adicionar ${PAGE_TITLE}`}
             data={undefined}
             onClose={closeModal}
-            onSave={addProduct}
+            onSave={addUser}
             isOpen={modal === 'ADD'} />
         }
 
         {
-          modal && modal === 'EDI' && <ModalProduct
-              title={`Editar ${PAGE_TITLE}`}
-              data={productToAction}
-              onClose={closeModal}
-              onSave={editProduct}
-              isOpen={modal === 'EDI'} />
+          modal && modal === 'EDI' && <ModalUser
+            title={`Editar ${PAGE_TITLE}`}
+            data={userToAction}
+            onClose={closeModal}
+            onSave={editUser}
+            isOpen={modal === 'EDI'} />
         }
 
         {
           modal && modal === 'DEL' && <ModalConfirmation
             title={`Deletar ${PAGE_TITLE}`}
-            text={`Deseja deletar o produto ${productToAction.name}`}
+            text={`Deseja deletar o usuário ${userToAction.name}`}
             onClose={closeModal}
-            onResponse={deleteProduct}
+            onResponse={deleteUser}
             isOpen={modal === 'DEL'} />
         }
 
@@ -169,4 +169,4 @@ function Product() {
   );
 }
 
-export default Product;
+export default User;

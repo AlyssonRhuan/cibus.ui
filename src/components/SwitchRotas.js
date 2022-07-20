@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import NotFoundView from '../views/notFoundView/NotFound';
-import HomeView from '../views/homeView/Home';
+import ShopView from '../views/shopView/Shop';
 import React from 'react';
 import Auth from "../storage/Auth.storage";
 
@@ -16,10 +16,10 @@ function SwitchRotas(props) {
     {/* SWITCH DE ROTA */}
     <div>
       <Switch>
-        <Route exact path={"/"}               component={HomeView}/>
+        <Route exact path={"/"} component={ShopView}/>
         {
           rotas && rotas.map(
-            (rota, key) => <PrivateRoute exact path={rota.path} key={key} component={rota.view}/>
+            (rota, key) =>  rota.roles.includes(props.userRule) && <PrivateRoute exact path={rota.path} key={key} component={rota.view}/>
           )
         }
         <Route component={NotFoundView}/>

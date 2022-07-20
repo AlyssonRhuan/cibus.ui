@@ -110,7 +110,7 @@ function Cash() {
   // RENDER
 
   return (
-    <main className="App col-12 pr-4 ml-1 pl-4">
+    <main className="App col-12 px-4">
       {isLoading
         ? <Loading />
         : <section>

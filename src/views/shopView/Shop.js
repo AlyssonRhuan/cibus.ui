@@ -160,7 +160,7 @@ function Shop(props) {
   // RENDER
 
   return (
-    <main className="col-12 m-2" style={{ zIndex: '0' }}>
+    <main className="App col-12 px-4 pt-2" style={{ zIndex: '0' }}>
       <section className="row px-0 px-0">
 
         {/* CATEGORIAS */}
@@ -188,9 +188,6 @@ function Shop(props) {
                     <div className="col-12 d-flex justify-content-between px-0">
                       <p><b>{product.name}</b></p>
                       <a onClick={() => onModalProductDetails(product)} style={{ cursor: 'pointer' }}><AiOutlineInfoCircle color="gray" size='25px' /></a>
-                    </div>
-                    <div className="col-12 px-0" style={{ color: 'gray', fontSize: '12px' }}>
-                      {product.quickDescription}
                     </div>
                     <div className="col-12 d-flex justify-content-between px-0">
                       <p><b>{product.price && `R$ ${product.price.toFixed(2)}`}</b></p>

@@ -27,7 +27,7 @@ function DashboardMediumCard(props) {
 
   return (
     <div className={props.col} >
-      <div className="card" style={{borderRadius:'10px', borderLeft: `10px solid ${props.color}`, height: '450px'}}>
+      <div className="card" style={{borderRadius:'10px', borderLeft: `10px solid #19222b`, height: '450px'}}>
         <div className="card-body row align-items-center">    
           <div className='col'>
             <h6 className="card-title" style={{color: props.color, textAlign: 'left'}}>{props.title}</h6>

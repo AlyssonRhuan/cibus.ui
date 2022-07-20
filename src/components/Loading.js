@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 
 function Loading() {
   return (
-    <main className="Loading align-middle">
+    <main className="Loading align-middle" style={{ height: '10px' }}>
       <section>
-      <div className="spinner-border text-primary" role="status">
-        <span className="sr-only">Loading...</span>
-      </div>
+        <div className="spinner-border text-primary">
+        </div>
       </section>
     </main>
   );

@@ -7,6 +7,7 @@ import { ToastContainer } from 'react-toastify';
 import EntryView from './views/entryView/Entry';
 import Toast from './components/Toast';
 import Rotas from './services/Routes';
+import Auth from "./storage/Auth.storage";
 
 // STORAGES
 import AuthStorage from './storage/Auth.storage';
@@ -21,6 +22,7 @@ function App() {
   const [loading, setLoading] = useState();
   const [isAuth, setIsAuth] = useState();
   const [isConfirmAccount, setIsConfirmAccount] = useState(false);
+  const [userRole, setUserRole] = useState();
 
   useEffect(() => {    
     setLoading(true);
@@ -39,9 +41,9 @@ function App() {
     AuthStorage.onLogin(authorization, userId, userRole)
       .then(response => {
         setIsAuth(true);
-
-        setRotas(Rotas())
-
+        setRotas(Rotas());
+        setUserRole(userRole);
+        console.log(userRole)
       })
       .catch(err => {
         Toast.error(err.message)
@@ -70,8 +72,8 @@ function App() {
           : !isAuth
             ? <EntryView isConfirmedAccount={isConfirmAccount} onLogin={onLogin} />
             : <Router>
-                  <SideBarMenu rotas={rotas} onLogout={onLogout} />
-                  <SwitchRotas rotas={rotas} onLogout={onLogout} />
+                  <SideBarMenu rotas={rotas} onLogout={onLogout} userRule={userRole}/>
+                  <SwitchRotas rotas={rotas} onLogout={onLogout} userRule={userRole}/>
                 </Router>
       }
     </section>

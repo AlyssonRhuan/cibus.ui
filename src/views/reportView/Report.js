@@ -1,44 +1,77 @@
 import PageTitle from '../../components/PageTitle';
 import React, { useState, useEffect } from 'react';
-import Categories from './Categories';
-import ReportSales from './ReportSales';
+import api from '../../services/api';
+import Auth from '../../storage/Auth.storage';
+import Toast from '../../components/Toast';
+import DashboardSimpleCard from '../../components/DashboardSimpleCard';
+import DashboardMediumCard from '../../components/DashboardMediumCard';
+import DashboardLargeCard from '../../components/DashboardLargeCard';
+import { FaCashRegister } from "react-icons/fa";
+import FilterReport from '../../components/FilterReport';
+
+const END_POINT = 'report'
+const PAGE_TITLE = 'Relatórios'
 
 const rotasBreadcrumb = [
   { name: "Home", path: "/" },
   { name: "Relatórios" }
 ]
-const PAGE_TITLE = 'Relatórios'
-
-const categories = [
-    { id: 1, label: 'Vendas'},
-    { id: 2, label: 'Caixas'}
-]
 
 function Report(props) {
   const [categoryId, setCategoryId] = useState(1);
+  const [filterSelected, setFilterSelected] = useState('DAY');
+  const [reports, setReports] = useState([]);
 
-  function onChangeCategory(id){
-    setCategoryId(id);
+  useEffect(() => {
+    getAll(filterSelected);
+  }, [])
+
+  async function getAll(period) {
+    try {
+      const response = await api.get(`${END_POINT}/all/${period}`, await Auth.getAuthHeader())
+      setReports(response.data)
+    }
+    catch (e) {
+      error(e);
+    }
+  }
+
+  function onFilterSelected(period){
+    setFilterSelected(period);
+    getAll(period);
+  }
+
+  function error(e) {
+    Toast.error(e.response ? e.response.data.message : e.message);
+    console.error(e.response ? e.response.data.message : e.message);
   }
 
   return (
-    <main className="App col-12 pr-4 ml-1 pl-4">
+    <main className="App col-12 px-4">
       <section>
 
         {/* BARRA MENU INTERNO */}
         <div style={{ alignItems: 'center' }} className="col-12 row justify-content-between mx-0 px-0">
           <PageTitle title={PAGE_TITLE} breadcrumb={rotasBreadcrumb} />
+          <FilterReport onSelected={onFilterSelected} filterSelected={filterSelected} />
         </div>
-        <section className="pt-4">
-          <div className="col-12 row">
-            <div className="col-2 px-0">
-              <Categories onChangeCategory={onChangeCategory} categories={categories}/>
-            </div>
-            <div className="col-10">
-              { categoryId === 1 && <ReportSales /> }
-            </div>
-          </div>
+
+        <section className='row mx-0' style={{ maxHeight: '80vh', overflowY: 'auto' }}>
+          {
+            reports.map((report, key) => {
+              if (report.size === 1) {
+                return <DashboardSimpleCard key={key} report={report} period={filterSelected}/>
+              }
+              else if (report.size === 2) {
+                return <DashboardMediumCard key={key} title={report.title} value={['']} col='col-4 mb-3 pl-0' icon={<FaCashRegister />} />
+              }
+              else if (report.size === 3) {
+                return <DashboardLargeCard key={key} title={report.title} value={''} col='col-6 mb-3 pl-0' icon={<FaCashRegister />} />
+              }
+            })
+          }
         </section>
+
       </section>
     </main>
   );

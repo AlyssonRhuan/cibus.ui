@@ -1,17 +1,16 @@
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import React, { useState, useEffect } from 'react';
 import 'react-image-crop/dist/ReactCrop.css';
-import 'react-image-crop/lib/ReactCrop.scss';
 import ReactCrop from 'react-image-crop';
 
 function UploadImage(props) {
   const [image, setImage] = useState()
   const [croppedImageUrl, setCroppedImageUrl] = useState()
   const [hasError, setHasError] = useState(false)
-  const [imgToCrop, setImgToCrop]             = useState()
-  const [crop, setCrop]                       = useState({aspect: 1, unit: 'px', width: 50, height: 50})
-  const [hasCropModal, setCropModal]          = useState(false)
-  const [imgRef, setImageRef]                 = useState()
+  const [imgToCrop, setImgToCrop] = useState()
+  const [crop, setCrop] = useState({ aspect: 1, unit: 'px', width: 700, height: 700 })
+  const [hasCropModal, setCropModal] = useState(false)
+  const [imgRef, setImageRef] = useState()
 
   function saveModal() {
     makeClientCrop(crop);
@@ -36,7 +35,6 @@ function UploadImage(props) {
         'newphoto.jpeg'
       );
       setCroppedImageUrl(croppedImageUrl);
-      console.log(croppedImageUrl)
       props.onSave(croppedImageUrl);
     }
   }
@@ -79,42 +77,42 @@ function UploadImage(props) {
 
   return <main>
     <section>
-      <div className="col-12">        
-        <input id="uploadPhoto" type="file" accept="image/*" style={{display:"none"}}  onChange={e => onSelectFile(e)}/>
+      <div className="col-12 px-0">
+        <input id="uploadPhoto" type="file" accept="image/*" style={{ display: "none" }} onChange={e => onSelectFile(e)} />
         <label htmlFor="uploadPhoto" className="btn btn btn-light mt-2">
-            Carregar foto
+          Carregar foto
         </label>
-        {hasError && <small className="form-text text-danger mb-3">File size exceeds 2 MB. Please, try again!</small>}
+        {hasError && <small className="form-text text-danger mb-3">Arquivo passa de 2 MB. Por favor, tente novamente.</small>}
       </div>
     </section>
 
     {imgToCrop && <section>
-        <Modal isOpen={hasCropModal}>
+      <Modal isOpen={hasCropModal}>
 
-          <ModalHeader>
-            Image crop
-          </ModalHeader>
+        <ModalHeader>
+          Image crop
+        </ModalHeader>
 
-          <ModalBody className={`row`}>           
-            <div className="d-flex justify-content-center flex-row w-100">
-              <ReactCrop 
-                    src={imgToCrop} 
-                    crop={crop} 
-                    onImageLoaded={onImageLoaded}
-                    ruleOfThirds
-                    onChange={onCropChange}
-                />
-            </div>
-          </ModalBody>
+        <ModalBody className={`row`}>
+          <div className="d-flex justify-content-center flex-row w-100">
+            <ReactCrop
+              src={imgToCrop}
+              crop={crop}
+              onImageLoaded={onImageLoaded}
+              ruleOfThirds
+              onChange={onCropChange}
+            />
+          </div>
+        </ModalBody>
 
-          <ModalFooter>
-            <button type="button" onClick={() => setCropModal(false)} className="btn btn-danger">Cancel</button>
-            <button type="button" onClick={() => saveModal()} className="btn btn-success">Save</button>
-          </ModalFooter>
+        <ModalFooter>
+          <button type="button" onClick={() => setCropModal(false)} className="btn btn-danger">Cancel</button>
+          <button type="button" onClick={() => saveModal()} className="btn btn-success">Save</button>
+        </ModalFooter>
 
-        </Modal>
-      </section>
-      }
+      </Modal>
+    </section>
+    }
   </main>
 
 

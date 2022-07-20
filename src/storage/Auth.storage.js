@@ -26,6 +26,10 @@ export default class Auth{
         return await localStorage.getItem("Authorization"); 
     }
 
+    static async getUserRole(){
+        return await localStorage.getItem("AuthorizationRole"); 
+    }
+
     static async onLogout(){
         await localStorage.removeItem("Authorization");
         await localStorage.removeItem("AuthorizationId");
