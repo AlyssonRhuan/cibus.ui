@@ -17,32 +17,43 @@ import React from 'react';
 
 export default function Routes() {
     const rotas = [
+        // {
+        //     path: "/shop",
+        //     name: "Loja",
+        //     view: ShopView,
+        //     icon: <AiOutlineShoppingCart />,
+        //     isInSideBar: true,
+        //     roles: ['ROLE_CLIENT']
+        // },
+        // {
+        //     path: "/",
+        //     name: "Loja",
+        //     view: ShopView,
+        //     icon: <AiOutlineShoppingCart />,
+        //     isInSideBar: true,
+        //     roles: ['ROLE_CLIENT']
+        // },
         {
-            path: "/shop",
-            name: "Loja",
-            view: ShopView,
-            icon: <AiOutlineShoppingCart />,
-            isInSideBar: true,
-            roles: ['ROLE_ADMIN', 'ROLE_SELLER', 'ROLE_CLIENT']
-        },
-        {
-            path: "/category",
+            path: "portal/category",
             name: "Categorias",
             view: CategoryView,
             icon: <AiOutlineAppstore />,
             isInSideBar: true,
-            roles: ['ROLE_ADMIN', 'ROLE_SELLER']
+            roles: ['ROLE_ADMIN'],
+            isAuth: () => {
+                return false;
+            }
         },
         {
-            path: "/product",
+            path: "portal/product",
             name: "Produtos",
             view: ProductView,
             icon: <AiOutlineBulb />,
             isInSideBar: true,
-            roles: ['ROLE_ADMIN', 'ROLE_SELLER']
+            roles: ['ROLE_ADMIN']
         },
         {
-            path: "/users",
+            path: "portal/users",
             name: "Usuários",
             view: UserView,
             icon: < FiUsers />,
@@ -50,23 +61,23 @@ export default function Routes() {
             roles: ['ROLE_ADMIN']
         },
         {
-            path: "/cash",
+            path: "portal/cash",
             name: "Caixas",
             view: CashView,
             icon: <FaCashRegister />,
             isInSideBar: true,
-            roles: ['ROLE_ADMIN', 'ROLE_SELLER']
+            roles: ['ROLE_ADMIN']
         },
         {
-            path: "/sale",
+            path: "portal/sale",
             name: "Vendas",
             view: SaleView,
             icon: <AiFillCreditCard />,
             isInSideBar: true,
-            roles: ['ROLE_ADMIN', 'ROLE_SELLER']
+            roles: ['ROLE_ADMIN']
         },
         {
-            path: "/payment",
+            path: "portal/payment",
             name: "Pagamentos",
             view: PaymentView,
             icon: <MdAttachMoney />,
@@ -74,28 +85,28 @@ export default function Routes() {
             roles: ['ROLE_ADMIN']
         },
         {
-            path: "/notifications",
+            path: "portal/notifications",
             name: "Notificações",
             view: NotificationView,
             icon: <MdNotifications />,
             isInSideBar: true,
-            roles: ['ROLE_ADMIN', 'ROLE_SELLER', 'ROLE_CLIENT']
+            roles: ['ROLE_ADMIN', 'ROLE_CLIENT']
         },
         {
-            path: "/report",
+            path: "portal/report",
             name: "Relatórios",
             view: ReportView,
             icon: <HiOutlineDocumentReport />,
             isInSideBar: true,
-            roles: ['ROLE_ADMIN', 'ROLE_SELLER']
+            roles: ['ROLE_ADMIN']
         },
         {
-            path: "/unavailableservice",
+            path: "portal/unavailableservice",
             name: "UnavailableService",
             view: UnavailableService,
             icon: <AiOutlineUser />,
             isInSideBar: false,
-            roles: ['ROLE_ADMIN', 'ROLE_SELLER', 'ROLE_CLIENT']
+            roles: ['ROLE_ADMIN', 'ROLE_CLIENT']
         }
     ];
 

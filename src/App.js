@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoadingPaginaInteira from './components/LoadingPaginaInteira';
 import SideBarMenu from './components/SidebarMenu';
 import SwitchRotas from './components/SwitchRotas';
@@ -8,6 +8,8 @@ import EntryView from './views/entryView/Entry';
 import Toast from './components/Toast';
 import Rotas from './services/Routes';
 import Auth from "./storage/Auth.storage";
+import ShopView from './views/shopView/Shop';
+import NotFoundView from './views/notFoundView/NotFound';
 
 // STORAGES
 import AuthStorage from './storage/Auth.storage';
@@ -26,11 +28,10 @@ function App() {
 
   useEffect(() => {    
     setLoading(true);
+    setRotas(Rotas());
     
     AuthStorage.isAuthenticated().then(response => {
       setIsAuth(response);
-      
-      setRotas(Rotas());
       setLoading(false);
     });
 
@@ -63,8 +64,23 @@ function App() {
   }
   
   return (
-    <section className="ml-5">
-      <ToastContainer hideProgressBar />
+    <section>
+      <Router>
+        <Routes>
+          <Route exact path={"/"} element={<ShopView/>}/>
+          <Route exact path={"/portal"} element={<EntryView/>}/>
+          {
+            rotas && rotas.map(
+              (rota, key) =>  <Route path={rota.path} element={<rota.view/>}/>
+            )
+          }
+          <Route element={NotFoundView}/>
+        </Routes>
+      </Router>
+
+
+      
+      {/* <ToastContainer hideProgressBar />
       <title>{process.env.REACT_APP_APP_TITLE}</title>
       {
         loading
@@ -74,8 +90,7 @@ function App() {
             : <Router>
                   <SideBarMenu rotas={rotas} onLogout={onLogout} userRule={userRole}/>
                   <SwitchRotas rotas={rotas} onLogout={onLogout} userRule={userRole}/>
-                </Router>
-      }
+                </Router>      } */}
     </section>
   );
 }

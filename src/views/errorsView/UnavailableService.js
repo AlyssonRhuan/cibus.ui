@@ -1,9 +1,9 @@
 import React from 'react';
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { SiProbot } from 'react-icons/si'
 
 function UnavailableService() {  
-  let history = useHistory();
+  let history = useNavigate();
 
   function goToHome() {    
     history.push("/");
